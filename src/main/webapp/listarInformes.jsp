@@ -6,17 +6,14 @@
 
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
 <%@page import="appnomina.capadatos.entidades.Venta"%>
-<%@page import="appnomina.capadatos.entidades.Compra"%>
-<%@page import="appnomina.capadatos.entidades.Proveedor"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
 
 %>
 <jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="session"></jsp:useBean>
-<jsp:useBean id="fachadaV" class="appnomina.negocio.facade.VentaFacade"></jsp:useBean>
-<jsp:useBean id="fachadaC" class="appnomina.negocio.facade.CompraFacade"></jsp:useBean>
-<jsp:useBean id="fachadaP" class="appnomina.negocio.facade.ProveedorFacade"></jsp:useBean>
+
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -171,13 +168,7 @@
                 <th>
                     <div>
                         <select id="idProveedor" name="idProveedor" required class="form-control" name="proveedor" id="proveedor" style="width: 200px; height: 35px">
-                            <option value="" selected >  </option>
-                        <% for (Proveedor proveedor : fachadaP.buscarProveedores()) {
-                        %>
-                        <option value="<%= proveedor.getIdProveedor()%>"> <%= (proveedor.getNombre()).replace("_", " ")%> - <%= proveedor.getIdProveedor()%></option>
-                        <%
-                            }
-                        %>
+
                     </select>
                 </div>
             </th>
@@ -277,18 +268,7 @@
                     </tr>                            
                 </thead>
                 <tbody>
-                    <% for (Compra compra : fachadaC.buscarCompras()) {
-                    %>
-                    <tr>                               
-                        <td><%= compra.getIdCompra()%></td>
-                        <td><%= compra.getIdProveedor()%></td>
-                        <td><%= compra.getIdEmpleado()%></td>
-                        <td><%= compra.getTotal()%></td>
-                        <td><%= compra.getFecha()%></td>
-                    </tr>
-                    <%
-                        }
-                    %>
+
                 </tbody>
 
             </table>
@@ -309,18 +289,7 @@
                     </tr>                            
                 </thead>
                 <tbody>
-                    <% for (Venta venta : fachadaV.buscarVentas()) {
-                    %>
-                    <tr>                               
-                        <td><%= venta.getIdVenta()%></td>
-                        <td><%= venta.getIdCliente()%></td>
-                        <td><%= venta.getIdEmpleado()%></td>
-                        <td><%= venta.getTotal()%></td>
-                        <td><%= venta.getFecha()%></td>
-                    </tr>
-                    <%
-                        }
-                    %>
+
                 </tbody>
 
             </table>

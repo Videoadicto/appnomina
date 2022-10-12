@@ -17,16 +17,16 @@
 
             if (sino.contains("true")) {
 
-                int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
-                Empleado p = fachada.buscarEmpleado(idEmpleado);
+                String cedula = request.getParameter("cedula");
+                Empleado p = fachada.buscarEmpleado(cedula);
 
                 if (p != null) {
-                    String msg = fachada.eliminarEmpleado(idEmpleado);
+                    String msg = fachada.eliminarEmpleado(cedula);
                     String msg4 = msg.replace(" ", ".");
         %>
         <input id="esto1" style="display: none;" value = <%= msg4%> >
         <script>
-            $("#box").load("pg-empleado/listarEmpleado.jsp?mens=" + ($(esto1).val()), function () {
+            $("#box").load("pg-nomina/listarNomina.jsp?mens=" + ($(esto1).val()), function () {
             });
         </script>
         <%
@@ -34,7 +34,7 @@
         } else {
         %>
         <script>
-            $("#box").load("pg-empleado/listarEmpleado.jsp?mens=Se.ha.cancelado.la.operacion", function () {
+            $("#box").load("pg-nomina/listarNomina.jsp?mens=Se.ha.cancelado.la.operacion", function () {
             });
         </script>
         <%    }

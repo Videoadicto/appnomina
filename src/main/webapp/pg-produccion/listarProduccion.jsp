@@ -1,10 +1,10 @@
 <%-- 
-    Document   : listarEmpleados
+    Document   : listarClientes
     Created on : 31 mar. 2022, 08:43:44
     Author     : Videoadicto
 --%>
 
-<%@page import="appnomina.capadatos.entidades.Empleado"%>
+<%@page import="appnomina.capadatos.entidades.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -16,11 +16,11 @@
     }
 %>
 --%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.ClienteFacade"></jsp:useBean>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Gestión Empleados</title>
+            <title>Gestión Clientes</title>
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
             <link href="css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
@@ -39,68 +39,63 @@
         </head>
 
          <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EMPLEADOS</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">PRODUCCION</h1>
         </div>
 
         <br>
 
         <div>
-        <%--            <button class="btn" onclick="location.href = 'empleadoForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
-        <button class="btn" id="nuevo" value="pg-empleado/insertarEmpleado.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
+        <%--            <button class="btn" onclick="location.href = 'clienteForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
+        <button class="btn" id="nuevo" value="pg-produccion/insertarProduccion.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
             <i class="fa fa-toolbox" >
-            </i> Agregar Empleado
+            </i> Agregar Produccion
         </button>
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="tablaEmpleados" class="table table-bordered">
+            <table id="tablaClientes" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
                         <th>Cedula</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Telefono</th>
-                        <th>Eps</th>
-                        <th>Cargo</th>
-                        <th>Opciones</th>
+                        <th>Nombre</th>
+                        <th>email</th>
+                        <th>telefono</th>
+                        <th>opciones</th>
                     </tr>                            
                 </thead>
                 <tbody>
-                    <% for (Empleado empleado : fachada.buscarEmpleados()) {
+                    <% for (Cliente cliente : fachada.buscarClientes()) {
                     %>
                     <tr>                               
-                        <td><%= empleado.getId_empleado()%></td>
-                        <td><%= (empleado.getNombre()).replace("_", " ")%></td>
-                        <td><%= (empleado.getApellido()).replace("_", " ")%></td>
-                        <td><%= empleado.getCedula()%></td>
-                        <td><%= empleado.getFecha_nacimiento()%></td>
-                        <td><%= empleado.getTelefono()%></td>
-                        <td><%= empleado.getEps()%></td>
-                        <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
+                        <td><%= cliente.getCedula()%></td>
+                        <td><%= (cliente.getNombre()).replace("_", " ")%></td>
+                        <td><%= cliente.getEmail()%></td>
+                        <td><%= cliente.getTelefono()%></td>
 
                         <td>
-                            <button  class="item" style="border:none" value="pg-empleado/editarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado() %>">
+                            <button  class="item" style="border:none" value="pg-produccion/editarProduccion.jsp?cedula=<%= cliente.getCedula()%>">
                                 <img src="img/editar.png" width="16" height="16" >
                             </button>
 
-                            <button  class="item" style="border:none" value="pg-empleado/mostrarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado() %>">
+                            <button  class="item" style="border:none" value="pg-produccion/mostrarProduccion.jsp?cedula=<%= cliente.getCedula()%>">
                                 <img src="img/info.png" alt="alt"/>
                             </button>
 
-                            <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
+                            <% if (session.getAttribute("rol").equals("1")) {
+                            %>
+
+                            <button  class="item" style="border:none" value="pg-produccion/eliminarProduccion.jsp?cedula=<%= cliente.getCedula()%>">
                                 <img src="img/borrar.png" alt="alt"/>
                             </button>
-                            
 
-
+                            <%
+                                }
+                            %>
                         </td>
                     </tr>
                     <%
                         }
-//System.out.println(session.getAttribute("rol").toString());
                     %>
                 </tbody>
 
@@ -143,7 +138,7 @@
     <script src="js/dataTable/buttons.print.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#tablaEmpleados').DataTable({
+            $('#tablaClientes').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'

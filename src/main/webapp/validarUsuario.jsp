@@ -8,15 +8,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="page"></jsp:useBean>
+    <jsp:useBean id="fachada" class="appnomina.negocio.facade.UsuarioFacade" scope="page"></jsp:useBean>
 
     <%
-        String cedula3 = request.getParameter("cedula2");
+        int usuario3 = Integer.parseInt(request.getParameter("usuario2"));
         String password3 = request.getParameter("password2");
 
         String msg = "";
 
-        msg = fachada.validarUsuario(cedula3, password3);
+        msg = fachada.validarUsuario(usuario3, password3);
 
         if (msg.contains("Usuario")) {
     %> 
@@ -34,7 +34,7 @@
 
 
     <%
-        session.setAttribute("uid", cedula3);
+        session.setAttribute("uid", usuario3);
     %>
 
     <script>

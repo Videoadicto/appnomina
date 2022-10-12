@@ -5,38 +5,32 @@
 --%>
 
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
+<%@page import="appnomina.capadatos.entidades.Cargo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="page"></jsp:useBean>
     <%
-            String cedula3 = request.getParameter("cedula2");
-            String nombre3 = request.getParameter("nombre2");
-            String email3 = request.getParameter("email2");
-            String password3 = request.getParameter("password2");
-            String nuevo3 = request.getParameter("nuevo2");
-            String validar3 = request.getParameter("validar2");
-            //System.out.print("ojo1: cedula:" + cedula3 + " nombre:" + nombre3 + " password: " + password3 + " nuevo :" + nuevo3 + " validar: " + validar3);
+        if (true) {
 
-            /*
-        if (numero==null) numero="0";
-        if (numero.equals("")) numero="0";        
-        int precio = Integer.parseInt(numero);
-        
-        numero = request.getParameter("existencias");
-        if (numero==null) numero="0";
-        if (numero.equals("")) numero="0";        
-        int existencias = Integer.parseInt(numero);
-        
-        numero = request.getParameter("costo");
-        if (numero==null) numero="0";
-        if (numero.equals("")) numero="0";        
-        int costo = Integer.parseInt(numero);
-             */
+            int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+            String nombre3 = request.getParameter("nombre2");
+            String apellido3 = request.getParameter("apellido2");
+            String cedula3 = request.getParameter("cedula2");
+            String fechanac3 = request.getParameter("fechanac2");
+            String telefono3 = request.getParameter("telefono2");
+            String eps3 = request.getParameter("eps2");
+            int idCargo3 = Integer.parseInt(request.getParameter("idCargo2"));
+            String validar3 = request.getParameter("validar2");
+            String nuevo3 = request.getParameter("nuevo2");
+            //System.out.print("ojo1-idEmpleado2=" + idEmpleado3 + "&nombre2=" + nombre3 + "&precio2=" + precio3 + "&cantidad2=" + cantidad3 + "&iva2=" + iva3 + "&retencion2=" + retencion3 + "&cantidadMinima2=" + cantidadMinima3 + "&idCategoria2=" + idCategoria3 + "& nuevo2=" + nuevo3 + "&validar3=" + validar3);
+
+
             String pagina = "";
             String msg3 = "";
             if (validar3.equals("1")) {
-                Empleado p = new Empleado(cedula3, nombre3, email3, password3);
+                Cargo c = new Cargo(idCargo3, "", 0);
+                Empleado p = new Empleado(idEmpleado3, nombre3, apellido3, cedula3, fechanac3, telefono3, eps3, c);
                 msg3 = fachada.insertarEmpleado(p, nuevo3);
 
                 if (msg3.contains("Error")) {
@@ -65,5 +59,6 @@
     <%
                 }
             }
+        }
     %>
 </html>

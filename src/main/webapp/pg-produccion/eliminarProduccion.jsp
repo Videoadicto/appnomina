@@ -1,15 +1,15 @@
 <%-- 
-    Document   : guardarEmpleado.jsp
+    Document   : guardarCliente.jsp
     Created on : 13 may. 2021, 08:48:52
     Author     : Videoadicto
 --%>
 <%@page import="javax.swing.text.html.parser.Element"%>
-<%@page import="appnomina.capadatos.entidades.Empleado"%>
+<%@page import="appnomina.capadatos.entidades.Cliente"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="page"></jsp:useBean>
+        <jsp:useBean id="fachada" class="appnomina.negocio.facade.ClienteFacade" scope="page"></jsp:useBean>
         </head>
         <body>
         <%
@@ -17,16 +17,16 @@
 
             if (sino.contains("true")) {
 
-                int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
-                Empleado p = fachada.buscarEmpleado(idEmpleado);
+                String cedula = request.getParameter("cedula");
+                Cliente p = fachada.buscarCliente(cedula);
 
                 if (p != null) {
-                    String msg = fachada.eliminarEmpleado(idEmpleado);
+                    String msg = fachada.eliminarCliente(cedula);
                     String msg4 = msg.replace(" ", ".");
         %>
         <input id="esto1" style="display: none;" value = <%= msg4%> >
         <script>
-            $("#box").load("pg-empleado/listarEmpleado.jsp?mens=" + ($(esto1).val()), function () {
+            $("#box").load("pg-produccion/listarProduccion.jsp?mens=" + ($(esto1).val()), function () {
             });
         </script>
         <%
@@ -34,7 +34,7 @@
         } else {
         %>
         <script>
-            $("#box").load("pg-empleado/listarEmpleado.jsp?mens=Se.ha.cancelado.la.operacion", function () {
+            $("#box").load("pg-produccion/listarProduccion.jsp?mens=Se.ha.cancelado.la.operacion", function () {
             });
         </script>
         <%    }

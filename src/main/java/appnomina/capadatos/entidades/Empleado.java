@@ -13,30 +13,47 @@ import java.util.Objects;
  * @author Usuario
  */
 public class Empleado implements Serializable{
-    private String cedula;
+    private int id_empleado;
     private String nombre;
-    private String email;
-    private String password;
-    private String tipo;
+    private String apellido;
+    private String cedula;
+    private String fecha_nacimiento;
+    private String telefono;
+    private String eps;
+    private Cargo idCargo;
+    private int tipo;
     
     public Empleado(){
-        super();
+        //super();
+        this.id_empleado = 0;
+        this.nombre = "";
+        this.apellido = "";
+        this.cedula = "";
+        this.fecha_nacimiento = "";
+        this.telefono = "";
+        this.eps = "";
+        this.idCargo = new Cargo();
+        this.tipo = 0;
     }
     
-    public Empleado(String cedula, String nombre, String email, String password) {
-        this.cedula = cedula;
+    public Empleado(int id_empleado, String nombre, String apellido, String cedula, String fecha_nacimiento, String telefono, String eps, Cargo id_Cargo) {
+        this.id_empleado = id_empleado;
         this.nombre = nombre;
-        this.email = email;
-        this.password = password;
-        this.tipo = "1";
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
+        this.apellido = apellido;
         this.cedula = cedula;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.telefono = telefono;
+        this.eps = eps;
+        this.idCargo = id_Cargo;
+        this.tipo = 1;
+    }
+
+    public int getId_empleado() {
+        return id_empleado;
+    }
+
+    public void setId_empleado(int id_empleado) {
+        this.id_empleado = id_empleado;
     }
 
     public String getNombre() {
@@ -47,53 +64,67 @@ public class Empleado implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public String getTipo() {
+    public String getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEps() {
+        return eps;
+    }
+
+    public void setEps(String eps) {
+        this.eps = eps;
+    }
+
+    public Cargo getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(Cargo idCargo) {
+        this.idCargo = idCargo;
+    }
+
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
-        
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + Objects.hashCode(this.cedula);
-        return hash;
+    public String toString() {
+        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha_nacimiento=" + fecha_nacimiento + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", tipo=" + tipo + '}';
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Empleado other = (Empleado) obj;
-        if (!Objects.equals(this.cedula, other.cedula)) {
-            return false;
-        }
-        return true;
-    }        
+
+     
 }

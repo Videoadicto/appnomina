@@ -45,7 +45,7 @@
                         <tr>
                             <td>
 
-                                <input style="left : 140%; position:relative; font-size:20px;" type="text" name="cedula" id="cedula" 
+                                <input style="left : 140%; position:relative; font-size:20px;" type="text" name="usuario" id="usuario" 
                                        placeholder="Usuario" required >
 
                             </td>

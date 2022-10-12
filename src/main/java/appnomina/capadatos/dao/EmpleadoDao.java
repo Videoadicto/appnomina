@@ -5,8 +5,10 @@
  */
 package appnomina.capadatos.dao;
 
+import appnomina.capadatos.dao.CargoDao;
 import appnomina.capadatos.Conexion;
 import appnomina.capadatos.entidades.Empleado;
+import appnomina.capadatos.entidades.Cargo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,19 +29,24 @@ public class EmpleadoDao {
         
         String sql="";
         
-        if (nuevo.equals("0")){
-        sql = "REPLACE INTO empleado VALUES (?,?,?,?,?)";}
+         if (nuevo.equals("0")){
+        sql = "REPLACE INTO empleado VALUES (?,?,?,?,?,?,?,?,?)";}
         else{
-        sql = "INSERT INTO empleado VALUES (?,?,?,?,?)";}
+        sql = "INSERT INTO empleado VALUES (?,?,?,?,?,?,?,?,?)";}
         
         //String sql = "INSERT INTO empleado VALUES (?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(sql);
         
-        ps.setString(1, empleado.getCedula());
+        ps.setInt(1, empleado.getId_empleado());
         ps.setString(2, empleado.getNombre());
-        ps.setString(3, empleado.getEmail());
-        ps.setString(4, empleado.getPassword());
-        ps.setString(5, "0");
+        ps.setString(3, empleado.getApellido());
+        ps.setString(4, empleado.getCedula());
+        ps.setString(5, empleado.getFecha_nacimiento());
+        ps.setString(6, empleado.getTelefono());
+        ps.setString(7, empleado.getEps());
+        ps.setInt(8, empleado.getIdCargo().getId_cargo());
+        ps.setInt(9, 0);
+
         
         ps.execute();
         rta=true;
@@ -52,7 +59,7 @@ public class EmpleadoDao {
         return rta;
     }
     
-    public Empleado buscarEmpleado(String cedula)throws Exception{
+    public Empleado buscarEmpleado(int id_empleado)throws Exception{
         Empleado p = new Empleado();
         
         Conexion con= new Conexion();
@@ -60,17 +67,24 @@ public class EmpleadoDao {
         Connection conexion = con.conectar("EmpleadoDao.buscarEmpleado()");
                 
        
-        String sql = "SELECT * FROM empleado WHERE cedula = ?";
+        String sql = "SELECT * FROM empleado WHERE id_empleado = ?";
         PreparedStatement ps = conexion.prepareStatement(sql);
         
-        ps.setString(1, cedula);                
+        CargoDao cd = new CargoDao();
+        
+        ps.setInt(1, id_empleado);                
         ResultSet rst = ps.executeQuery();
         if (rst.next()){
-            p.setCedula(rst.getString(1));
+            p.setId_empleado(rst.getInt(1));
             p.setNombre(rst.getString(2));
-            p.setEmail(rst.getString(3));
-            p.setPassword(rst.getString(4));
-            p.setTipo(rst.getString(5));
+            p.setApellido(rst.getString(3));
+            p.setCedula(rst.getString(4));
+            p.setFecha_nacimiento(rst.getString(5));
+            p.setTelefono(rst.getString(6));
+            p.setEps(rst.getString(7));
+            p.getIdCargo().setId_cargo(rst.getInt(8));
+            p.getIdCargo().setNombre(cd.buscarCargo(rst.getInt(8)).getNombre());
+            p.setTipo(rst.getInt(9));
         } else p=null;
         
         rst.close();        
@@ -90,15 +104,25 @@ public class EmpleadoDao {
         Connection conexion = con.conectar("EmpleadoDao.buscarEmpleados()");
         String sql = "SELECT * FROM empleado ";
         PreparedStatement ps = conexion.prepareStatement(sql);
+        
+        CargoDao cd = new CargoDao();
                 
         ResultSet rst = ps.executeQuery();
-        while (rst.next()){
+       while (rst.next()){
             Empleado p = new Empleado();
-            p.setCedula(rst.getString(1));
+            p.setId_empleado(rst.getInt(1));
             p.setNombre(rst.getString(2));
-            p.setEmail(rst.getString(3));
-            p.setPassword(rst.getString(4));
-            p.setTipo(rst.getString(5));
+            p.setApellido(rst.getString(3));
+            p.setCedula(rst.getString(4));
+            p.setFecha_nacimiento(rst.getString(5));
+            p.setTelefono(rst.getString(6));
+            p.setEps(rst.getString(7));
+            
+            
+            p.getIdCargo().setId_cargo(rst.getInt(8));
+            p.getIdCargo().setNombre(cd.buscarCargo(rst.getInt(8)).getNombre());
+            
+            p.setTipo(rst.getInt(9));
             
             empleados.add(p);
         }
@@ -113,17 +137,17 @@ public class EmpleadoDao {
         return empleados;
     }
     
-    public boolean eliminarEmpleado(String cedula)throws Exception{
+    public boolean eliminarEmpleado(int id_empleado)throws Exception{
         boolean rta=false;
         
         Conexion con= new Conexion();
         Connection conexion = con.conectar("EmpleadoDao.eliminarEmpleado()");
         
-        String sql= "DELETE FROM empleado WHERE cedula = ?";
+        String sql= "DELETE FROM empleado WHERE id_empleado = ?";
         
         PreparedStatement ps = conexion.prepareStatement(sql);
         
-        ps.setString(1, cedula);
+        ps.setInt(1, id_empleado);
         
         
         ps.executeUpdate();
@@ -136,4 +160,38 @@ public class EmpleadoDao {
         conexion=null;
         return rta;
     }
+    
+    
+        public List<Cargo> getCargo() throws Exception{
+        List<Cargo> cargos = new ArrayList<Cargo>();
+        
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar("EmpleadoDao.getCargo");
+        String sql = "SELECT * FROM cargo "
+                + "ORDER BY nombre";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rst = ps.executeQuery();
+        
+        while (rst.next()){
+            Cargo cargo = new Cargo();
+            cargo.setId_cargo(rst.getInt(1));
+            cargo.setNombre((rst.getString(2)));
+            cargo.setPago((rst.getInt(3)));
+            
+            cargos.add(cargo);
+        }
+        rst.close();
+        rst=null;
+        
+        ps.close();
+        ps=null;
+        
+        con.close();
+        con=null;
+        
+        return cargos;
+    }
+    
+    
+    
 }

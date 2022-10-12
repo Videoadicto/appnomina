@@ -4,12 +4,12 @@
     Created on : 7 abr. 2022, 13:55:08
     Author     : Videoadicto
 -->
-<%@page import="appnomina.capadatos.entidades.Empleado"%>
-<%@page import="appnomina.capadatos.entidades.Producto"%>
+<%@page import="appnomina.capadatos.entidades.Usuario"%>
+
 <html>
     <head>
-        <jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="page"></jsp:useBean>
-        <jsp:useBean id="fachadaP" class="appnomina.negocio.facade.ProductoFacade"></jsp:useBean>
+        <jsp:useBean id="fachada" class="appnomina.negocio.facade.UsuarioFacade" scope="page"></jsp:useBean>
+
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="js/jquery-3.2.1.min.js"></script>
@@ -52,12 +52,15 @@
                         });
                     });
                     $("#menu7").click(function () {
-                        $("#box").load("pg-cliente/listarCliente.jsp?mens=0", function () {
+                        $("#box").load("pg-nomina/listarNomina.jsp?mens=0", function () {
                         });
                     });
                     $("#menu8").click(function () {
-                        $("#box").load("pg-venta/listarVenta.jsp?mens=0&emple=" + document.getElementById("emple").value, function () {
-
+                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0", function () {
+                        });
+                    });
+                    $("#menu11").click(function () {
+                        $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
                         });
                     });
                     $("#menu9").click(function () {
@@ -117,12 +120,7 @@
                     <p> </p>
                 </div>
 
-                <div id="alerta" style="display: none;">
-                    <button class="btn btn-danger" id="btnAlertas" style="left : 37%; position:relative; width:50px">
-                        <i class="fa fa-info-circle" >
-                        </i> 
-                    </button>
-                </div>
+                
 
                 <ul>
                     <!--
@@ -143,13 +141,19 @@
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-dollar-sign"></i></span>
-                            <span id="menu7" class="item">Nomina</span>
+                            <span id="menu7" class="item">Nominas</span>
                         </a>
                     </li>
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-project-diagram"></i></span>
                             <span id="menu8" class="item">Produccion</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="icon"><i class="fas fa-project-diagram"></i></span>
+                            <span id="menu11" class="item">Cargos</span>
                         </a>
                     </li>
                     <li>
@@ -172,28 +176,28 @@
         </div>
 
         <%
-            String cedula = request.getParameter("cedula");
+            int idUsuario = Integer.parseInt(request.getParameter("usuario"));
             //String password = request.getParameter("password");
             //System.out.print("cedula: " + cedula + " password: " + password);
 
-            Empleado empleado = new Empleado();
-            empleado.setCedula(cedula);
+            Usuario usuario = new Usuario();
+            usuario.setId_usuario(idUsuario);
 
-            empleado = fachada.buscarEmpleado(cedula);
+            usuario = fachada.buscarUsuario(idUsuario);
 
-            session.setAttribute("rol", empleado.getTipo());
+            session.setAttribute("rol", usuario.getTipo());
 
             {
         %>
 
-        <input id="valor" style="display: none;" value = <%= empleado.getTipo()%> >
+        <input id="valor" style="display: none;" value = <%= usuario.getTipo()%> >
         <script>
             $("#box").load("dashboard.html", function () {
             });
             modificarMenu();
         </script>
 
-        <input id="emple" style="display: none;" value = <%= empleado.getCedula()%> >
+        <input id="emple" style="display: none;" value = <%= usuario.getNombre()%> >
 
         <%  }
 
@@ -209,21 +213,11 @@
 
 
             document.getElementById("usuario").value = tipo + document.getElementById("emple").value;
-        </script>
-
-        <% for (Producto producto : fachadaP.buscarProductos()) {
-
-                if (producto.getCantidad() < producto.getCantidadMinima()) {
-        %>
-
-        <script>
+        
             document.getElementById("alerta").style = 'display:"";';
         </script>
 
-        <%
-                }
-            }
-        %>
+        
 
     </body>  
 </html>
