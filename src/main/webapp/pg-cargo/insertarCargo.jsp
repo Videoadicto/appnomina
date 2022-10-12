@@ -35,27 +35,51 @@
 
         <div class="card-body">
             <form id="frmRegistrar" name="frmRegistrar">
-                <div class="form-group">
-                    <label for="idCargo" class="form-label">Id:</label>
-                    <input type="text" name="idCargo" id="idCargo" 
-                           placeholder="Ingrese el Id del cargo" required
-                           class="form-control" required>
-                </div>
 
-                <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" 
-                           placeholder="Ingrese el nombre" required
-                           class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pago" class="form-label">Pago:</label>
-                    <input type="text" name="pago" id="pago" 
-                           placeholder="Ingrese el valor del pago" required
-                           class="form-control" required>
-                </div>
+                <table class="table table-borderless">
+                    <thead>
+                    </thead>
+                    <tbody>
 
+                        <tr>
+                            <th>                        
+                                <div class="form-group">
+                                    <label for="idCargo" class="form-label">Id:</label>
+                                    <input type="text" name="idCargo" id="idCargo" 
+                                           placeholder="Ingrese el Id del cargo" required
+                                           class="form-control" required>
+                                </div>
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" name="nombre" id="nombre" 
+                                           placeholder="Ingrese el nombre" required
+                                           class="form-control" required>
+                                </div>
+                            </th>
+
+                        </tr>                            
+
+                        <tr>
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="pago" class="form-label">Pago:</label>
+                                    <input type="text" name="pago" id="pago" 
+                                           placeholder="Ingrese el valor del pago" required
+                                           class="form-control" required>
+                                </div>
+                            <th>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
                 <br>
 
                 <div id="divInsertar" style="display: none;" class="alert alert-danger">

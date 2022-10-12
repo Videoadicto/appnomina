@@ -1,31 +1,37 @@
 <%-- 
-    Document   : guardarCliente.jsp
+    Document   : guardarEmpleado.jsp
     Created on : 13 may. 2021, 08:48:52
     Author     : Videoadicto
 --%>
 
-<%@page import="appnomina.capadatos.entidades.Cliente"%>
+<%@page import="appnomina.capadatos.entidades.Produccion"%>
+<%@page import="appnomina.capadatos.entidades.Cargo"%>
+<%@page import="appnomina.capadatos.entidades.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:useBean id="fachada" class="appnomina.negocio.facade.ClienteFacade" scope="page"></jsp:useBean>
+    <jsp:useBean id="fachada" class="appnomina.negocio.facade.ProduccionFacade" scope="page"></jsp:useBean>
     <%
         if (true) {
 
-            String cedula3 = request.getParameter("cedula2");
-            String nombre3 = request.getParameter("nombre2");
-            String email3 = request.getParameter("email2");
-            String telefono3 = request.getParameter("telefono2");
-            String nuevo3 = request.getParameter("nuevo2");
+            int idProduccion3 = Integer.parseInt(request.getParameter("idProduccion2"));
+            
+            int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+            String fecha3 = request.getParameter("fecha2");
+            int produccion3 = Integer.parseInt(request.getParameter("produccion2"));
+            
             String validar3 = request.getParameter("validar2");
-            //System.out.print("ojo1: cedula:" + cedula3 + " nombre:" + nombre3 + " password: " + password3 + " nuevo :" + nuevo3 + " validar: " + validar3);
+            String nuevo3 = request.getParameter("nuevo2");
+            //System.out.print("ojo1-idEmpleado2=" + idEmpleado3 + "&nombre2=" + nombre3 + "&precio2=" + precio3 + "&cantidad2=" + cantidad3 + "&iva2=" + iva3 + "&retencion2=" + retencion3 + "&cantidadMinima2=" + cantidadMinima3 + "&idCategoria2=" + idCategoria3 + "& nuevo2=" + nuevo3 + "&validar3=" + validar3);
 
 
             String pagina = "";
             String msg3 = "";
             if (validar3.equals("1")) {
-                Cliente p = new Cliente(cedula3, nombre3, email3, telefono3);
-                msg3 = fachada.insertarCliente(p, nuevo3);
+                Cargo c = new Cargo (0, "", 0);
+                Empleado e = new Empleado(idEmpleado3, "", "", "", "", "", "", c);
+                Produccion p = new Produccion(idProduccion3, e, fecha3, produccion3);
+                msg3 = fachada.insertarProduccion(p, nuevo3);
 
                 if (msg3.contains("Error")) {
     %> 
@@ -33,7 +39,7 @@
         <%= msg3%>
     </div>
     <% } else {
-        pagina = "listarCliente.jsp";
+        pagina = "listarProduccion.jsp";
     %> 
     <div id="divGuardar" style="display: none;" class="alert alert-success">
         <%= msg3%>

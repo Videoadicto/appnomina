@@ -1,10 +1,10 @@
 <%-- 
-    Document   : editarCliente.jsp
+    Document   : editarEmpleado.jsp
     Created on : 7 abr. 2022, 13:55:08
     Author     : Videoadicto
 --%>
-<%@page import="appnomina.capadatos.entidades.Cliente"%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.ClienteFacade" scope="page"></jsp:useBean>
+<%@page import="appnomina.capadatos.entidades.Empleado"%>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="page"></jsp:useBean>
     <!DOCTYPE html>
     <html>
         <head>
@@ -13,7 +13,7 @@
                 $(document).ready(function () {
 
                     $("#btnCancelar").click(function () {
-                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0", function () {
+                        $("#box").load("pg-empleado/listarEmpleado.jsp?mens=0", function () {
                         });
                     });
                 });
@@ -21,71 +21,135 @@
         </head>
 
     <%
-        String cedula = request.getParameter("cedula");
+        int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
 
-        Cliente cliente = fachada.buscarCliente(cedula);
+        Empleado empleado = fachada.buscarEmpleado(idEmpleado);
 
-        if (cliente != null) {
+        if (empleado != null) {
     %>
 
     <body>
-        <div class="card-header">
-            <h1>Informacion del Cliente</h1>
+        <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">INFORMACION DEL EMPLEADO</h1>
         </div>
 
         <div class="card-body">
             <%
-                if (cliente != null) {
+                if (empleado != null) {
             %>
             <form id="frmRegistrar" name="frmRegistrar">
-                <div class="form-group">
-                    <label for="cedula" class="form-label">Número de documento:</label>
-                    <input type="text" name="cedula" id="cedula" 
-                           placeholder="Digite su número de cedula" required
-                           class="form-control" readonly
-                           value = "<%= cliente.getCedula()%>">
-                </div>
+                <table class="table table-borderless">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>                        
+                                <div class="form-group">
+                                    <label for="idEmpleado" class="form-label">Id:</label>
+                                    <input type="text" name="idEmpleado" id="idEmpleado" 
+                                           placeholder="Ingrese el Id del empleado" required
+                                           class="form-control" readonly
+                                           value = "<%= empleado.getId_empleado()%>">
+                                </div>
+                            </th>
 
-                <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" 
-                           placeholder="Digite su nombre" required
-                           class="form-control" readonly
-                           value="<%= (cliente.getNombre()).replace("_", " ")%>">
-                </div>
+                            <th>
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" name="nombre" id="nombre" 
+                                           placeholder="Ingrese el nombre" required
+                                           class="form-control" readonly
+                                           value = "<%= (empleado.getNombre()).replace("_", " ")%>">
+                                </div>
+                            </th>
+                        </tr>                            
 
-                <div class="form-group">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" name="email" id="email" 
-                           placeholder="Digite su correo" required
-                           class="form-control" readonly
-                           value="<%= cliente.getEmail()%>">
-                </div>
+                        <tr>                               
+                            <th>
+                                <div class="form-group">
+                                    <label for="apellido" class="form-label">Apellido:</label>
+                                    <input type="text" name="apellido" id="apellido" 
+                                           placeholder="Ingrese el apellido" required
+                                           class="form-control" readonly
+                                           value = "<%= empleado.getApellido()%>">
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    <label for="cedula" class="form-label">Cedula:</label>
+                                    <input type="text" name="cedula" id="cedula" 
+                                           placeholder="Ingrese la cedula" required
+                                           class="form-control" readonly
+                                           value = "<%= empleado.getCedula()%>">
+                                </div>
+                            </th>
+                        </tr>
 
-                <div class="form-group">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="text" name="telefono" id="telefono" 
-                           placeholder="Digite su telefono" required
-                           class="form-control" readonly
-                           value="<%= cliente.getTelefono()%>">
-                </div>
+                        <tr>                               
+                            <th>
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Telefono:</label>
+                                    <input type="text" name="telefono" id="telefono" 
+                                           placeholder="Ingrese el telefono" required
+                                           class="form-control" readonly
+                                           value = "<%= empleado.getTelefono()%>">
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    <label for="eps" class="form-label">EPS</label>
+                                    <input type="text" name="eps" id="eps" 
+                                           placeholder="Ingrese la EPS" required
+                                           class="form-control" readonly
+                                           value = "<%= empleado.getEps()%>">
+                                </div>
+                            </th>
+                        </tr>                                          
 
+                        <tr>                               
+                            <th>
+                                <div class="form-group">
+                                    <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                                    <input type="text" name="fechanac" id="fechanac" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value="<%= empleado.getFecha_nacimiento() %>">
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    <label for="idCategoria" class="form-label">Categoria:</label>
+                                    <input type="text" name="idCategoria" id="idCategoria" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value="<%= empleado.getIdCargo().getNombre()%>">
+                                </div>
+                            </th>
+                        </tr>
 
+                        <tr>                               
+                            <th>
+                                <div class="form-group">
+                                    <input type="button" id="btnCancelar" value="Regresar" class="btn btn-success">
+                                </div>
+                            </th>
+                            <th>
 
-                <div class="form-group">
-                    <input type="button" id="btnCancelar" value="Regresar" class="btn btn-success">
-                </div>
+                            </th>
+                        </tr>
 
+                    </tbody>
+                </table>
             </form>
             <%
             } else {
             %>
 
             <div id="divMensaje" class="alert alert-danger">
-                Error: Cliente no encontrado.
+                Error: Empleado no encontrado.
             </div>
             <%
-                }%>
+            }%>
         </div>
         <%
             }

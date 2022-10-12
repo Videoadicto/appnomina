@@ -38,29 +38,60 @@
                 if (cargo != null) {
             %>
             <form id="frmRegistrar" name="frmRegistrar">
-                <div class="form-group">
-                    <label for="idCargo" class="form-label">Id:</label>
-                    <input type="text" name="idCargo" id="idCargo" 
-                           placeholder="" required
-                           class="form-control" readonly
-                           value = "<%= cargo.getId_cargo()%>">
-                </div>
 
-                <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" 
-                           placeholder="" required
-                           class="form-control" readonly
-                           value="<%= (cargo.getNombre()).replace("_", " ")%>">
-                </div>
-                
-                <div class="form-group">
-                    <label for="pago" class="form-label">Pago:</label>
-                    <input type="text" name="pago" id="pago" 
-                           placeholder="" required
-                           class="form-control" readonly
-                           value="<%= cargo.getPago()%>">
-                </div>
+                <table class="table table-borderless">
+                    <thead>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <th>  
+
+                                <div class="form-group">
+                                    <label for="idCargo" class="form-label">Id:</label>
+                                    <input type="text" name="idCargo" id="idCargo" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value = "<%= cargo.getId_cargo()%>">
+                                </div>
+
+                            </th> 
+                        </tr>
+
+                        <tr>
+                            <th> 
+
+
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" name="nombre" id="nombre" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value="<%= (cargo.getNombre()).replace("_", " ")%>">
+                                </div>
+
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th> 
+
+
+                                <div class="form-group">
+                                    <label for="pago" class="form-label">Pago:</label>
+                                    <input type="text" name="pago" id="pago" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value="<%= cargo.getPago()%>">
+                                </div>
+                            </th> 
+                        </tr>
+
+                    </tbody>
+                </table> 
+
+                <br>
+
 
                 <div class="form-group">
                     <input type="button" id="btnCancelar" value="Regresar" class="btn btn-success">

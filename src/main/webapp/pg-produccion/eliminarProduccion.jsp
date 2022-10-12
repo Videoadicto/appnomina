@@ -1,15 +1,15 @@
 <%-- 
-    Document   : guardarCliente.jsp
+    Document   : guardarProduccion.jsp
     Created on : 13 may. 2021, 08:48:52
     Author     : Videoadicto
 --%>
 <%@page import="javax.swing.text.html.parser.Element"%>
-<%@page import="appnomina.capadatos.entidades.Cliente"%>
+<%@page import="appnomina.capadatos.entidades.Produccion"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:useBean id="fachada" class="appnomina.negocio.facade.ClienteFacade" scope="page"></jsp:useBean>
+        <jsp:useBean id="fachada" class="appnomina.negocio.facade.ProduccionFacade" scope="page"></jsp:useBean>
         </head>
         <body>
         <%
@@ -17,11 +17,11 @@
 
             if (sino.contains("true")) {
 
-                String cedula = request.getParameter("cedula");
-                Cliente p = fachada.buscarCliente(cedula);
+                int idProduccion = Integer.parseInt(request.getParameter("idProduccion"));
+                Produccion p = fachada.buscarProduccion(idProduccion);
 
                 if (p != null) {
-                    String msg = fachada.eliminarCliente(cedula);
+                    String msg = fachada.eliminarProduccion(idProduccion);
                     String msg4 = msg.replace(" ", ".");
         %>
         <input id="esto1" style="display: none;" value = <%= msg4%> >

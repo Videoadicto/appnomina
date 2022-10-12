@@ -54,6 +54,27 @@
                                 </div>
                             </th>
 
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="idCargo">Cargo:</label>
+                                    <select id="idCargo" name="idCargo" required class="form-control">
+                                        <option value="" selected >  </option>
+                                        <%
+                                            for (Cargo cargo : fachada.getCargo()) {
+                                        %>
+                                        <option value="<%= cargo.getId_cargo()%>"> <%= (cargo.getNombre()).replace("_", " ")%></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                            </th>
+
+                        </tr>                            
+
+                        <tr>
+
                             <th>
                                 <div class="form-group">
                                     <label for="nombre" class="form-label">Nombre:</label>
@@ -62,9 +83,7 @@
                                            class="form-control" required>
                                 </div>
                             </th>
-                        </tr>                            
 
-                        <tr>                               
                             <th>
                                 <div class="form-group">
                                     <label for="apellido" class="form-label">Apellido:</label>
@@ -73,23 +92,16 @@
                                            class="form-control" required>
                                 </div>
                             </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="cedula" class="form-label">Cedula:</label>
-                                    <input type="text" name="cedula" id="cedula" 
-                                           placeholder="Ingrese la cedula" required
-                                           class="form-control" required>
-                                </div>
-                            </th>
+
                         </tr>
 
                         <tr>                               
 
                             <th>
                                 <div class="form-group">
-                                    <label for="telefono" class="form-label">Telefono:</label>
-                                    <input type="text" name="telefono" id="telefono" 
-                                           placeholder="Ingrese el telefono" required
+                                    <label for="cedula" class="form-label">Cedula:</label>
+                                    <input type="text" name="cedula" id="cedula" 
+                                           placeholder="Ingrese la cedula" required
                                            class="form-control" required>
                                 </div>
                             </th>
@@ -109,26 +121,21 @@
 
                             <th>
                                 <div class="form-group">
-                                    <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
-                                    <input type="date" name="fechanac" id="fechanac" style="width: 200px; vertical-align:10px">
+                                    <label for="telefono" class="form-label">Telefono:</label>
+                                    <input type="text" name="telefono" id="telefono" 
+                                           placeholder="Ingrese el telefono" required
+                                           class="form-control" required>
                                 </div>
                             </th>
 
                             <th>
                                 <div class="form-group">
-                                    <label for="idCargo">Cargo:</label>
-                                    <select id="idCargo" name="idCargo" required class="form-control">
-                                        <option value="" selected >  </option>
-                                        <%
-                                            for (Cargo cargo : fachada.getCargo()) {
-                                        %>
-                                        <option value="<%= cargo.getId_cargo()%>"> <%= (cargo.getNombre()).replace("_", " ")%></option>
-                                        <%
-                                            }
-                                        %>
-                                    </select>
+                                    <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                                    <br>
+                                    <input type="date" name="fechanac" id="fechanac" style="width: 200px; vertical-align:10px">
                                 </div>
                             </th>
+
                         </tr>             
 
                         <tr>                               
