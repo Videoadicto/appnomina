@@ -66,68 +66,6 @@
 
                             <th>
                                 <div class="form-group">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" name="nombre" id="nombre" 
-                                           placeholder="Ingrese el nombre" required
-                                           class="form-control" 
-                                           value = "<%= (empleado.getNombre()).replace("_", " ")%>">
-                                </div>
-                            </th>
-                        </tr>                            
-
-                        <tr>                               
-                            <th>
-                                <div class="form-group">
-                                    <label for="apellido" class="form-label">Apellido:</label>
-                                    <input type="text" name="apellido" id="apellido" 
-                                           placeholder="Ingrese el apellido" required
-                                           class="form-control" 
-                                           value = "<%= empleado.getApellido()%>">
-                                </div>
-                            </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="cedula" class="form-label">Cedula:</label>
-                                    <input type="text" name="cedula" id="cedula" 
-                                           placeholder="Ingrese la cedula" required
-                                           class="form-control" 
-                                           value = "<%= empleado.getCedula()%>">
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr>                               
-                            <th>
-                                <div class="form-group">
-                                    <label for="telefono" class="form-label">Telefono:</label>
-                                    <input type="text" name="telefono" id="telefono" 
-                                           placeholder="Ingrese el telefono" required
-                                           class="form-control" 
-                                           value = "<%= empleado.getTelefono()%>">
-                                </div>
-                            </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="eps" class="form-label">EPS</label>
-                                    <input type="text" name="eps" id="eps" 
-                                           placeholder="Ingrese la EPS" required
-                                           class="form-control" 
-                                           value = "<%= empleado.getEps()%>">
-                                </div>
-                            </th>
-                        </tr>                                          
-
-                        <tr>                               
-                            <th>
-                                <div class="form-group">
-                                   <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
-                                    <div class="form-group">
-                                    <input type="date" name="fechanac" id="fechanac" value="<%= empleado.getFecha_nacimiento()%>" style="width: 200px; vertical-align:10px">
-                                </div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="form-group">
                                     <label for="idCargo" class="form-label">Cargo:</label>
                                     <select id="idCargo" name="idCargo" class="form-control" selected="Telefonos">
                                         <% for (Cargo cargo : fachada2.buscarCargos()) {
@@ -140,6 +78,74 @@
                                     </select>
                                 </div>
                             </th>
+
+                        </tr>                            
+
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" name="nombre" id="nombre" 
+                                           placeholder="Ingrese el nombre" required
+                                           class="form-control" 
+                                           value = "<%= (empleado.getNombre()).replace("_", " ")%>">
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="apellido" class="form-label">Apellido:</label>
+                                    <input type="text" name="apellido" id="apellido" 
+                                           placeholder="Ingrese el apellido" required
+                                           class="form-control" 
+                                           value = "<%= empleado.getApellido()%>">
+                                </div>
+                            </th>
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="cedula" class="form-label">Cedula:</label>
+                                    <input type="text" name="cedula" id="cedula" 
+                                           placeholder="Ingrese la cedula" required
+                                           class="form-control" 
+                                           value = "<%= empleado.getCedula()%>">
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="eps" class="form-label">EPS</label>
+                                    <input type="text" name="eps" id="eps" 
+                                           placeholder="Ingrese la EPS" required
+                                           class="form-control" 
+                                           value = "<%= empleado.getEps()%>">
+                                </div>
+                            </th>
+                        </tr>                                          
+
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Telefono:</label>
+                                    <input type="text" name="telefono" id="telefono" 
+                                           placeholder="Ingrese el telefono" required
+                                           class="form-control" 
+                                           value = "<%= empleado.getTelefono()%>">
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                                    <div class="form-group">
+                                        <input type="date" name="fechanac" id="fechanac" value="<%= empleado.getFecha_nacimiento()%>" style="width: 200px; vertical-align:10px">
+                                    </div>
+                                </div>
+                            </th>
+
                         </tr>
 
                         <tr>                               
@@ -148,7 +154,7 @@
                                 </div>
 
                                 <div id="divInsertar" style="display: none;" class="alert alert-danger">
-                                </div>   
+                                </div>
 
                                 <div class="form-group">
                                     <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >

@@ -53,6 +53,18 @@
                                 </div>
                             </th>
 
+                             <th>
+                                <div class="form-group">
+                                    <label for="idCategoria" class="form-label">Categoria:</label>
+                                    <input type="text" name="idCategoria" id="idCategoria" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value="<%= empleado.getIdCargo().getNombre()%>">
+                                </div>
+                            </th>
+                        </tr>                            
+
+                        <tr>
                             <th>
                                 <div class="form-group">
                                     <label for="nombre" class="form-label">Nombre:</label>
@@ -62,9 +74,8 @@
                                            value = "<%= (empleado.getNombre()).replace("_", " ")%>">
                                 </div>
                             </th>
-                        </tr>                            
-
-                        <tr>                               
+                            
+                            
                             <th>
                                 <div class="form-group">
                                     <label for="apellido" class="form-label">Apellido:</label>
@@ -74,6 +85,10 @@
                                            value = "<%= empleado.getApellido()%>">
                                 </div>
                             </th>
+                            
+                        </tr>
+
+                        <tr>
                             <th>
                                 <div class="form-group">
                                     <label for="cedula" class="form-label">Cedula:</label>
@@ -83,18 +98,7 @@
                                            value = "<%= empleado.getCedula()%>">
                                 </div>
                             </th>
-                        </tr>
 
-                        <tr>                               
-                            <th>
-                                <div class="form-group">
-                                    <label for="telefono" class="form-label">Telefono:</label>
-                                    <input type="text" name="telefono" id="telefono" 
-                                           placeholder="Ingrese el telefono" required
-                                           class="form-control" readonly
-                                           value = "<%= empleado.getTelefono()%>">
-                                </div>
-                            </th>
                             <th>
                                 <div class="form-group">
                                     <label for="eps" class="form-label">EPS</label>
@@ -106,7 +110,17 @@
                             </th>
                         </tr>                                          
 
-                        <tr>                               
+                        <tr>
+                             <th>
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Telefono:</label>
+                                    <input type="text" name="telefono" id="telefono" 
+                                           placeholder="Ingrese el telefono" required
+                                           class="form-control" readonly
+                                           value = "<%= empleado.getTelefono()%>">
+                                </div>
+                            </th>
+                            
                             <th>
                                 <div class="form-group">
                                     <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
@@ -116,15 +130,7 @@
                                            value="<%= empleado.getFecha_nacimiento() %>">
                                 </div>
                             </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="idCategoria" class="form-label">Categoria:</label>
-                                    <input type="text" name="idCategoria" id="idCategoria" 
-                                           placeholder="" required
-                                           class="form-control" readonly
-                                           value="<%= empleado.getIdCargo().getNombre()%>">
-                                </div>
-                            </th>
+                           
                         </tr>
 
                         <tr>                               

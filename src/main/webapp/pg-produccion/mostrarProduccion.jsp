@@ -1,10 +1,13 @@
 <%-- 
-    Document   : editarEmpleado.jsp
+    Document   : editarProduccion.jsp
     Created on : 7 abr. 2022, 13:55:08
     Author     : Videoadicto
 --%>
+<%@page import="appnomina.capadatos.entidades.Produccion"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.EmpleadoFacade" scope="page"></jsp:useBean>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.ProduccionFacade" scope="page"></jsp:useBean>
+<jsp:useBean id="fachada2" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean>
+
     <!DOCTYPE html>
     <html>
         <head>
@@ -13,7 +16,7 @@
                 $(document).ready(function () {
 
                     $("#btnCancelar").click(function () {
-                        $("#box").load("pg-empleado/listarEmpleado.jsp?mens=0", function () {
+                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0", function () {
                         });
                     });
                 });
@@ -21,21 +24,21 @@
         </head>
 
     <%
-        int idEmpleado = Integer.parseInt(request.getParameter("idEmpleado"));
+        int idProduccion = Integer.parseInt(request.getParameter("idProduccion"));
 
-        Empleado empleado = fachada.buscarEmpleado(idEmpleado);
+        Produccion produccion = fachada.buscarProduccion(idProduccion);
 
-        if (empleado != null) {
+        if (produccion != null) {
     %>
 
     <body>
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">INFORMACION DEL EMPLEADO</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">INFORMACION DE LA PRODUCCION</h1>
         </div>
 
         <div class="card-body">
             <%
-                if (empleado != null) {
+                if (produccion != null) {
             %>
             <form id="frmRegistrar" name="frmRegistrar">
                 <table class="table table-borderless">
@@ -45,111 +48,76 @@
                         <tr>
                             <th>                        
                                 <div class="form-group">
-                                    <label for="idEmpleado" class="form-label">Id:</label>
-                                    <input type="text" name="idEmpleado" id="idEmpleado" 
-                                           placeholder="Ingrese el Id del empleado" required
+                                    <label for="idProduccion" class="form-label">Id:</label>
+                                    <input type="text" name="idProduccion" id="idProduccion" 
                                            class="form-control" readonly
-                                           value = "<%= empleado.getId_empleado()%>">
+                                           value = "<%= produccion.getId_produccion()%>">
                                 </div>
                             </th>
 
-                            <th>
-                                <div class="form-group">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" name="nombre" id="nombre" 
-                                           placeholder="Ingrese el nombre" required
-                                           class="form-control" readonly
-                                           value = "<%= (empleado.getNombre()).replace("_", " ")%>">
-                                </div>
-                            </th>
+
                         </tr>                            
 
-                        <tr>                               
+                        <tr>     
+
                             <th>
                                 <div class="form-group">
-                                    <label for="apellido" class="form-label">Apellido:</label>
-                                    <input type="text" name="apellido" id="apellido" 
-                                           placeholder="Ingrese el apellido" required
+                                    <label for="idEmpleado" class="form-label">Empleado:</label>
+
+                                    <% Empleado empleado = new Empleado();
+                                        empleado = fachada2.buscarEmpleado(produccion.getIdEmpleado().getId_empleado());
+                                        {
+                                    %>
+                                    <input type="text"  id="idEmpleado" name="idEmpleado" 
                                            class="form-control" readonly
-                                           value = "<%= empleado.getApellido()%>">
-                                </div>
-                            </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="cedula" class="form-label">Cedula:</label>
-                                    <input type="text" name="cedula" id="cedula" 
-                                           placeholder="Ingrese la cedula" required
-                                           class="form-control" readonly
-                                           value = "<%= empleado.getCedula()%>">
+                                           value="<%= empleado.getCedula() + "-" + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%>">
+                                    <%
+                                        }
+                                    %>
+
                                 </div>
                             </th>
                         </tr>
 
-                        <tr>                               
+                        <tr>   
                             <th>
                                 <div class="form-group">
-                                    <label for="telefono" class="form-label">Telefono:</label>
-                                    <input type="text" name="telefono" id="telefono" 
-                                           placeholder="Ingrese el telefono" required
+                                    <label for="produccion" class="form-label">Produccion:</label>
+                                    <input type="text" name="produccion" id="produccion" 
                                            class="form-control" readonly
-                                           value = "<%= empleado.getTelefono()%>">
+                                           value = "<%= produccion.getProduccion()%>">
                                 </div>
                             </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="eps" class="form-label">EPS</label>
-                                    <input type="text" name="eps" id="eps" 
-                                           placeholder="Ingrese la EPS" required
-                                           class="form-control" readonly
-                                           value = "<%= empleado.getEps()%>">
-                                </div>
-                            </th>
-                        </tr>                                          
 
-                        <tr>                               
-                            <th>
-                                <div class="form-group">
-                                    <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
-                                    <input type="text" name="fechanac" id="fechanac" 
-                                           placeholder="" required
-                                           class="form-control" readonly
-                                           value="<%= empleado.getFecha_nacimiento() %>">
-                                </div>
-                            </th>
-                            <th>
-                                <div class="form-group">
-                                    <label for="idCategoria" class="form-label">Categoria:</label>
-                                    <input type="text" name="idCategoria" id="idCategoria" 
-                                           placeholder="" required
-                                           class="form-control" readonly
-                                           value="<%= empleado.getIdCargo().getNombre()%>">
-                                </div>
-                            </th>
                         </tr>
-
-                        <tr>                               
+                        <tr>
                             <th>
                                 <div class="form-group">
-                                    <input type="button" id="btnCancelar" value="Regresar" class="btn btn-success">
+                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <input type="text" name="fecha" id="fecha" 
+                                           class="form-control" readonly
+                                           value = "<%= produccion.getFecha()%>">
                                 </div>
                             </th>
-                            <th>
 
-                            </th>
                         </tr>
 
                     </tbody>
                 </table>
+                <div class="form-group">
+                    <input type="button" id="btnCancelar" value="Regresar" class="btn btn-success">
+                </div>
+
             </form>
             <%
             } else {
             %>
 
             <div id="divMensaje" class="alert alert-danger">
-                Error: Empleado no encontrado.
+                Error: Produccion no encontrada.
             </div>
             <%
-            }%>
+                }%>
         </div>
         <%
             }

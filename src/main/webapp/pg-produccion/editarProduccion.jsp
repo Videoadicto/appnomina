@@ -65,6 +65,11 @@
                                 </div>
                             </th>
 
+
+                        </tr>                            
+
+                        <tr>     
+
                             <th>
                                 <div class="form-group">
                                     <label for="idEmpleado" class="form-label">Cargo:</label>
@@ -79,11 +84,15 @@
                                     </select>
                                 </div>
                             </th>
-                        </tr>                            
 
-                        <tr>       
-                            
-                             <th>
+
+
+                        </tr>
+
+                        <tr>   
+
+
+                            <th>
                                 <div class="form-group">
                                     <label for="produccion" class="form-label">Produccion:</label>
                                     <input type="text" name="produccion" id="produccion" 
@@ -92,36 +101,36 @@
                                            value = "<%= produccion.getProduccion()%>">
                                 </div>
                             </th>
-                            
+
+                        </tr>
+                        <tr>
                             <th>
                                 <div class="form-group">
-                                   <label for="fecha" class="form-label">Fecha:</label>
-                                   <br>
+                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <br>
                                     <input type="date" name="fecha" id="fecha" value="<%= produccion.getFecha()%>" style="width: 200px; vertical-align:10px">
                                 </div>
                             </th>
-                           
+
                         </tr>
 
-                        <tr>                               
-                            <th>
-                                <div id="boxEditar">
-                                </div>
-
-                                <div id="divInsertar" style="display: none;" class="alert alert-danger">
-                                </div>   
-
-                                <div class="form-group">
-                                    <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >
-                                    <button type="button" value="pg-produccion/listarProduccion.jsp?mens=0" class="btn btn-success">Regresar</button>
-                                </div>
-                            </th>
-                            <th>
-
-                            </th>
-                        </tr> 
                     </tbody>
                 </table>
+
+
+                <div id="boxEditar">
+                </div>
+
+                <div id="divInsertar" style="display: none;" class="alert alert-danger">
+                </div>  
+
+                <br>
+
+                <div class="form-group">
+                    <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >
+                    <button type="button" value="pg-produccion/listarProduccion.jsp?mens=0" class="btn btn-success">Regresar</button>
+                </div>
+
             </form>
 
             <%

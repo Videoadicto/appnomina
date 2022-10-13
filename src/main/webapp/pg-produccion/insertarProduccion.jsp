@@ -54,13 +54,18 @@
                                 </div>
                             </th>
 
+
+                        </tr>                            
+
+                        <tr> 
+
                             <th>
                                 <div class="form-group">
                                     <label for="idEmpleado">Empleado:</label>
                                     <select id="idEmpleado" name="idEmpleado" required class="form-control">
                                         <option value="" selected >  </option>
                                         <%
-                                            for (Empleado empleado : fachada1.buscarEmpleados())  {
+                                            for (Empleado empleado : fachada1.buscarEmpleados()) {
                                         %>
                                         <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + "-" + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
                                         <%
@@ -69,9 +74,10 @@
                                     </select>
                                 </div>
                             </th>
-                        </tr>                            
 
-                        <tr>                               
+                        </tr>
+
+                        <tr>
                             <th>
                                 <div class="form-group">
                                     <label for="produccion" class="form-label">Produccion:</label>
@@ -80,7 +86,10 @@
                                            class="form-control" required>
                                 </div>
                             </th>
-                            
+                        </tr>
+
+                        <tr>
+
                             <th>
                                 <div class="form-group">
                                     <label for="fecha" class="form-label">Fecha:</label>
@@ -89,26 +98,26 @@
                                 </div>
                             </th>
                         </tr>
- 
-                        <tr>                               
-                            <th>
-                                <div id="divInsertar" style="display: none;" class="alert alert-danger">
-                                </div>
 
-                                <div id="boxInsertar">
-                                </div>
 
-                                <div class="form-group">
-                                    <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >
-                                    <button type="button" value="pg-produccion/listarProduccion.jsp?mens=0" class="btn btn-success">Regresar</button>
-                                </div>
-                            </th>
-                            <th>
-
-                            </th>
-                        </tr>
                     </tbody>
                 </table>
+
+
+                <div id="divInsertar" style="display: none;" class="alert alert-danger">
+                </div>
+
+                <div id="boxInsertar">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >
+                    <button type="button" value="pg-produccion/listarProduccion.jsp?mens=0" class="btn btn-success">Regresar</button>
+                </div>
+
+
             </form>
         </div>                    
     </body>
