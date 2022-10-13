@@ -64,34 +64,26 @@
                                            value = "<%= produccion.getId_produccion()%>">
                                 </div>
                             </th>
-
-
                         </tr>                            
 
                         <tr>     
-
                             <th>
                                 <div class="form-group">
-                                    <label for="idEmpleado" class="form-label">Cargo:</label>
-                                    <select id="idEmpleado" name="idEmpleado" class="form-control" selected="Empleado">
+                                    <label for="idEmpleado" class="form-label">Empleado:</label>
+                                    <select id="idEmpleado" name="idEmpleado" class="form-control">
                                         <% for (Empleado empleado : fachada2.buscarEmpleados()) {
                                         %>
 
-                                        <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + "-" + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
+                                        <option value="<%= empleado.getId_empleado()%>"  <%if ((produccion.getIdEmpleado().getId_empleado()) == (empleado.getId_empleado())) {%> selected <%}%> > <%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
                                         <%
                                             }
                                         %>
                                     </select>
                                 </div>
                             </th>
-
-
-
                         </tr>
 
                         <tr>   
-
-
                             <th>
                                 <div class="form-group">
                                     <label for="produccion" class="form-label">Produccion:</label>
@@ -101,8 +93,8 @@
                                            value = "<%= produccion.getProduccion()%>">
                                 </div>
                             </th>
-
                         </tr>
+
                         <tr>
                             <th>
                                 <div class="form-group">
@@ -111,12 +103,10 @@
                                     <input type="date" name="fecha" id="fecha" value="<%= produccion.getFecha()%>" style="width: 200px; vertical-align:10px">
                                 </div>
                             </th>
-
                         </tr>
 
                     </tbody>
                 </table>
-
 
                 <div id="boxEditar">
                 </div>

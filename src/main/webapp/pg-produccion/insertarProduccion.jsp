@@ -15,7 +15,7 @@
         <jsp:useBean id="fachada1" class="appnomina.capadatos.dao.EmpleadoDao" scope="page"></jsp:useBean>
         <%--     <jsp:useBean id="fachada2" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean> --%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>PRODUCCIONES</title>
+        <title>PRODUCCION</title>
         <script>
             $("button").click(function () {
                 $("#box").load($(this).val(), function () {
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label for="idProduccion" class="form-label">Id:</label>
                                     <input type="text" name="idProduccion" id="idProduccion" 
-                                           placeholder="Ingrese el Id del produccion" required
+                                           placeholder="Ingrese el Id de la produccion" required
                                            class="form-control" required>
                                 </div>
                             </th>
@@ -67,7 +67,7 @@
                                         <%
                                             for (Empleado empleado : fachada1.buscarEmpleados()) {
                                         %>
-                                        <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + "-" + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
+                                        <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
                                         <%
                                             }
                                         %>

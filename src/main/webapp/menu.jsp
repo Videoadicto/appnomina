@@ -134,7 +134,7 @@
                     -->
                     <li  id="emp" >
                         <a>
-                            <span class="icon"><i class="fas fa-user"></i></span>
+                            <span class="icon"><i class="fas fa-users"></i></span>
                             <span id="menu6" class="item">Empleados</span>
                         </a>
                     </li>
@@ -146,13 +146,13 @@
                     </li>
                     <li>
                         <a>
-                            <span class="icon"><i class="fas fa-project-diagram"></i></span>
+                            <span class="icon"><i class="fa-chart-line fas"></i></span>
                             <span id="menu8" class="item">Produccion</span>
                         </a>
                     </li>
                     <li>
                         <a>
-                            <span class="icon"><i class="fas fa-project-diagram"></i></span>
+                            <span class="icon"><i class="fas fa-user-cog"></i></span>
                             <span id="menu11" class="item">Cargos</span>
                         </a>
                     </li>

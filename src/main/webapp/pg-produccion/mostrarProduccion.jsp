@@ -70,7 +70,7 @@
                                     %>
                                     <input type="text"  id="idEmpleado" name="idEmpleado" 
                                            class="form-control" readonly
-                                           value="<%= empleado.getCedula() + "-" + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%>">
+                                           value="<%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%>">
                                     <%
                                         }
                                     %>

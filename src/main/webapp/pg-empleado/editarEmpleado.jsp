@@ -67,11 +67,11 @@
                             <th>
                                 <div class="form-group">
                                     <label for="idCargo" class="form-label">Cargo:</label>
-                                    <select id="idCargo" name="idCargo" class="form-control" selected="Telefonos">
-                                        <% for (Cargo cargo : fachada2.buscarCargos()) {
+                                    <select id="idCargo" name="idCargo" class="form-control" >
+                                        <%
+                                            for (Cargo cargo : fachada2.buscarCargos()) {
                                         %>
-
-                                        <option value="<%= cargo.getId_cargo()%>"> <%= (cargo.getNombre()).replace("_", " ")%> </option>
+                                        <option value="<%= cargo.getId_cargo()%>" <%if ((empleado.getIdCargo().getId_cargo()) == (cargo.getId_cargo())) {%> selected <%}%>  > <%= (cargo.getNombre()).replace("_", " ")%> </option>
                                         <%
                                             }
                                         %>

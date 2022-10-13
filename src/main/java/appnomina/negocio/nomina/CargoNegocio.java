@@ -27,11 +27,11 @@ public class CargoNegocio {
             Cargo pe = cargoDao.buscarCargo(p.getId_cargo());
             if (pe==null || nuevo.equals("0")){
                 boolean res = cargoDao.insertarCargo(p, nuevo);
-                if (res) rta = "Cargo guardada con exito";
-                else rta = "Error: No se pudo guardar la cargo";
-            } else rta = "Error: La cargo ya existe";
+                if (res) rta = "Cargo guardado con exito";
+                else rta = "Error: No se pudo guardar el cargo";
+            } else rta = "Error: El cargo ya existe";
         } catch (Exception e) {
-            rta="Error: No se pudo guardar la cargo";
+            rta="Error: No se pudo guardar el cargo";
             e.printStackTrace();
         }
         return rta;
@@ -63,10 +63,10 @@ public class CargoNegocio {
         String rta="";
         try {
                 boolean res = cargoDao.eliminarCargo(id_cargo);
-                if (res) rta = "Cargo eliminada con exito." ;
-                else rta = "Error al eliminar la cargo";
+                if (res) rta = "Cargo eliminado con exito." ;
+                else rta = "Error al eliminar el cargo";
         } catch (Exception e) {
-            rta="Error al eliminar la cargo";
+            rta="Error al eliminar el cargo";
             e.printStackTrace();
         }
         return rta;
