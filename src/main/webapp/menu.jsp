@@ -132,30 +132,34 @@
                     </li>
                     
                     -->
-                    <li  id="emp" >
-                        <a>
-                            <span class="icon"><i class="fas fa-users"></i></span>
-                            <span id="menu6" class="item">Empleados</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span class="icon"><i class="fas fa-dollar-sign"></i></span>
-                            <span id="menu7" class="item">Nominas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span class="icon"><i class="fa-chart-line fas"></i></span>
-                            <span id="menu8" class="item">Produccion</span>
-                        </a>
-                    </li>
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-user-cog"></i></span>
                             <span id="menu11" class="item">Cargos</span>
                         </a>
                     </li>
+                    
+                    <li  id="emp" >
+                        <a>
+                            <span class="icon"><i class="fas fa-users"></i></span>
+                            <span id="menu6" class="item">Empleados</span>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a>
+                            <span class="icon"><i class="fa-chart-line fas"></i></span>
+                            <span id="menu8" class="item">Produccion</span>
+                        </a>
+                    </li>
+ 
+                    <li>
+                        <a>
+                            <span class="icon"><i class="fas fa-dollar-sign"></i></span>
+                            <span id="menu7" class="item">Nominas</span>
+                        </a>
+                    </li>
+                    
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-clipboard"></i></span>

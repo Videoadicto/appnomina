@@ -54,6 +54,7 @@
                     <thead>
                     </thead>
                     <tbody>
+                        <%--
                         <tr>
                             <th>                        
                                 <div class="form-group">
@@ -64,9 +65,13 @@
                                            value = "<%= produccion.getId_produccion()%>">
                                 </div>
                             </th>
-                        </tr>                            
+                        </tr>
+                        --%> 
 
-                        <tr>     
+                        <tr> 
+                            
+                            <input name="idProduccion" id="idProduccion" style="display: none;" value = "<%= produccion.getId_produccion()%>" >
+                            
                             <th>
                                 <div class="form-group">
                                     <label for="idEmpleado" class="form-label">Empleado:</label>

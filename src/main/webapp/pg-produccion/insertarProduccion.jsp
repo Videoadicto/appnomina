@@ -44,6 +44,9 @@
                     <thead>
                     </thead>
                     <tbody>
+                        
+                        <%--
+                        
                         <tr>
                             <th>                        
                                 <div class="form-group">
@@ -55,9 +58,13 @@
                             </th>
 
 
-                        </tr>                            
+                        </tr> 
+
+                        --%> 
 
                         <tr> 
+                            
+                            <input name="idProduccion" id="idProduccion" style="display: none;" value = 0 >
 
                             <th>
                                 <div class="form-group">
@@ -74,6 +81,10 @@
                                     </select>
                                 </div>
                             </th>
+                            
+                            
+                            
+                            
 
                         </tr>
 
