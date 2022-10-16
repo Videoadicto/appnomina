@@ -17,7 +17,7 @@
             <title>Produccions</title>
             <script>
                 $("button").click(function () {
-                    $("#box").load($(this).val(), function () {
+                    $("#box").load($(this).val() + uneFechas(), function () {
                     });
                 });
 

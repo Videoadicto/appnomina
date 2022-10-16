@@ -59,7 +59,7 @@
                                     <input type="text" name="idCategoria" id="idCategoria" 
                                            placeholder="" required
                                            class="form-control" readonly
-                                           value="<%= empleado.getIdCargo().getNombre()%>">
+                                           value="<%= (empleado.getIdCargo().getNombre()).replace("_", " ")%>">
                                 </div>
                             </th>
                         </tr>                            
@@ -82,7 +82,7 @@
                                     <input type="text" name="apellido" id="apellido" 
                                            placeholder="Ingrese el apellido" required
                                            class="form-control" readonly
-                                           value = "<%= empleado.getApellido()%>">
+                                           value = "<%= (empleado.getApellido()).replace("_", " ")%>">
                                 </div>
                             </th>
                             
@@ -105,7 +105,7 @@
                                     <input type="text" name="eps" id="eps" 
                                            placeholder="Ingrese la EPS" required
                                            class="form-control" readonly
-                                           value = "<%= empleado.getEps()%>">
+                                           value = "<%= (empleado.getEps()).replace("_", " ")%>">
                                 </div>
                             </th>
                         </tr>                                          

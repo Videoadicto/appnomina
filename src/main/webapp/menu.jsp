@@ -1,3 +1,11 @@
+
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.time.YearMonth"%>
+<%@page import="java.time.Month"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <!--
     Document   : editarEmpleado.jsp
@@ -33,52 +41,78 @@
 
             <script>
                 $(document).ready(function () {
-                    $("#btnAlertas").click(function () {
-                        $("#box").load("pg-alerta/listarProducto.jsp?mens=0", function () {
-                        });
-                    });
+                $("#btnAlertas").click(function () {
+                $("#box").load("pg-alerta/listarProducto.jsp?mens=0", function () {
                 });
-
+                });
+                });
                 $(document).ready(function () {
 
-                    $("#menu1").click(function () {
-                        $("#box").load("dashboard.html", function () {
+                $("#menu1").click(function () {
+                $("#box").load("dashboard.html", function () {
 
-                        });
-                    });
-                    $("#menu6").click(function () {
-                        //$("#box").load("pg-empleado/listarEmpleado.jsp?msg='0'", function () {
-                        $("#box").load("pg-empleado/listarEmpleado.jsp?mens=0", function () {
-                        });
-                    });
-                    $("#menu7").click(function () {
-                        $("#box").load("pg-nomina/listarNomina.jsp?mens=0", function () {
-                        });
-                    });
-                    $("#menu8").click(function () {
-                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0", function () {
-                        });
-                    });
-                    $("#menu11").click(function () {
-                        $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
-                        });
-                    });
-                    $("#menu9").click(function () {
-                        $("#box").load("listarInformes.jsp", function () {
-
-                        });
-                    });
-                    $("#menu10").click(function () {
-                        window.location.href = "index.jsp";
-                    });
                 });
+                });
+                $("#menu6").click(function () {
+                //$("#box").load("pg-empleado/listarEmpleado.jsp?msg='0'", function () {
+                $("#box").load("pg-empleado/listarEmpleado.jsp?mens=0", function () {
+                });
+                });
+                $("#menu7").click(function () {
+                $("#box").load("pg-nomina/listarNomina.jsp?mens=0", function () {
+                });
+                });
+                $("#menu8").click(function () {
+                $("#box").load("pg-produccion/listarProduccion.jsp?mens=0" + uneFechas(), function () {
+                });
+                });
+                $("#menu11").click(function () {
+                $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
+                });
+                });
+                $("#menu9").click(function () {
+                $("#box").load("listarInformes.jsp", function () {
 
+                });
+                });
+                $("#menu10").click(function () {
+                window.location.href = "index.jsp";
+                });
+                });
             </script>
-            <title>Gestion Empleados</title>
+            <title></title>
         </head>
 
         <body>
         <%
+
+            LocalDate date = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+            String fecha = date.format(formatter);
+
+            LocalDate localDate = LocalDate.parse(fecha, formatter);
+
+            Month month = localDate.getMonth();
+
+            int year = localDate.getYear();
+
+            YearMonth yearMonth = YearMonth.of(year, month);
+            LocalDate firstOfMonth = yearMonth.atDay(1);
+            LocalDate lastOfMonth = yearMonth.atEndOfMonth();
+
+            //System.out.println("primero: " + firstOfMonth);
+            //System.out.println("ultimo: " + lastOfMonth);
+            {
+
+        %>
+
+        <input id="fechai" style="display: none;" value = <%= firstOfMonth%> >
+        <input id="fechaf" style="display: none;" value = <%= lastOfMonth%> >
+
+        <%
+            }
+
             response.setHeader("Cache-Control", "no-cache, no-store, must_revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
@@ -111,16 +145,16 @@
                        class="form-control" readonly
                        value = "">
                 <br>
-                
-                
-                
+
+
+
                 <div class="profile">
                     <img src="img/casa1.png" alt="profile_picture" style="width:120px">
                     <h3></h3>
                     <p> </p>
                 </div>
 
-                
+
 
                 <ul>
                     <!--
@@ -138,28 +172,28 @@
                             <span id="menu11" class="item">Cargos</span>
                         </a>
                     </li>
-                    
+
                     <li  id="emp" >
                         <a>
                             <span class="icon"><i class="fas fa-users"></i></span>
                             <span id="menu6" class="item">Empleados</span>
                         </a>
                     </li>
-                   
+
                     <li>
                         <a>
                             <span class="icon"><i class="fa-chart-line fas"></i></span>
                             <span id="menu8" class="item">Produccion</span>
                         </a>
                     </li>
- 
+
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-dollar-sign"></i></span>
                             <span id="menu7" class="item">Nominas</span>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-clipboard"></i></span>
@@ -211,17 +245,14 @@
 
             var tipo = "";
             if (document.getElementById("valor").value !== "0")
-                tipo = "Administrador: ";
+                    tipo = "Administrador: ";
             else
-                tipo = "Usuario: ";
-
-
+                    tipo = "Usuario: ";
             document.getElementById("usuario").value = tipo + document.getElementById("emple").value;
-        
             document.getElementById("alerta").style = 'display:"";';
         </script>
 
-        
+
 
     </body>  
 </html>

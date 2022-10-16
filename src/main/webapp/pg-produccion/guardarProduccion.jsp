@@ -53,7 +53,7 @@
     <input id="esto1" style="display: none;" value = <%= msg4%> >
 
     <script>
-        $("#box").load("pg-produccion/" + ($(esto).val()) + "?mens=" + ($(esto1).val()), function () {
+        $("#box").load("pg-produccion/" + ($(esto).val()) + "?mens=" + ($(esto1).val()) + uneFechas(), function () {
         });
     </script>
     <%

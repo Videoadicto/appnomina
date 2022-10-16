@@ -62,6 +62,17 @@ public class ProduccionNegocio {
         return producciones;
     }
     
+    public List<Produccion> buscarProduccionesFechas(String fechai, String fechaf){
+        List<Produccion> producciones;
+        try {
+            producciones = produccionDao.buscarProduccionesFechas(fechai, fechaf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            producciones= null;
+        }
+        return producciones;
+    }
+    
     public String eliminarProduccion(int id_produccion){
         String rta="";
         try {

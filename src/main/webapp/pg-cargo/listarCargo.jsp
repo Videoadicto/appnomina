@@ -20,7 +20,7 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Gestión Cargos</title>
+            <title>Registro de Cargos</title>
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
             <link href="css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Pago</th>
-                        <th>opciones</th>
+                        <th>Opción</th>
                     </tr>                            
                 </thead>
                 <tbody>

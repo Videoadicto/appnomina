@@ -128,20 +128,54 @@ function eluid() {
 }
 
 
-function verificarPagina(texto)
+function verificarPaginaP(texto)
 {
-    //window.alert("validarEdicion :" + texto);
+    //window.alert("validarpagina");
     var datos = "";
 
     if (texto.includes("eliminar")) {
         datos = texto + "&sn=" + (window.confirm("Esta seguro que desea borrar el registro?"));
     } else
     {
-        datos = texto;
-        //window.alert("" + datos);
+        var fechai1 = "" + document.getElementById("fechaix").value;
+        var fechaf1 = "" + document.getElementById("fechafx").value;
+        
+        //window.alert("" + fechai1 + " " + fechaf1);
+        //window.alert(texto);
+        
+        
+        if (fechai1!=="" && fechaf1!=="" ){
+        
+        datos = texto + "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1;
+    }
+    else
+    {
+        window.alert("FECHA INVALIDA");
+        throw new Exception("Exception message");
+    }
     }
     return datos;
 }
+
+
+function verificarPagina(texto)
+    {
+        //window.alert("validarEdicion :" + texto);
+        var datos = "";
+
+        if (texto.includes("eliminar")) {
+            datos = texto + "&sn=" + (window.confirm("Esta seguro que desea borrar el registro?"));
+        } else
+        {
+            datos = texto;
+            //window.alert("" + datos);
+        }
+        return datos;
+    }
+
+
+
+
 
 function verificarPagina2(texto)
 {
@@ -234,7 +268,7 @@ function validarDatosEdicion(nuevo) {
 }
 
 function validarDatosEmpleado(nuevo) {
-    
+
     //window.alert("A LA MERC");
 
     var datos = "";
@@ -251,12 +285,12 @@ function validarDatosEmpleado(nuevo) {
 
     var idEmpleado1 = (((frmRegistrar.idEmpleado.value).trim()).replace(/ /g, ""));
     var nombre1 = ((frmRegistrar.nombre.value).trim()).replace(/ /g, "_");
-    var apellido1 = ((frmRegistrar.apellido.value).trim()).replace(/ /g, "");
+    var apellido1 = ((frmRegistrar.apellido.value).trim()).replace(/ /g, "_");
     var cedula1 = ((frmRegistrar.cedula.value).trim()).replace(/ /g, "");
     var fechanac1 = "" + frmRegistrar.fechanac.value;
     //var telefono1 = Number(((frmRegistrar.telefono.value).trim()).replace(/ /g, ""));
     var telefono1 = (frmRegistrar.telefono.value).trim().replace(/ /g, "");
-    var eps1 = ((frmRegistrar.eps.value).trim()).replace(/ /g, "");
+    var eps1 = ((frmRegistrar.eps.value).trim()).replace(/ /g, "_");
     var idCargo1 = ((frmRegistrar.idCargo.value).trim()).replace(/ /g, "");
 
     //window.alert("idEmpleado1=" + idEmpleado1 + "&nombre1=" + nombre1 + "&apellido1=" + apellido1 + "&cedula1=" + cedula1 + "&fechanac1=" + fechanac1 + "&telefono1=" + telefono1 + "&eps1=" + eps1 + "&idCargo1=" + idCargo1 + "& nuevo2=" + nuevo + "&validar2=1");
@@ -274,7 +308,7 @@ function validarDatosEmpleado(nuevo) {
 
 
 function validarDatosProduccion(nuevo) {
-    
+
     //window.alert("A LA MERC");
 
     var datos = "";
@@ -293,15 +327,15 @@ function validarDatosProduccion(nuevo) {
     var idEmpleado1 = ((frmRegistrar.idEmpleado.value).trim()).replace(/ /g, "_");
     var fecha1 = ((frmRegistrar.fecha.value).trim()).replace(/ /g, "");
     var produccion1 = ((frmRegistrar.produccion.value).trim()).replace(/ /g, "");
-    
+
     //window.alert("idEmpleado1=" + idEmpleado1 + "&nombre1=" + nombre1 + "&apellido1=" + apellido1 + "&cedula1=" + cedula1 + "&fechanac1=" + fechanac1 + "&telefono1=" + telefono1 + "&eps1=" + eps1 + "&idCargo1=" + idCargo1 + "& nuevo2=" + nuevo + "&validar2=1");
 
-    if (idProduccion1 === "" || idEmpleado1 === "" || fecha1 === "" || produccion1 === "" )
+    if (idProduccion1 === "" || idEmpleado1 === "" || fecha1 === "" || produccion1 === "")
     {
         document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
         datos = "validar2=0";
     } else {
-        datos = "idProduccion2=" + idProduccion1 + "&idEmpleado2=" + idEmpleado1 + "&fecha2=" + fecha1 + "&produccion2=" + produccion1  + "&nuevo2=" + nuevo + "&validar2=1";
+        datos = "idProduccion2=" + idProduccion1 + "&idEmpleado2=" + idEmpleado1 + "&fecha2=" + fecha1 + "&produccion2=" + produccion1 + "&nuevo2=" + nuevo + "&validar2=1";
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;
@@ -410,10 +444,10 @@ function validarDatosCargo(nuevo) {
     } catch (error) {
         console.error(error);
     }
-    
+
     var idCargo1 = (((frmRegistrar.idCargo.value).trim()).replace(/ /g, ""));
     var nombre1 = ((frmRegistrar.nombre.value).trim()).replace(/ /g, "_");
-    var pago1 = ((frmRegistrar.pago.value).trim()).replace(/ /g, "_");
+    var pago1 = ((frmRegistrar.pago.value).trim()).replace(/ /g, "");
 
     //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
 
@@ -568,4 +602,33 @@ function preValidarX() {
             }
         }
     };
+}
+
+function listarTabla() {
+    //var uid1 = document.getElementById("uid").value;
+    window.alert("yeahhh!!");
+
+    var datos = "mens=0";
+
+    return datos;
+}
+
+
+function uneFechas() {
+    var fechai1 = document.getElementById("fechai").value;
+    var fechaf1 = document.getElementById("fechaf").value;
+
+    var fechas = "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1;
+
+    return fechas;
+}
+
+
+function agregarFechas(){
+    window.alert("HIJOLETIO");
+        var fechai1 = document.getElementById("fechai").value;
+        var fechaf1 = document.getElementById("fechaf").value;
+        var fechas = "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1;
+        window.alert(fechas);
+        return fechas;
 }

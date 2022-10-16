@@ -112,7 +112,7 @@
                                 <input type="text" name="apellido" id="apellido" 
                                        placeholder="Ingrese el apellido" required
                                        class="form-control" 
-                                       value = "<%= empleado.getApellido()%>">
+                                       value = "<%= (empleado.getApellido()).replace("_", " ")%>">
                             </div>
                         </th>
                     </tr>
@@ -135,7 +135,7 @@
                                 <input type="text" name="eps" id="eps" 
                                        placeholder="Ingrese la EPS" required
                                        class="form-control" 
-                                       value = "<%= empleado.getEps()%>">
+                                       value = "<%= (empleado.getEps()).replace("_", " ")%>">
                             </div>
                         </th>
                     </tr>                                          

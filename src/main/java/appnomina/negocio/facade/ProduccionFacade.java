@@ -34,6 +34,10 @@ public class ProduccionFacade {
     public List<Produccion> buscarProducciones() {
         return produccionNegocio.buscarProducciones();
     }
+    
+    public List<Produccion> buscarProduccionesFechas(String fechai, String fechaf) {
+        return produccionNegocio.buscarProduccionesFechas(fechai, fechaf);
+    }
 
     public String eliminarProduccion(int id_produccion) {
         return produccionNegocio.eliminarProduccion(id_produccion);

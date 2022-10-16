@@ -16,7 +16,7 @@
                 $(document).ready(function () {
 
                     $("#btnCancelar").click(function () {
-                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0", function () {
+                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0" + uneFechas(), function () {
                         });
                     });
                 });
