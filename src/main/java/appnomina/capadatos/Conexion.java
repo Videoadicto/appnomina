@@ -19,10 +19,6 @@ public class Conexion
 	long tiempo_inicio = -1;
   	long tiempo_total = 0;
   	
-  	//private final static String url ="jdbc:mysql://localhost:3307/gestion_inventario";//local
-	//private String usuario="programacionwebc";	
-	//private String password="web2022";
-        
         //private final static String url ="jdbc:mysql://n4m3x5ti89xl6czh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ma3xlxo1aeq8rc35?allowPublicKeyRetrieval=true&useSSL=false";//local
 	//private String usuario="o44zk2uydl5wfiz7";	
 	//private String password="pvg5sdc27bkqu1hw";  

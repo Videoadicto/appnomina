@@ -186,6 +186,64 @@ public class ProduccionDao {
         conexion = null;
         return producciones;
     }
+    
+    
+    public int buscarProduccionesUsuarioFechas(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
+
+        //System.out.println("fechai : " + fechai + " fechaf: " + fechaf );
+        
+        Conexion con = new Conexion();
+        Connection conexion = con.conectar("ProduccionDao.buscarProduccionesFechas()");
+        String sql = "SELECT * FROM produccion ";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        ResultSet rst = ps.executeQuery();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechai2 = sdf.parse(fechai);
+        Date fechai1 = new Date(fechai2.getTime() + TimeUnit.DAYS.toMillis(-1));
+        
+        Date fechaf2 = sdf.parse(fechaf);
+        Date fechaf1 = new Date(fechaf2.getTime() + TimeUnit.DAYS.toMillis(1));
+
+        int total=0;
+        
+        while (rst.next()) {
+            Date fechab = sdf.parse(rst.getString(3));
+            int idempleado = rst.getInt(2);
+
+//            System.out.println("fechai: " + fechab.after(fechai1));
+//            System.out.println(" fechaf: " + fechab.before(fechaf1));
+//            System.out.println(" id_empleado: " + id_empleado);
+//            System.out.println(" idEmpleadorst: " + idempleado );
+            
+            if (fechab.after(fechai1) && fechab.before(fechaf1) && id_empleado==idempleado ) {
+                total = total + rst.getInt(4);
+            }
+        }
+
+        rst.close();
+        ps.close();
+        conexion.close();
+
+        rst = null;
+        ps = null;
+        conexion = null;
+        
+        //CargoDao cargo = new CargoDao();
+        
+        //System.out.println(id_cargo);
+        
+        //cargo.buscarCargo(total)
+        
+        //System.out.println("pago " + pago);
+        
+         total = total * pago;
+        
+        
+        return total;
+    }
+    
 
     public boolean eliminarProduccion(int id_produccion) throws Exception {
         boolean rta = false;

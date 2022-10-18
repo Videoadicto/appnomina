@@ -157,6 +157,35 @@ function verificarPaginaP(texto)
     return datos;
 }
 
+function verificarPaginaS(texto)
+{
+    //window.alert("validarpagina");
+    var datos = "";
+
+    if (texto.includes("eliminar")) {
+        datos = texto + "&sn=" + (window.confirm("Esta seguro que desea borrar el registro?"));
+    } else
+    {
+        var fechai1 = "" + document.getElementById("fechaix").value;
+        var fechaf1 = "" + document.getElementById("fechafx").value;
+        
+        //window.alert("" + fechai1 + " " + fechaf1);
+        //window.alert(texto);
+        
+        
+        if (fechai1!=="" && fechaf1!=="" ){
+        
+        datos = texto + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
+    }
+    else
+    {
+        window.alert("FECHA INVALIDA");
+        throw new Exception("Exception message");
+    }
+    }
+    return datos;
+    }
+
 
 function verificarPagina(texto)
     {
@@ -617,8 +646,10 @@ function listarTabla() {
 function uneFechas() {
     var fechai1 = document.getElementById("fechai").value;
     var fechaf1 = document.getElementById("fechaf").value;
+    var fechal1 = document.getElementById("fechal").value;
+    var fechah1 = document.getElementById("fechah").value;
 
-    var fechas = "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1;
+    var fechas = "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1 + "&fechal2=" + fechal1 + "&fechah2=" + fechah1 ;
 
     return fechas;
 }

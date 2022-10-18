@@ -84,6 +84,7 @@ public class EmpleadoDao {
             p.setEps(rst.getString(7));
             p.getIdCargo().setId_cargo(rst.getInt(8));
             p.getIdCargo().setNombre(cd.buscarCargo(rst.getInt(8)).getNombre());
+            p.getIdCargo().setPago(cd.buscarCargo(rst.getInt(8)).getPago());
             p.setTipo(rst.getInt(9));
         } else p=null;
         
@@ -121,6 +122,7 @@ public class EmpleadoDao {
             
             p.getIdCargo().setId_cargo(rst.getInt(8));
             p.getIdCargo().setNombre(cd.buscarCargo(rst.getInt(8)).getNombre());
+            p.getIdCargo().setPago(cd.buscarCargo(rst.getInt(8)).getPago());
             
             p.setTipo(rst.getInt(9));
             

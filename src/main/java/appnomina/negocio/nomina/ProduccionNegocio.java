@@ -73,6 +73,18 @@ public class ProduccionNegocio {
         return producciones;
     }
     
+    public int buscarProduccionesUsuarioFechas(int id_empleado, int pago, String fechai, String fechaf){
+        int total = 0;
+        try {
+            total = produccionDao.buscarProduccionesUsuarioFechas(id_empleado, pago, fechai, fechaf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            total= 0;
+        }
+        return total;
+    }   
+    
+    
     public String eliminarProduccion(int id_produccion){
         String rta="";
         try {

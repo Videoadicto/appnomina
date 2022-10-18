@@ -1,4 +1,5 @@
 
+<%@page import="java.time.DayOfWeek"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.YearMonth"%>
@@ -66,13 +67,16 @@
                 $("#box").load("pg-produccion/listarProduccion.jsp?mens=0" + uneFechas(), function () {
                 });
                 });
+                $("#menu2").click(function () {
+                $("#box").load("pg-semanal/listarSemanal.jsp?mens=0" + uneFechas(), function () {
+                });
+                });
                 $("#menu11").click(function () {
                 $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
                 });
                 });
                 $("#menu9").click(function () {
                 $("#box").load("listarInformes.jsp", function () {
-
                 });
                 });
                 $("#menu10").click(function () {
@@ -100,6 +104,11 @@
             YearMonth yearMonth = YearMonth.of(year, month);
             LocalDate firstOfMonth = yearMonth.atDay(1);
             LocalDate lastOfMonth = yearMonth.atEndOfMonth();
+            
+            LocalDate lunes = date.with(DayOfWeek.MONDAY);
+            
+            //System.out.println("lunes: " + lunes.toString());
+            //System.out.println("hoy " + localDate);
 
             //System.out.println("primero: " + firstOfMonth);
             //System.out.println("ultimo: " + lastOfMonth);
@@ -109,6 +118,8 @@
 
         <input id="fechai" style="display: none;" value = <%= firstOfMonth%> >
         <input id="fechaf" style="display: none;" value = <%= lastOfMonth%> >
+        <input id="fechal" style="display: none;" value = <%= lunes%> >
+        <input id="fechah" style="display: none;" value = <%= localDate.toString() %> >
 
         <%
             }
@@ -190,7 +201,7 @@
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-dollar-sign"></i></span>
-                            <span id="menu7" class="item">Nominas</span>
+                            <span id="menu2" class="item">Pago Semanal</span>
                         </a>
                     </li>
 

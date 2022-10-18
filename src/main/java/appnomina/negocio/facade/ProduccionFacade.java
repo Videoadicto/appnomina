@@ -38,6 +38,10 @@ public class ProduccionFacade {
     public List<Produccion> buscarProduccionesFechas(String fechai, String fechaf) {
         return produccionNegocio.buscarProduccionesFechas(fechai, fechaf);
     }
+    
+    public int buscarProduccionesUsuarioFechas(int id_empleado, int pago, String fechai, String fechaf) {
+        return produccionNegocio.buscarProduccionesUsuarioFechas(id_empleado, pago, fechai, fechaf);
+    }
 
     public String eliminarProduccion(int id_produccion) {
         return produccionNegocio.eliminarProduccion(id_produccion);
