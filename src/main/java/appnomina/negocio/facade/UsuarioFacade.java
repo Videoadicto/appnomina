@@ -20,11 +20,11 @@ public class UsuarioFacade {
         usuarioNegocio = new UsuarioNegocio();
     }
     
-    public Usuario buscarUsuario(int id_empleado){
-        return usuarioNegocio.buscarUsuario(id_empleado);
+    public Usuario buscarUsuario(String usuario){
+        return usuarioNegocio.buscarUsuario(usuario);
     }
    
-      public String validarUsuario(int id_usuario, String password){
-        return usuarioNegocio.validarUsuario(id_usuario, password);  
+      public String validarUsuario(String usuario, String password){
+        return usuarioNegocio.validarUsuario(usuario, password);  
       }
 }

@@ -11,8 +11,10 @@
     <jsp:useBean id="fachada" class="appnomina.negocio.facade.UsuarioFacade" scope="page"></jsp:useBean>
 
     <%
-        int usuario3 = Integer.parseInt(request.getParameter("usuario2"));
+        String usuario3 = request.getParameter("usuario2");
         String password3 = request.getParameter("password2");
+        
+        //System.out.println("user: " + usuario3 + " pass: " + password3 );
 
         String msg = "";
 

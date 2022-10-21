@@ -35,29 +35,10 @@
                     $("#box").load(verificarPagina($(this).val()), function () {
                     });
                 });
-
-                function cambiar() {
-
-                    var checkBox = document.getElementById("miCheck");
-
-                    if (checkBox.checked === true) {
-                        //toff.style.display = "block";
-                        //ton.style.display = "none";
-                        document.getElementById("ton").innerHTML = "OFF";
-
-
-                    } else {
-                        //toff.style.display = "none";
-                        //ton.style.display = "block";
-                        document.getElementById("ton").innerHTML = "ON ";
-                    }
-
-                }
             </script>
         </head>
 
         <body>
-
             <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
                 <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EMPLEADOS</h1>
             </div>
@@ -71,25 +52,6 @@
                             <i class="fa fa-toolbox" >
                             </i> Agregar Empleado
                         </button>
-                    </th>
-
-                    <th>
-                        <div>
-                            <label class="switch">
-                                <input type="checkbox"  id="miCheck" onclick="cambiar()">
-                                <span class="slider round"></span>
-                            </label>
-                            <p id="ton" style="display:block">ON</p>
-                        </div>
-                    </th>
-
-                    <th>
-                        <div>
-
-                            <input type="checkbox"  id="miCheck1" onclick="cambiar()">
-
-                            <p id="toff" style="display:block">Inactivos</p>
-                        </div>
                     </th>
                 </tr>
             </thead>
@@ -143,9 +105,6 @@
                                 <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
                                     <img src="img/borrar.png" alt="alt"/>
                                 </button>
-
-
-
                             </td>
                         </tr>
                         <%
@@ -166,6 +125,7 @@
                     mensa = "";
                 } else {
         %>
+        
         <script>
             aparecerDiv("divListar");
         </script>

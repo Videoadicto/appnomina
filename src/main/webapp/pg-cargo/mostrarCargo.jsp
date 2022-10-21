@@ -94,7 +94,7 @@
 
 
                 <div class="form-group">
-                    <input type="button" id="btnCancelar" value="Regresar" class="btn btn-success">
+                    <input type="button" id="btnCancelar" value="Regresar" class="btn" style="background:rgb(0, 195, 255)">
                 </div>
 
             </form>

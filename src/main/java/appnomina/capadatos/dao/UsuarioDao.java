@@ -36,7 +36,7 @@ public class UsuarioDao {
         //String sql = "INSERT INTO usuario VALUES (?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        ps.setInt(1, usuario.getId_usuario());
+        ps.setString(1, usuario.getNick());
         ps.setString(2, usuario.getNombre());
         ps.setString(3, usuario.getPassword());
         ps.setInt(4, 0);
@@ -52,20 +52,20 @@ public class UsuarioDao {
         return rta;
     }
 
-    public Usuario buscarUsuario(int id_usuario) throws Exception {
+    public Usuario buscarUsuario(String usuario) throws Exception {
         Usuario p = new Usuario();
 
         Conexion con = new Conexion();
 
         Connection conexion = con.conectar("UsuarioDao.buscarUsuario()");
 
-        String sql = "SELECT * FROM usuario WHERE id_usuario = ?";
+        String sql = "SELECT * FROM usuario WHERE nick = ?";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        ps.setInt(1, id_usuario);
+        ps.setString(1, usuario);
         ResultSet rst = ps.executeQuery();
         if (rst.next()) {
-            p.setId_usuario(rst.getInt(1));
+            p.setNick(rst.getString(1));
             p.setNombre(rst.getString(2));
             p.setPassword(rst.getString(3));
             p.setTipo(rst.getInt(4));
@@ -96,7 +96,7 @@ public class UsuarioDao {
         ResultSet rst = ps.executeQuery();
         while (rst.next()) {
             Usuario p = new Usuario();
-            p.setId_usuario(rst.getInt(1));
+            p.setNick(rst.getString(1));
             p.setNombre(rst.getString(2));
             p.setPassword(rst.getString(3));
             p.setTipo(rst.getInt(4));

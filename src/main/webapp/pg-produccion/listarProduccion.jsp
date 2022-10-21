@@ -40,8 +40,8 @@
         <body>
 
         <%
-            String fechai3 = request.getParameter("fechai2");
-            String fechaf3 = request.getParameter("fechaf2");
+            String fechai3 = request.getParameter("fechal2");
+            String fechaf3 = request.getParameter("fechah2");
 
         %>
 

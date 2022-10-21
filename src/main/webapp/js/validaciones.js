@@ -75,9 +75,16 @@ function preValidar() {
     var usuario1 = document.getElementById("usuario").value;
     var password1 = document.getElementById("password").value;
 
+    //frmRegistrar.getElementById("usuario").value = "";
+    //frmRegistrar.getElementById("password").value = "";
+
     //window.alert("prevalidar");
+    
+    //limpiar();
 
     datos = "usuario2=" + usuario1 + "&password2=" + password1;
+
+
 
     return datos;
 }
@@ -98,24 +105,31 @@ function validarPagina() {
 }
 
 function limpiar() {
-    frmRegistrar.getElementById("cedula").value = "";
+    frmRegistrar.getElementById("usuario").value = "";
     frmRegistrar.getElementById("password").value = "";
+
+    //document.getElementById("usuario").value = "";
+    //document.getElementById("password").value = "";
 }
 
 //sobrante
-function validarX() {
+//function validarX() {
 
-    frmRegistrar.cedula.value = null;
-    frmRegistrar.password.value = null;
-    window.alert("yes");
+//    frmRegistrar.cedula.value = null;
+//    frmRegistrar.password.value = null;
+//    window.alert("test");
 
-}
+//}
 
 function validar() {
     var mens = document.getElementById("mensaje").value;
 
     if (mens !== "Ok") {
         return false;
+    } else
+    {
+        //limpiar();
+        return true;
     }
 
 }
@@ -631,7 +645,7 @@ function preValidarX() {
 
 function listarTabla() {
     //var uid1 = document.getElementById("uid").value;
-    window.alert("yeahhh!!");
+    window.alert("test1");
 
     var datos = "mens=0";
 
@@ -652,7 +666,7 @@ function uneFechas() {
 
 
 function agregarFechas() {
-    window.alert("HIJOLETIO");
+    //window.alert("test");
     var fechai1 = document.getElementById("fechai").value;
     var fechaf1 = document.getElementById("fechaf").value;
     var fechas = "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1;

@@ -34,19 +34,19 @@
                     <tbody>
                         <tr>
                             <td>
-                                <h1 style="left : 153%; position:relative; font-size:45px;">Sign in</h1>
+                                <h1 style="left : 143%; position:relative; font-size:45px;">Sign in</h1>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <img src="img/login.png" width="400" height="300" style="left : 120%; position:relative;" >
+                                <img src="img/login.png" width="400" height="300" style="left : 110%; position:relative;" >
                             </td>
                         </tr>
                         <tr>
                             <td>
 
-                                <input style="left : 140%; position:relative; font-size:20px;" type="text" name="usuario" id="usuario" 
-                                       placeholder="Usuario" required >
+                                <input style="left : 130%; position:relative; font-size:20px;" type="text" name="usuario" id="usuario" 
+                                       placeholder="Usuario" >
 
                             </td>
                         </tr>                            
@@ -54,8 +54,8 @@
                         <tr>                               
                             <td>
                                 <br>
-                                <input style="left : 140%; position:relative; font-size:20px;" type="password" name="password" id="password" 
-                                       placeholder="Password" required >
+                                <input style="left : 130%; position:relative; font-size:20px;" type="password" name="password" id="password" 
+                                       placeholder="Password" >
                             </td>
                         </tr>
 
@@ -65,7 +65,7 @@
 
 
                                 <br>
-                                <input style="left : 140%; position:relative; font-size:20px; width:270px;background:rgb(71, 82, 94);" type="button" id="btnAceptar" value="Aceptar" class="btn btn-success" >
+                                <input style="left : 130%; position:relative; font-size:20px; width:270px;background:rgb(71, 82, 94);" type="button" id="btnAceptar" value="Aceptar" class="btn btn-success" >
                             </td>
                         </tr>
 
@@ -74,7 +74,7 @@
                             <td>   
 
                                 <br>
-                                <div style="left : 140%; position:relative; font-size:16px; width:273px;" id="boxIndex">
+                                <div style="left : 130%; position:relative; font-size:16px; width:273px;" id="boxIndex">
                                 </div>
 
                             </td>

@@ -103,8 +103,8 @@
                 </div>   
 
                 <div class="form-group">
-                    <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >
-                    <button type="button" value="pg-cargo/listarCargo.jsp?mens=0" class="btn btn-success">Regresar</button>
+                    <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)" >
+                    <button type="button" value="pg-cargo/listarCargo.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
                 </div>
 
             </form>

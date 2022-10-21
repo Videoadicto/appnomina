@@ -56,8 +56,6 @@
 
                 $(document).ready(function () {
                     $("#btnGuardar").click(function () {
-
-
                         var table = $('#tablaSemanales').DataTable();
                         //console.log(table.row(this).data());
 
@@ -69,10 +67,10 @@
                         //var lista1 = "";
                         //var total1 = 0;
                         //var inicial = parseInt(table.data().length);
-                        //const selectedStudentIds = [];
+                        //const lista = [];
 
-                        //selectedStudentIds = request.getParameterValues("selected");
-                        //window.alert("" + selectedStudentIds.toString());
+                        //lista = request.getParameterValues("selected");
+                        //window.alert("" + lista.toString());
                         //const xxx = [];
                         //window.alert("" + xxx.toString());
                         //xxx = request.getParameterValues("idx");
@@ -117,19 +115,12 @@
 
 
                         //}
-
-
-
-
-
                         //for (var i = 0; i < inicial; i++) {
 
                         //  valores = (table.row(i).data().toString()).split(",");
 
                         //window.alert("total: " + (valores[0]));
                         //window.alert("total: " + (valores[6]));
-
-                        //lista1 = lista1 + "Sel.~~" + valores[0] + "¬¬Id Emp.~~" + valores[1] + "¬¬Total~~" + valores[3] + "~¬~";
 
                         //}
                         //document.getElementById("total").value = total1;
@@ -146,11 +137,11 @@
 
         <body>
 
-        <%            //String fechai3 = request.getParameter("fechai2");
+        <%
+            //String fechai3 = request.getParameter("fechai2");
             //String fechaf3 = request.getParameter("fechaf2");
             String fechai3 = request.getParameter("fechal2");
             String fechaf3 = request.getParameter("fechah2");
-
         %>
 
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
@@ -167,7 +158,7 @@
                         <tr>
                             <th>
                                 <div>
-                                    <button class="btn" id="btnBuscar" value="pg-semanal/pagarSemanal.jsp?mens=0" style="width:11em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                                    <button class="btn" id="btnBuscar" value="pg-semanal/insertarSemanal.jsp?mens=0" style="width:11em; background:rgb(0, 195, 255);left : 0%; position:relative;">
                                         <i class="fa fa-toolbox" >
                                         </i> Recalcular
                                     </button>
@@ -203,8 +194,12 @@
                     <tbody>
                         <tr>
                             <th>
-                                <input type="checkbox"  id="miCheck" onclick="checkTodo()">
-                                <p id="toff" style="display:block">S/D</p>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox"  id="miCheck" onclick="checkTodo()">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </th>
                             <th>
 
@@ -282,8 +277,8 @@
 
         <div class="form-group">
 
-            <input type="button" id="btnGuardar" value="Guardar" class="btn" >
-            <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn">Regresar</button>
+            <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)">
+            <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
         </div>
 
         <div class="card-footer">

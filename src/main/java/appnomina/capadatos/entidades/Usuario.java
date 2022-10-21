@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Usuario
  */
 public class Usuario implements Serializable{
-    private int id_usuario;
+    private String nick;
     private String nombre;
     private String password;
     private int tipo;
@@ -21,20 +21,22 @@ public class Usuario implements Serializable{
         super();
     }
     
-    public Usuario(int id_usuario, String nombre, String password, int tipo ) {
-        this.id_usuario = id_usuario;
+    public Usuario(String nick, String nombre, String password, int tipo ) {
+        this.nick = nick;
         this.nombre = nombre;
         this.password = password;
         this.tipo = 1;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public String getNick() {
+        return nick;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
+
+    
 
     public String getNombre() {
         return nombre;
@@ -62,9 +64,7 @@ public class Usuario implements Serializable{
 
     @Override
     public String toString() {
-        return "Usuario{" + "id_usuario=" + id_usuario + ", nombre=" + nombre + ", password=" + password + ", tipo=" + tipo + '}';
+        return "Usuario{" + "nick=" + nick + ", nombre=" + nombre + ", password=" + password + ", tipo=" + tipo + '}';
     }
-
-    
      
 }

@@ -130,7 +130,7 @@
             response.setHeader("Expires", "0");
 
             try {
-                String cedula1 = session.getAttribute("uid").toString();
+                //String cedula1 = session.getAttribute("uid").toString();
                 //System.out.println("" + cedula1);
                 if (session.getAttribute("uid") != null) {
                     session.setAttribute("uid", null);
@@ -226,16 +226,16 @@
         </div>
 
         <%
-            int idUsuario = Integer.parseInt(request.getParameter("usuario"));
+            String idUsuario = request.getParameter("usuario");
             //String password = request.getParameter("password");
             //System.out.print("cedula: " + cedula + " password: " + password);
 
             Usuario usuario = new Usuario();
-            usuario.setId_usuario(idUsuario);
+            //usuario.setNick(idUsuario);
 
             usuario = fachada.buscarUsuario(idUsuario);
 
-            session.setAttribute("rol", usuario.getTipo());
+            //session.setAttribute("rol", usuario.getTipo());
 
             {
         %>

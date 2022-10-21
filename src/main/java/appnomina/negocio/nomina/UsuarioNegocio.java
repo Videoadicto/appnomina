@@ -24,7 +24,7 @@ public class UsuarioNegocio {
     public String insertarUsuario(Usuario p, String nuevo){
         String rta="";
         try {
-            Usuario pe = usuarioDao.buscarUsuario(p.getId_usuario());
+            Usuario pe = usuarioDao.buscarUsuario(p.getNick());
             if (pe==null || nuevo.equals("0")){
                 boolean res = usuarioDao.insertarUsuario(p, nuevo);
                 if (res) rta = "Usuario guardado con exito";
@@ -37,10 +37,10 @@ public class UsuarioNegocio {
         return rta;
     }
     
-    public Usuario buscarUsuario(int id_usuario){
+    public Usuario buscarUsuario(String usuario){
         Usuario p = new Usuario();
         try {
-            p = usuarioDao.buscarUsuario(id_usuario);
+            p = usuarioDao.buscarUsuario(usuario);
         } catch (Exception e) {
             e.printStackTrace();
             p= null;
@@ -72,12 +72,12 @@ public class UsuarioNegocio {
         return rta;
     }
     
-    public String validarUsuario(int id_usuario, String password){
+    public String validarUsuario(String usuario, String password){
         String rta="Ok";
         
         Usuario p = new Usuario();
         try {
-            p = usuarioDao.buscarUsuario(id_usuario);
+            p = usuarioDao.buscarUsuario(usuario);
             if (!p.getPassword().equals(password)){
                 rta="Usuario o contraseña incorrecto";
             }
