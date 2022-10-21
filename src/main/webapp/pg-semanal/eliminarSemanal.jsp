@@ -4,12 +4,12 @@
     Author     : Videoadicto
 --%>
 <%@page import="javax.swing.text.html.parser.Element"%>
-<%@page import="appnomina.capadatos.entidades.Semanal"%>
+<%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:useBean id="fachada" class="appnomina.negocio.facade.SemanalFacade" scope="page"></jsp:useBean>
+        <jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaSemanalFacade" scope="page"></jsp:useBean>
         </head>
         <body>
         <%
@@ -18,10 +18,10 @@
             if (sino.contains("true")) {
 
                 int idSemanal = Integer.parseInt(request.getParameter("idSemanal"));
-                Semanal p = fachada.buscarSemanal(idSemanal);
+                NominaSemanal p = fachada.buscarNominaSemanal(idSemanal);
 
                 if (p != null) {
-                    String msg = fachada.eliminarSemanal(idSemanal);
+                    String msg = fachada.eliminarNominaSemanal(idSemanal);
                     String msg4 = msg.replace(" ", ".");
         %>
         <input id="esto1" style="display: none;" value = <%= msg4%> >

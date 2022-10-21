@@ -21,7 +21,7 @@ public class Empleado implements Serializable{
     private String telefono;
     private String eps;
     private Cargo idCargo;
-    private int tipo;
+    private int estado;
     
     public Empleado(){
         //super();
@@ -33,10 +33,10 @@ public class Empleado implements Serializable{
         this.telefono = "";
         this.eps = "";
         this.idCargo = new Cargo();
-        this.tipo = 0;
+        this.estado = 0;
     }
     
-    public Empleado(int id_empleado, String nombre, String apellido, String cedula, String fecha_nacimiento, String telefono, String eps, Cargo id_Cargo) {
+    public Empleado(int id_empleado, String nombre, String apellido, String cedula, String fecha_nacimiento, String telefono, String eps, Cargo id_Cargo, int estado) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,7 +45,7 @@ public class Empleado implements Serializable{
         this.telefono = telefono;
         this.eps = eps;
         this.idCargo = id_Cargo;
-        this.tipo = 1;
+        this.estado = estado;
     }
 
     public int getId_empleado() {
@@ -112,17 +112,17 @@ public class Empleado implements Serializable{
         this.idCargo = idCargo;
     }
 
-    public int getTipo() {
-        return tipo;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha_nacimiento=" + fecha_nacimiento + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", tipo=" + tipo + '}';
+        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha_nacimiento=" + fecha_nacimiento + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", estado=" + estado + '}';
     }
 
 

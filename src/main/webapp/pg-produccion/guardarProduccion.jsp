@@ -14,22 +14,22 @@
     <%
         if (true) {
 
-            int idProduccion3 = Integer.parseInt(request.getParameter("idProduccion2"));
-            
-            int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
-            String fecha3 = request.getParameter("fecha2");
-            int produccion3 = Integer.parseInt(request.getParameter("produccion2"));
-            
             String validar3 = request.getParameter("validar2");
-            String nuevo3 = request.getParameter("nuevo2");
+
             //System.out.print("ojo1-idEmpleado2=" + idEmpleado3 + "&nombre2=" + nombre3 + "&precio2=" + precio3 + "&cantidad2=" + cantidad3 + "&iva2=" + iva3 + "&retencion2=" + retencion3 + "&cantidadMinima2=" + cantidadMinima3 + "&idCategoria2=" + idCategoria3 + "& nuevo2=" + nuevo3 + "&validar3=" + validar3);
-
-
             String pagina = "";
             String msg3 = "";
             if (validar3.equals("1")) {
-                Cargo c = new Cargo (0, "", 0);
-                Empleado e = new Empleado(idEmpleado3, "", "", "", "", "", "", c);
+
+                int idProduccion3 = Integer.parseInt(request.getParameter("idProduccion2"));
+
+                int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+                String fecha3 = request.getParameter("fecha2");
+                int produccion3 = Integer.parseInt(request.getParameter("produccion2"));
+                String nuevo3 = request.getParameter("nuevo2");
+
+                Cargo c = new Cargo(0, "", 0);
+                Empleado e = new Empleado(idEmpleado3, "", "", "", "", "", "", c, 1);
                 Produccion p = new Produccion(idProduccion3, e, fecha3, produccion3);
                 msg3 = fachada.insertarProduccion(p, nuevo3);
 

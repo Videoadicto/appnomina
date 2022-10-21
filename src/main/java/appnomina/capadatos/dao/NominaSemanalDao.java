@@ -46,7 +46,7 @@ public class NominaSemanalDao {
         ps.setInt(2, nominaSemanal.getIdEmpleado().getId_empleado());
         ps.setString(3, nominaSemanal.getFecha());
         ps.setInt(4, nominaSemanal.getTotal());
-        ps.setInt(5, 0);
+        ps.setInt(5, 1);
 
         ps.execute();
         rta = true;
@@ -75,6 +75,7 @@ public class NominaSemanalDao {
         ResultSet rst = ps.executeQuery();
         if (rst.next()) {
             p.setId_semanal(rst.getInt(1));
+            p.getIdEmpleado().setId_empleado(rst.getInt(2));
 
             //p.getIdProduccion().setId_produccion(rst.getInt(2));
             //p.getIdProduccion().setIdEmpleado(cd.buscarProduccion(rst.getInt(2)).getIdEmpleado());
@@ -109,6 +110,7 @@ public class NominaSemanalDao {
         while (rst.next()) {
             NominaSemanal p = new NominaSemanal();
             p.setId_semanal(rst.getInt(1));
+            p.getIdEmpleado().setId_empleado(rst.getInt(2));
             //p.getIdProduccion().setId_produccion(rst.getInt(2));
             //p.getIdProduccion().setIdEmpleado(cd.buscarProduccion(rst.getInt(2)).getIdEmpleado());
             p.setFecha(rst.getString(3));

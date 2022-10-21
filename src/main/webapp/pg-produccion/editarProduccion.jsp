@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <label for="produccion" class="form-label">Produccion:</label>
                                     <input type="text" name="produccion" id="produccion" 
-                                           placeholder="Ingrese la cedula" required
+                                           placeholder="Ingrese la produccion" required
                                            class="form-control" 
                                            value = "<%= produccion.getProduccion()%>">
                                 </div>

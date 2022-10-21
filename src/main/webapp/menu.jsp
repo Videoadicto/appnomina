@@ -23,6 +23,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="js/jquery-3.2.1.min.js"></script>
             <link rel="stylesheet" href="css/estilos3.css" type="text/css"/>
+            <link rel="stylesheet" href="css/estilos.css" type="text/css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <script type="text/javascript" src="js/validaciones.js"></script>

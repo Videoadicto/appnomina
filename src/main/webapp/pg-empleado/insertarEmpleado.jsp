@@ -140,12 +140,14 @@
                                 <input type="date" name="fechanac" id="fechanac" style="width: 200px; vertical-align:10px">
                             </div>
                         </th>
-
-                    </tr>   
-                    
-                    <tr>
                         
-                    </tr>
+                        <th>
+                            <div class="form-group">
+                                <input type="text" name="estado" id="estado" 
+                                value="1" style="display: none;">
+                            </div>
+                        </th>
+                   </tr>   
 
                     <tr>                               
                         <th>

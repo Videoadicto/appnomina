@@ -13,6 +13,14 @@
     <%
         if (true) {
 
+            String validar3 = request.getParameter("validar2");
+            
+            //System.out.print("ojo1-idEmpleado2=" + idEmpleado3 + "&nombre2=" + nombre3 + "&precio2=" + precio3 + "&cantidad2=" + cantidad3 + "&iva2=" + iva3 + "&retencion2=" + retencion3 + "&cantidadMinima2=" + cantidadMinima3 + "&idCategoria2=" + idCategoria3 + "& nuevo2=" + nuevo3 + "&validar3=" + validar3);
+
+            String pagina = "";
+            String msg3 = "";
+            if (validar3.equals("1")) {
+            
             int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
             String nombre3 = request.getParameter("nombre2");
             String apellido3 = request.getParameter("apellido2");
@@ -21,16 +29,11 @@
             String telefono3 = request.getParameter("telefono2");
             String eps3 = request.getParameter("eps2");
             int idCargo3 = Integer.parseInt(request.getParameter("idCargo2"));
-            String validar3 = request.getParameter("validar2");
-            String nuevo3 = request.getParameter("nuevo2");
-            //System.out.print("ojo1-idEmpleado2=" + idEmpleado3 + "&nombre2=" + nombre3 + "&precio2=" + precio3 + "&cantidad2=" + cantidad3 + "&iva2=" + iva3 + "&retencion2=" + retencion3 + "&cantidadMinima2=" + cantidadMinima3 + "&idCategoria2=" + idCategoria3 + "& nuevo2=" + nuevo3 + "&validar3=" + validar3);
-
-
-            String pagina = "";
-            String msg3 = "";
-            if (validar3.equals("1")) {
+            int estado3 = Integer.parseInt(request.getParameter("estado2"));
+            String nuevo3 = request.getParameter("nuevo2");            
+            
                 Cargo c = new Cargo(idCargo3, "", 0);
-                Empleado p = new Empleado(idEmpleado3, nombre3, apellido3, cedula3, fechanac3, telefono3, eps3, c);
+                Empleado p = new Empleado(idEmpleado3, nombre3, apellido3, cedula3, fechanac3, telefono3, eps3, c, estado3);
                 msg3 = fachada.insertarEmpleado(p, nuevo3);
 
                 if (msg3.contains("Error")) {

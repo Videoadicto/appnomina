@@ -59,7 +59,7 @@
 
         <div>
             <%--            <button class="btn" onclick="location.href = 'semanalForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
-            <button class="btn" id="nuevo" value="pg-semanal/pagarSemanal.jsp?mens=0" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
+            <button class="btn" id="nuevo" value="pg-semanal/insertarSemanal.jsp?mens=0" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
                 <i class="fa fa-toolbox" >
                 </i>Generar Pagos
             </button>
@@ -211,6 +211,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#tablaSemanals').DataTable({
+                    pageLength: 5,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'

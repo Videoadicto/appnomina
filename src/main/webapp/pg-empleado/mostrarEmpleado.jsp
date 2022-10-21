@@ -53,7 +53,7 @@
                                 </div>
                             </th>
 
-                             <th>
+                            <th>
                                 <div class="form-group">
                                     <label for="idCategoria" class="form-label">Categoria:</label>
                                     <input type="text" name="idCategoria" id="idCategoria" 
@@ -74,8 +74,8 @@
                                            value = "<%= (empleado.getNombre()).replace("_", " ")%>">
                                 </div>
                             </th>
-                            
-                            
+
+
                             <th>
                                 <div class="form-group">
                                     <label for="apellido" class="form-label">Apellido:</label>
@@ -85,7 +85,7 @@
                                            value = "<%= (empleado.getApellido()).replace("_", " ")%>">
                                 </div>
                             </th>
-                            
+
                         </tr>
 
                         <tr>
@@ -111,7 +111,7 @@
                         </tr>                                          
 
                         <tr>
-                             <th>
+                            <th>
                                 <div class="form-group">
                                     <label for="telefono" class="form-label">Telefono:</label>
                                     <input type="text" name="telefono" id="telefono" 
@@ -120,17 +120,40 @@
                                            value = "<%= empleado.getTelefono()%>">
                                 </div>
                             </th>
-                            
+
                             <th>
                                 <div class="form-group">
                                     <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
                                     <input type="text" name="fechanac" id="fechanac" 
                                            placeholder="" required
                                            class="form-control" readonly
-                                           value="<%= empleado.getFecha_nacimiento() %>">
+                                           value="<%= empleado.getFecha_nacimiento()%>">
                                 </div>
                             </th>
-                           
+
+                        </tr>
+
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="estado" class="form-label">Estado:</label>
+                                    <%{
+                                            String etd = "";
+                                            if (empleado.getEstado() == 1) {
+                                                etd = "ACTIVO";
+                                            } else {
+                                                etd = "INACTIVO";
+                                            }
+                                    %>
+                                    <input type="text" name="estado" id="estado" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value = "<%= etd%>">
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                            </th>
                         </tr>
 
                         <tr>                               
@@ -155,7 +178,7 @@
                 Error: Empleado no encontrado.
             </div>
             <%
-            }%>
+                }%>
         </div>
         <%
             }

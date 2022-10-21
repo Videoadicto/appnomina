@@ -25,7 +25,7 @@ public class NominaSemanalFacade {
         nominaSemanalNegocio = new NominaSemanalNegocio();
     }
 
-    public String insertarProduccion(NominaSemanal p, String nuevo) {
+    public String insertarNominaSemanal(NominaSemanal p, String nuevo) {
         return nominaSemanalNegocio.insertarNominaSemanal(p, nuevo);
     }
 

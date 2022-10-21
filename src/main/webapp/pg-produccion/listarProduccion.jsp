@@ -203,6 +203,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#tablaProduccions').DataTable({
+                    pageLength: 5,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'

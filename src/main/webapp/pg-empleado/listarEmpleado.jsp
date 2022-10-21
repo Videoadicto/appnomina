@@ -35,120 +35,172 @@
                     $("#box").load(verificarPagina($(this).val()), function () {
                     });
                 });
+
+                function cambiar() {
+
+                    var checkBox = document.getElementById("miCheck");
+
+                    if (checkBox.checked === true) {
+                        //toff.style.display = "block";
+                        //ton.style.display = "none";
+                        document.getElementById("ton").innerHTML = "OFF";
+
+
+                    } else {
+                        //toff.style.display = "none";
+                        //ton.style.display = "block";
+                        document.getElementById("ton").innerHTML = "ON ";
+                    }
+
+                }
             </script>
         </head>
 
-         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EMPLEADOS</h1>
-        </div>
+        <body>
 
-        <br>
+            <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
+                <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EMPLEADOS</h1>
+            </div>
 
-        <div>
-        <%--            <button class="btn" onclick="location.href = 'empleadoForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
-        <button class="btn" id="nuevo" value="pg-empleado/insertarEmpleado.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
-            <i class="fa fa-toolbox" >
-            </i> Agregar Empleado
-        </button>
-    </div>
-
-    <div class="card-body">
-        <div class="table-responsive">
-            <table id="tablaEmpleados" class="table table-bordered">
+            <table class="table table-borderless">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Cedula</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Telefono</th>
-                        <th>Eps</th>
-                        <th>Cargo</th>
-                        <th>Opción</th>
-                    </tr>                            
-                </thead>
-                <tbody>
-                    <% for (Empleado empleado : fachada.buscarEmpleados()) {
-                    %>
-                    <tr>                               
-                        <td><%= empleado.getId_empleado()%></td>
-                        <td><%= (empleado.getNombre()).replace("_", " ")%></td>
-                        <td><%= (empleado.getApellido()).replace("_", " ")%></td>
-                        <td><%= empleado.getCedula()%></td>
-                        <td><%= empleado.getFecha_nacimiento()%></td>
-                        <td><%= empleado.getTelefono()%></td>
-                        <td><%= (empleado.getEps()).replace("_", " ")%></td>
-                        <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
+                        <th>
+                        <%--            <button class="btn" onclick="location.href = 'empleadoForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
+                        <button class="btn" id="nuevo" value="pg-empleado/insertarEmpleado.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
+                            <i class="fa fa-toolbox" >
+                            </i> Agregar Empleado
+                        </button>
+                    </th>
 
-                        <td>
-                            <button  class="item" style="border:none" value="pg-empleado/editarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado() %>">
-                                <img src="img/editar.png" width="16" height="16" >
-                            </button>
+                    <th>
+                        <div>
+                            <label class="switch">
+                                <input type="checkbox"  id="miCheck" onclick="cambiar()">
+                                <span class="slider round"></span>
+                            </label>
+                            <p id="ton" style="display:block">ON</p>
+                        </div>
+                    </th>
 
-                            <button  class="item" style="border:none" value="pg-empleado/mostrarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado() %>">
-                                <img src="img/info.png" alt="alt"/>
-                            </button>
+                    <th>
+                        <div>
 
-                            <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
-                                <img src="img/borrar.png" alt="alt"/>
-                            </button>
-                            
+                            <input type="checkbox"  id="miCheck1" onclick="cambiar()">
+
+                            <p id="toff" style="display:block">Inactivos</p>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tablaEmpleados" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            <th>Telefono</th>
+                            <th>Cargo</th>
+                            <th>Estado</th>
+                            <th>Opción</th>
+                        </tr>                            
+                    </thead>
+                    <tbody>
+                        <% for (Empleado empleado : fachada.buscarEmpleados()) {
+                                int estado = empleado.getEstado();
+                                String testado = "";
+
+                                if (estado == 1) {
+                                    testado = "ACTIVO";
+                                } else {
+                                    testado = "INACTIVO";
+                                }
+
+                        %>
+                        <tr>                               
+                            <td><%= empleado.getId_empleado()%></td>
+                            <td><%= (empleado.getNombre()).replace("_", " ")%></td>
+                            <td><%= (empleado.getApellido()).replace("_", " ")%></td>
+                            <td><%= empleado.getCedula()%></td>
+                            <td><%= empleado.getTelefono()%></td>
+                            <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
+                            <td><%= testado %></td>
+
+                            <td>
+                                <button  class="item" style="border:none" value="pg-empleado/editarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
+                                    <img src="img/editar.png" width="16" height="16" >
+                                </button>
+
+                                <button  class="item" style="border:none" value="pg-empleado/mostrarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
+                                    <img src="img/info.png" alt="alt"/>
+                                </button>
+
+                                <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
+                                    <img src="img/borrar.png" alt="alt"/>
+                                </button>
 
 
-                        </td>
-                    </tr>
-                    <%
-                        }
-//System.out.println(session.getAttribute("rol").toString());
-                    %>
-                </tbody>
 
-            </table>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                            //System.out.println(session.getAttribute("rol").toString());
+                        %>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
-    </div>
 
-    <%
-        {
-            String mensa = (request.getParameter("mens")).replace(".", " ");
-            if (mensa.equals("0")) {
+        <%
+            {
+                String mensa = (request.getParameter("mens")).replace(".", " ");
+                if (mensa.equals("0")) {
 
-                mensa = "";
-            } else {
-    %>
-    <script>
-        aparecerDiv("divListar");
-    </script>
+                    mensa = "";
+                } else {
+        %>
+        <script>
+            aparecerDiv("divListar");
+        </script>
 
-    <div id="divListar" style="display: none;" class="alert alert-success">
-        <%= mensa%>
-    </div>
-    <%
+        <div id="divListar" style="display: none;" class="alert alert-success">
+            <%= mensa%>
+        </div>
+        <%
+                }
             }
-        }
-    %>
+        %>
 
-    <div id="boxListar">
-    </div>    
+        <div id="boxListar">
+        </div>    
 
-    <div class="card-footer">
-    </div>
+        <div class="card-footer">
+        </div>
 
-    <script src="js/dataTable/dataTables.buttons.min.js"></script>
-    <script src="js/dataTable/buttons.flash.min.js"></script>
-    <script src="js/dataTable/jszip.min.js"></script>
-    <script src="js/dataTable/pdfmake.min.js"></script>
-    <script src="js/dataTable/vfs_fonts.js"></script>
-    <script src="js/dataTable/buttons.html5.min.js"></script>
-    <script src="js/dataTable/buttons.print.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#tablaEmpleados').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+        <script src="js/dataTable/dataTables.buttons.min.js"></script>
+        <script src="js/dataTable/buttons.flash.min.js"></script>
+        <script src="js/dataTable/jszip.min.js"></script>
+        <script src="js/dataTable/pdfmake.min.js"></script>
+        <script src="js/dataTable/vfs_fonts.js"></script>
+        <script src="js/dataTable/buttons.html5.min.js"></script>
+        <script src="js/dataTable/buttons.print.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tablaEmpleados').DataTable({
+                    pageLength: 5,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
             });
-        });
-    </script>
+        </script>
+    </body>
 </html>

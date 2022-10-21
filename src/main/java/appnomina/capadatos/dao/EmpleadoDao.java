@@ -45,7 +45,7 @@ public class EmpleadoDao {
         ps.setString(6, empleado.getTelefono());
         ps.setString(7, empleado.getEps());
         ps.setInt(8, empleado.getIdCargo().getId_cargo());
-        ps.setInt(9, 0);
+        ps.setInt(9, empleado.getEstado());
 
         
         ps.execute();
@@ -85,7 +85,7 @@ public class EmpleadoDao {
             p.getIdCargo().setId_cargo(rst.getInt(8));
             p.getIdCargo().setNombre(cd.buscarCargo(rst.getInt(8)).getNombre());
             p.getIdCargo().setPago(cd.buscarCargo(rst.getInt(8)).getPago());
-            p.setTipo(rst.getInt(9));
+            p.setEstado(rst.getInt(9));
         } else p=null;
         
         rst.close();        
@@ -124,7 +124,7 @@ public class EmpleadoDao {
             p.getIdCargo().setNombre(cd.buscarCargo(rst.getInt(8)).getNombre());
             p.getIdCargo().setPago(cd.buscarCargo(rst.getInt(8)).getPago());
             
-            p.setTipo(rst.getInt(9));
+            p.setEstado(rst.getInt(9));
             
             empleados.add(p);
         }

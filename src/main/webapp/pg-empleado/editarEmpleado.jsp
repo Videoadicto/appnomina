@@ -151,9 +151,31 @@
                                 </div>
                             </div>
                         </th>
-                        
+
                         <th>
-                            
+                            <div class="form-group">
+                                <label for="estado" class="form-label">Estado:</label>
+                                <select id="estado" name="estado" class="form-control" >
+                                    
+                                    <%{
+                                    String etd = "";
+                                    if  ( empleado.getEstado() == 1 )
+                                    etd = "ACTIVO";
+                                    else
+                                    etd = "INACTIVO";
+                                    
+                                        
+                                %>
+                                    
+                                    <option value="1" <%if (etd.equals("ACTIVO")) {%> selected <%}%>  > ACTIVO </option>
+                                    <option value="0" <%if (etd.equals("INACTIVO")) {%> selected <%}%>  > INACTIVO </option>
+                                    
+                                    <%
+                                        }
+                                %>
+                                    
+                                </select>
+                            </div>
                         </th>
 
                     </tr>

@@ -4,17 +4,17 @@
     Author     : Videoadicto
 --%>
 
-<%@page import="appnomina.capadatos.entidades.Semanal"%>
+<%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:useBean id="fachada" class="appnomina.negocio.facade.SemanalFacade" scope="page"></jsp:useBean>
+        <jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaSemanalFacade" scope="page"></jsp:useBean>
         <jsp:useBean id="fachada2" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean>
         <jsp:useBean id="fachada1" class="appnomina.capadatos.dao.EmpleadoDao" scope="page"></jsp:useBean>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Semanals</title>
+            <title>Nomina Semanal</title>
             <script>
                 $("button").click(function () {
                     $("#box").load($(this).val() + uneFechas(), function () {
@@ -24,7 +24,25 @@
 
                 $(document).ready(function () {
                     $("#btnGuardar").click(function () {
-                        $("#boxEditar").load("pg-semanal/guardarSemanal.jsp?" + (validarDatosSemanal(nuevo = 0)), function () {
+                        
+                        var validos = document.getElementById("total").value;
+                        
+                        if (validos !== "") {
+                            document.getElementById("validax").value = "1";
+                        } else {
+                            document.getElementById("validax").value = "0";
+                        }
+                        
+                        var ids = [];
+                        var totales = [];
+                        
+                        ids.push( document.getElementById("idEmpleado").value);
+                        totales.push( document.getElementById("total").value);
+                        
+                        var ids1 = ids.toString();
+                        var totales1 = totales.toString();
+                        
+                        $("#boxEditar").load("pg-semanal/guardarSemanal.jsp?" + (validarDatosSemanal(nuevo = 0, idsx = ids1, totalesx = totales1)), function () {
                         });
                     });
                 });
@@ -34,15 +52,15 @@
     <%
         int idSemanal = Integer.parseInt(request.getParameter("idSemanal"));
 
-        Semanal semanal = new Semanal();
+        NominaSemanal semanal = new NominaSemanal();
         semanal.setId_semanal(idSemanal);
 
-        semanal = fachada.buscarSemanal(idSemanal);
+        semanal = fachada.buscarNominaSemanal(idSemanal);
     %>
 
     <body>
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EDITAR SEMANAL</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EDITAR NOMINA SEMANAL</h1>
         </div>
 
         <div class="card-body">
@@ -70,7 +88,7 @@
 
                         <tr> 
                             
-                            <input name="idSemanal" id="idSemanal" style="display: none;" value = "<%= semanal.getId_semanal()%>" >
+                            <input name="idNomina" id="idNomina" style="display: none;" value = "<%= semanal.getId_semanal()%>" >
                             
                             <th>
                                 <div class="form-group">
@@ -91,11 +109,11 @@
                         <tr>   
                             <th>
                                 <div class="form-group">
-                                    <label for="semanal" class="form-label">Semanal:</label>
-                                    <input type="text" name="semanal" id="semanal" 
-                                           placeholder="Ingrese la cedula" required
+                                    <label for="total" class="form-label">Total:</label>
+                                    <input type="text" name="total" id="total" 
+                                           placeholder="Ingrese el total" required
                                            class="form-control" 
-                                           value = "<%= semanal.getSemanal()%>">
+                                           value = "<%= semanal.getTotal()%>">
                                 </div>
                             </th>
                         </tr>
@@ -103,9 +121,9 @@
                         <tr>
                             <th>
                                 <div class="form-group">
-                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <label for="fechafx" class="form-label">Fecha:</label>
                                     <br>
-                                    <input type="date" name="fecha" id="fecha" value="<%= semanal.getFecha()%>" style="width: 200px; vertical-align:10px">
+                                    <input type="date" name="fechafx" id="fechafx" value="<%= semanal.getFecha()%>" style="width: 200px; vertical-align:10px">
                                 </div>
                             </th>
                         </tr>
@@ -120,6 +138,8 @@
                 </div>  
 
                 <br>
+                
+                <input name="validax" id="validax" style="display: none;" value = "1" >
 
                 <div class="form-group">
                     <input type="button" id="btnGuardar" value="Guardar" class="btn btn-success" >

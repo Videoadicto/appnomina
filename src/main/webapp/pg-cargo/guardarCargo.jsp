@@ -12,17 +12,19 @@
     <%
         if (true) {
 
-            int idCargo3 = Integer.parseInt(request.getParameter("idCargo2"));
-            String nombre3 = request.getParameter("nombre2");
-            int pago3 = Integer.parseInt(request.getParameter("pago2"));
             String validar3 = request.getParameter("validar2");
-            String nuevo3 = request.getParameter("nuevo2");
+            
             //System.out.print("ojo1-idCargo2=" + idCargo3 + "&nombre2=" + nombre3 + "&precio2=" + precio3 + "&cantidad2=" + cantidad3 + "&iva2=" + iva3 + "&retencion2=" + retencion3 + "&cantidadMinima2=" + cantidadMinima3 + "&idCargo2=" + idCargo3 + "& nuevo2=" + nuevo3 + "&validar3=" + validar3);
-
 
             String pagina = "";
             String msg3 = "";
             if (validar3.equals("1")) {
+            
+            int idCargo3 = Integer.parseInt(request.getParameter("idCargo2"));
+            String nombre3 = request.getParameter("nombre2");
+            int pago3 = Integer.parseInt(request.getParameter("pago2"));
+            String nuevo3 = request.getParameter("nuevo2");
+            
                 Cargo p = new Cargo(idCargo3, nombre3, pago3);
                 msg3 = fachada.insertarCargo(p, nuevo3);
 

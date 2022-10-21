@@ -3,10 +3,10 @@
     Created on : 7 abr. 2022, 13:55:08
     Author     : Videoadicto
 --%>
-<%@page import="appnomina.capadatos.entidades.Semanal"%>
-<%@page import="appnomina.capadatos.entidades.Produccion"%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.SemanalFacade" scope="page"></jsp:useBean>
-<jsp:useBean id="fachada2" class="appnomina.negocio.facade.ProduccionFacade"></jsp:useBean>
+<%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
+<%@page import="appnomina.capadatos.entidades.Empleado"%>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaSemanalFacade" scope="page"></jsp:useBean>
+<jsp:useBean id="fachada2" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean>
 
     <!DOCTYPE html>
     <html>
@@ -25,15 +25,15 @@
 
     <%
         int idSemanal = Integer.parseInt(request.getParameter("idSemanal"));
-
-        Semanal semanal = fachada.buscarSemanal(idSemanal);
+        
+        NominaSemanal semanal = fachada.buscarNominaSemanal(idSemanal);
 
         if (semanal != null) {
     %>
 
     <body>
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">INFORMACION DE LA SEMANAL</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">INFORMACION DE NOMINA SEMANAL</h1>
         </div>
 
         <div class="card-body">
@@ -51,7 +51,7 @@
                                     <label for="idSemanal" class="form-label">Id:</label>
                                     <input type="text" name="idSemanal" id="idSemanal" 
                                            class="form-control" readonly
-                                           value = "<%= semanal.getId_semanal()%>">
+                                           value = "<%= semanal.getId_semanal()%>" >
                                 </div>
                             </th>
 
@@ -62,15 +62,15 @@
 
                             <th>
                                 <div class="form-group">
-                                    <label for="idProduccion" class="form-label">Produccion:</label>
+                                    <label for="idEmpleado" class="form-label">Empleado:</label>
 
-                                    <% Produccion produccion = new Produccion();
-                                        produccion = fachada2.buscarProduccion(semanal.getIdProduccion().getId_produccion());
+                                    <% Empleado empleado = new Empleado();
+                                        empleado = fachada2.buscarEmpleado(semanal.getIdEmpleado().getId_empleado());
                                         {
                                     %>
-                                    <input type="text"  id="idProduccion" name="idProduccion" 
+                                    <input type="text"  id="idEmpleado" name="idEmpleado" 
                                            class="form-control" readonly
-                                           value="<%= produccion.getCedula() + " - " + (produccion.getNombre()).replace("_", " ") + " " + (produccion.getApellido()).replace("_", " ")%>">
+                                           value="<%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%>" >
                                     <%
                                         }
                                     %>
@@ -85,7 +85,7 @@
                                     <label for="semanal" class="form-label">Semanal:</label>
                                     <input type="text" name="semanal" id="semanal" 
                                            class="form-control" readonly
-                                           value = "<%= semanal.getSemanal()%>">
+                                           value = "<%= semanal.getTotal()%>" >
                                 </div>
                             </th>
 
@@ -96,7 +96,7 @@
                                     <label for="fecha" class="form-label">Fecha:</label>
                                     <input type="text" name="fecha" id="fecha" 
                                            class="form-control" readonly
-                                           value = "<%= semanal.getFecha()%>">
+                                           value = "<%= semanal.getFecha()%>" >
                                 </div>
                             </th>
 
@@ -114,7 +114,7 @@
             %>
 
             <div id="divMensaje" class="alert alert-danger">
-                Error: Semanal no encontrada.
+                Error: Nomina Semanal no encontrada.
             </div>
             <%
                 }%>
