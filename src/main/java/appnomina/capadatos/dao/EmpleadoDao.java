@@ -41,7 +41,7 @@ public class EmpleadoDao {
         ps.setString(2, empleado.getNombre());
         ps.setString(3, empleado.getApellido());
         ps.setString(4, empleado.getCedula());
-        ps.setString(5, empleado.getFecha_nacimiento());
+        ps.setString(5, empleado.getFecha_vinculacion());
         ps.setString(6, empleado.getTelefono());
         ps.setString(7, empleado.getEps());
         ps.setInt(8, empleado.getIdCargo().getId_cargo());
@@ -79,7 +79,7 @@ public class EmpleadoDao {
             p.setNombre(rst.getString(2));
             p.setApellido(rst.getString(3));
             p.setCedula(rst.getString(4));
-            p.setFecha_nacimiento(rst.getString(5));
+            p.setFecha_vinculacion(rst.getString(5));
             p.setTelefono(rst.getString(6));
             p.setEps(rst.getString(7));
             p.getIdCargo().setId_cargo(rst.getInt(8));
@@ -115,7 +115,7 @@ public class EmpleadoDao {
             p.setNombre(rst.getString(2));
             p.setApellido(rst.getString(3));
             p.setCedula(rst.getString(4));
-            p.setFecha_nacimiento(rst.getString(5));
+            p.setFecha_vinculacion(rst.getString(5));
             p.setTelefono(rst.getString(6));
             p.setEps(rst.getString(7));
             

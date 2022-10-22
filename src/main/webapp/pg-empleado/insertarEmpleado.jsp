@@ -135,7 +135,7 @@
 
                         <th>
                             <div class="form-group">
-                                <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                                <label for="fechanac" class="form-label">Fecha de Vinculacion:</label>
                                 <br>
                                 <input type="date" name="fechanac" id="fechanac" style="width: 200px; vertical-align:10px">
                             </div>

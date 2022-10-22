@@ -501,6 +501,36 @@ function validarDatosCargo(nuevo) {
     return datos;
 }
 
+function validarDatosFijos(nuevo) {
+
+    var datos = "";
+    document.getElementById("divInsertar").innerHTML = "";
+    document.getElementById("divInsertar").style = 'display:"";';
+
+    try {
+        document.getElementById("divGuardar").innerHTML = "";
+        document.getElementById("divGuardar").style = "display:none;";
+
+    } catch (error) {
+        console.error(error);
+    }
+
+    var eps1 = (((frmRegistrar.eps1.value).trim()).replace(/ /g, ""));
+    var transporte1 = ((frmRegistrar.transporte1.value).trim()).replace(/ /g, "");
+
+    //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
+
+    if (eps1 === "" || transporte1 === "")
+    {
+        document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
+        datos = "validar2=0";
+    } else {
+        datos = "eps2=" + eps1 + "&transporte2=" + transporte1 + "&nuevo2=" + nuevo + "&validar2=1";
+        document.getElementById("divInsertar").style = "display: none;";
+    }
+    return datos;
+}
+
 
 function validarDatosCliente(nuevo) {
 

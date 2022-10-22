@@ -123,11 +123,11 @@
 
                             <th>
                                 <div class="form-group">
-                                    <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                                    <label for="fechanac" class="form-label">Fecha de Vinculacion:</label>
                                     <input type="text" name="fechanac" id="fechanac" 
                                            placeholder="" required
                                            class="form-control" readonly
-                                           value="<%= empleado.getFecha_nacimiento()%>">
+                                           value="<%= empleado.getFecha_vinculacion()%>">
                                 </div>
                             </th>
 

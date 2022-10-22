@@ -145,9 +145,9 @@
 
                         <th>
                             <div class="form-group">
-                                <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                                <label for="fechanac" class="form-label">Fecha de Vinculacion:</label>
                                 <div class="form-group">
-                                    <input type="date" name="fechanac" id="fechanac" value="<%= empleado.getFecha_nacimiento()%>" style="width: 200px; vertical-align:10px">
+                                    <input type="date" name="fechanac" id="fechanac" value="<%= empleado.getFecha_vinculacion()%>" style="width: 200px; vertical-align:10px">
                                 </div>
                             </div>
                         </th>

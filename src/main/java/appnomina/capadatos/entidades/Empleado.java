@@ -17,7 +17,7 @@ public class Empleado implements Serializable{
     private String nombre;
     private String apellido;
     private String cedula;
-    private String fecha_nacimiento;
+    private String fecha_vinculacion;
     private String telefono;
     private String eps;
     private Cargo idCargo;
@@ -29,19 +29,19 @@ public class Empleado implements Serializable{
         this.nombre = "";
         this.apellido = "";
         this.cedula = "";
-        this.fecha_nacimiento = "";
+        this.fecha_vinculacion = "";
         this.telefono = "";
         this.eps = "";
         this.idCargo = new Cargo();
         this.estado = 0;
     }
     
-    public Empleado(int id_empleado, String nombre, String apellido, String cedula, String fecha_nacimiento, String telefono, String eps, Cargo id_Cargo, int estado) {
+    public Empleado(int id_empleado, String nombre, String apellido, String cedula, String fecha_vinculacion, String telefono, String eps, Cargo id_Cargo, int estado) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
-        this.fecha_nacimiento = fecha_nacimiento;
+        this.fecha_vinculacion = fecha_vinculacion;
         this.telefono = telefono;
         this.eps = eps;
         this.idCargo = id_Cargo;
@@ -80,12 +80,12 @@ public class Empleado implements Serializable{
         this.cedula = cedula;
     }
 
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public String getFecha_vinculacion() {
+        return fecha_vinculacion;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFecha_vinculacion(String fecha_vinculacion) {
+        this.fecha_vinculacion = fecha_vinculacion;
     }
 
     public String getTelefono() {
@@ -122,7 +122,7 @@ public class Empleado implements Serializable{
 
     @Override
     public String toString() {
-        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha_nacimiento=" + fecha_nacimiento + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", estado=" + estado + '}';
+        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha_vinculacion=" + fecha_vinculacion + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", estado=" + estado + '}';
     }
 
 

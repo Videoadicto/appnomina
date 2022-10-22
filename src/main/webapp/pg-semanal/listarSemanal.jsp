@@ -109,7 +109,14 @@
                                 </div>
                             </th>
 
-
+                            <th>
+                                <div>
+                                    <button class="btn" id="btnBuscar" title="Bonos/Descuentos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                                        <i class="fa fa-comment-dollar" >
+                                        </i>
+                                    </button>
+                                </div>
+                            </th>
 
 
                         </tr>
