@@ -28,12 +28,10 @@
         </head>
 
     <%
-        int idFijos = Integer.parseInt(request.getParameter("idFijos"));
+        //int idFijos = Integer.parseInt(request.getParameter("idFijos"));
 
         Fijos fijos = new Fijos();
-        fijos.setId_fijos(idFijos);
-
-        fijos = fachada.buscarFijos(idFijos);
+        fijos = fachada.buscarFijos();
     %>
 
     <body>
@@ -66,27 +64,25 @@
                             </th>
                         </tr>
 %--%> 
-                    <input name="idFijos" id="idFijos" style="display: none;" value ="<%= fijos.getId_fijos()%>" >
-
                     <tr>
                         <th>  
                             <div class="form-group">
-                                <label for="nombre" class="form-label">Nombre:</label>
-                                <input type="text" name="nombre" id="nombre" 
-                                       placeholder="Ingrese el nombre" required
+                                <label for="eps" class="form-label">Eps:</label>
+                                <input type="text" name="eps" id="eps" 
+                                       placeholder="Ingrese el % de la EPS" required
                                        class="form-control" 
-                                       value = "<%= (fijos.getNombre()).replace("_", " ")%>">
+                                       value = "<%= (fijos.getEps())%>">
                             </div>
                     </tr>
 
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label for="pago" class="form-label">Pago:</label>
-                                <input type="text" name="pago" id="pago" 
-                                       placeholder="Ingrese el valor del pago" required
+                                <label for="transporte" class="form-label">Subsidio de transporte:</label>
+                                <input type="text" name="transporte" id="transporte" 
+                                       placeholder="Ingrese el subsidio de transporte" required
                                        class="form-control"
-                                       value = "<%= fijos.getPago()%>">
+                                       value = "<%= fijos.getTransporte()%>">
                             </div>
                         </th>
                     </tr>
@@ -104,7 +100,7 @@
 
                 <div class="form-group">
                     <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)" >
-                    <button type="button" value="pg-fijos/listarFijos.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+                    <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
                 </div>
 
             </form>

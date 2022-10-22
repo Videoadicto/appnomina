@@ -4,11 +4,11 @@
     Author     : Videoadicto
 --%>
 
-<%@page import="appnomina.capadatos.entidades.Cargo"%>
+<%@page import="appnomina.capadatos.entidades.Fijos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:useBean id="fachada" class="appnomina.negocio.facade.CargoFacade" scope="page"></jsp:useBean>
+    <jsp:useBean id="fachada" class="appnomina.negocio.facade.FijosFacade" scope="page"></jsp:useBean>
     <%
         if (true) {
 
@@ -20,13 +20,12 @@
             String msg3 = "";
             if (validar3.equals("1")) {
             
-            int idCargo3 = Integer.parseInt(request.getParameter("idCargo2"));
-            String nombre3 = request.getParameter("nombre2");
-            int pago3 = Integer.parseInt(request.getParameter("pago2"));
+            int eps3 = Integer.parseInt(request.getParameter("eps2"));
+            int transporte3 = Integer.parseInt(request.getParameter("transporte2"));
             String nuevo3 = request.getParameter("nuevo2");
             
-                Cargo p = new Cargo(idCargo3, nombre3, pago3);
-                msg3 = fachada.insertarCargo(p, nuevo3);
+                Fijos p = new Fijos(eps3, transporte3);
+                msg3 = fachada.insertarFijos(p, nuevo3);
 
                 if (msg3.contains("Error")) {
     %> 
@@ -34,7 +33,7 @@
         <%= msg3%>
     </div>
     <% } else {
-        pagina = "listarCargo.jsp";
+        pagina = "listarSemanal.jsp";
     %> 
     <div id="divGuardar" style="display: none;" class="alert alert-success">
         <%= msg3%>
@@ -48,7 +47,7 @@
     <input id="esto1" style="display: none;" value = <%= msg4%> >
 
     <script>
-        $("#box").load("pg-cargo/" + ($(esto).val()) + "?mens=" + ($(esto1).val()), function () {
+        $("#box").load("pg-semanal/" + ($(esto).val()) + "?mens=" + ($(esto1).val()), function () {
         });
     </script>
     <%
