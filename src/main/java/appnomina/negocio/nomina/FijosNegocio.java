@@ -27,11 +27,11 @@ public class FijosNegocio {
             Fijos pe = fijosDao.buscarFijos();
             if (pe==null || nuevo.equals("0")){
                 boolean res = fijosDao.insertarFijos(p, nuevo);
-                if (res) rta = "Fijos guardado con exito";
-                else rta = "Error: No se pudo guardar el fijos";
-            } else rta = "Error: El fijos ya existe";
+                if (res) rta = "Los Bonos/Descuentos se han modificado con exito";
+                else rta = "Error: No se pudieron guardar los Bonos/Descuentos";
+            } else rta = "Error: Los Bonos/Descuentos ya existen";
         } catch (Exception e) {
-            rta="Error: No se pudo guardar el fijos";
+            rta="Error: No se pudieron guardar los Bonos/Descuentos";
             e.printStackTrace();
         }
         return rta;

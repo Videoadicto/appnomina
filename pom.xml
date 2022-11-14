@@ -21,7 +21,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-conector-java</artifactId>
             <version>8.0.29</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

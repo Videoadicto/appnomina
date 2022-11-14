@@ -85,7 +85,7 @@
                                     <label for="produccion" class="form-label">Produccion:</label>
                                     <input type="text" name="produccion" id="produccion" 
                                            class="form-control" readonly
-                                           value = "<%= produccion.getProduccion()%>">
+                                           value = "<%= produccion.getCantidad()%>">
                                 </div>
                             </th>
 

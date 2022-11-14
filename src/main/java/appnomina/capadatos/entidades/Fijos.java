@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author videoadicto
  */
 public class Fijos implements Serializable{
+    private int id;
     private int eps;
     private int transporte;
     
@@ -18,10 +19,19 @@ public class Fijos implements Serializable{
         super();
     }
     
-    public Fijos(int eps, int transporte) {
+    public Fijos(int id, int eps, int transporte) {
+        this.id = id;
         this.eps = eps;
         this.transporte = transporte;
     } 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getEps() {
         return eps;
@@ -41,6 +51,8 @@ public class Fijos implements Serializable{
 
     @Override
     public String toString() {
-        return "Fijos{" + "eps=" + eps + ", transporte=" + transporte + '}';
+        return "Fijos{" + "id=" + id + ", eps=" + eps + ", transporte=" + transporte + '}';
     }
+
+
 }

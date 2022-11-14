@@ -139,7 +139,7 @@
                             <td><%= (produccion.getIdEmpleado().getCedula()).replace("_", " ")%></td>
                             <td><%= (produccion.getIdEmpleado().getIdCargo().getNombre())%></td>
                             <td><%= (produccion.getFecha())%></td>
-                            <td><%= (produccion.getProduccion())%></td>
+                            <td><%= (produccion.getCantidad())%></td>
                             <td>
                                 <button  class="item" style="border:none" value="pg-produccion/editarProduccion.jsp?idProduccion=<%= produccion.getId_produccion()%>">
                                     <img src="img/editar.png" width="16" height="16" >

@@ -20,11 +20,14 @@
             String msg3 = "";
             if (validar3.equals("1")) {
             
+            int id3 = Integer.parseInt(request.getParameter("id2"));
             int eps3 = Integer.parseInt(request.getParameter("eps2"));
             int transporte3 = Integer.parseInt(request.getParameter("transporte2"));
             String nuevo3 = request.getParameter("nuevo2");
             
-                Fijos p = new Fijos(eps3, transporte3);
+            //System.out.print("eps3=" + eps3 + "&transporte3=" + transporte3 + "&nuevo3=" + nuevo3 + "&validar3=" + validar3);
+            
+                Fijos p = new Fijos(id3, eps3, transporte3);
                 msg3 = fachada.insertarFijos(p, nuevo3);
 
                 if (msg3.contains("Error")) {
@@ -47,7 +50,7 @@
     <input id="esto1" style="display: none;" value = <%= msg4%> >
 
     <script>
-        $("#box").load("pg-semanal/" + ($(esto).val()) + "?mens=" + ($(esto1).val()), function () {
+        $("#box").load("pg-semanal/" + ($(esto).val()) + "?mens=" + ($(esto1).val()) + uneFechas(), function () {
         });
     </script>
     <%

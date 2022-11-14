@@ -14,7 +14,7 @@
             <title>Fijoss</title>
             <script>
                 $("button").click(function () {
-                    $("#box").load($(this).val(), function () {
+                    $("#box").load($(this).val() + uneFechas(), function () {
                     });
                 });
 
@@ -36,7 +36,7 @@
 
     <body>
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EDITAR FIJOS</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EDITAR BONOS/DESCUENTOS</h1>
         </div>
 
         <div class="card-body">
@@ -64,10 +64,13 @@
                             </th>
                         </tr>
 %--%> 
+                        
+                    <input name="id" id="id" style="display: none;" value ="<%= fijos.getId()%>" >
+                    
                     <tr>
                         <th>  
                             <div class="form-group">
-                                <label for="eps" class="form-label">Eps:</label>
+                                <label for="eps" class="form-label">EPS:</label>
                                 <input type="text" name="eps" id="eps" 
                                        placeholder="Ingrese el % de la EPS" required
                                        class="form-control" 

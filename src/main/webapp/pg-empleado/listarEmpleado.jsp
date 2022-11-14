@@ -53,6 +53,15 @@
                             </i> Agregar Empleado
                         </button>
                     </th>
+
+                    <th>
+                        <div>
+                            <button class="btn" id="btnBuscar" title="Inactivos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                                <i class="fa fa-trash-alt" >
+                                </i>
+                            </button>
+                        </div>
+                    </th>
                 </tr>
             </thead>
         </table>
@@ -91,7 +100,7 @@
                             <td><%= empleado.getCedula()%></td>
                             <td><%= empleado.getTelefono()%></td>
                             <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
-                            <td><%= testado %></td>
+                            <td><%= testado%></td>
 
                             <td>
                                 <button  class="item" style="border:none" value="pg-empleado/editarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
@@ -125,7 +134,7 @@
                     mensa = "";
                 } else {
         %>
-        
+
         <script>
             aparecerDiv("divListar");
         </script>

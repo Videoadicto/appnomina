@@ -72,6 +72,10 @@
                 $("#box").load("pg-semanal/listarSemanal.jsp?mens=0" + uneFechas(), function () {
                 });
                 });
+                $("#menu12").click(function () {
+                $("#box").load("pg-semanal/listarSemanal.jsp?mens=0" + uneFechas(), function () {
+                });
+                });
                 $("#menu11").click(function () {
                 $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
                 });
@@ -203,6 +207,13 @@
                         <a>
                             <span class="icon"><i class="fas fa-dollar-sign"></i></span>
                             <span id="menu2" class="item">Pago Semanal</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a>
+                            <span class="icon"><i class="fas fa-dollar-sign"></i></span>
+                            <span id="menu12" class="item">Pago Mensual</span>
                         </a>
                     </li>
 

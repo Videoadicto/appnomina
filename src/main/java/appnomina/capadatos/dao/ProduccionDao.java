@@ -7,15 +7,16 @@ package appnomina.capadatos.dao;
 
 import appnomina.capadatos.dao.EmpleadoDao;
 import appnomina.capadatos.dao.ProduccionDao;
+import appnomina.capadatos.dao.CargoDao;
 import appnomina.capadatos.Conexion;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.Empleado;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -43,8 +44,15 @@ public class ProduccionDao {
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setInt(1, produccion.getId_produccion());
         ps.setInt(2, produccion.getIdEmpleado().getId_empleado());
-        ps.setString(3, produccion.getFecha());
-        ps.setInt(4, produccion.getProduccion());
+        
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        //java.util.Date fecha2 = sdf.parse(produccion.getFecha());
+        //java.sql.Date fecha1 = new java.sql.Date(fechai2.getTime());
+        
+        
+        ps.setDate(3, produccion.getFecha());
+        ps.setInt(4, produccion.getCantidad());
         ps.setInt(5, 0);
 
         ps.execute();
@@ -65,25 +73,28 @@ public class ProduccionDao {
 
         Connection conexion = con.conectar("ProduccionDao.buscarProduccion()");
 
-        String sql = "SELECT * FROM produccion WHERE id_produccion = ?";
+        //String sql = "SELECT * FROM produccion WHERE id_produccion = ?";
+        
+        String sql = "SELECT p.id_produccion, p.id_empleado, e.nombre, e.apellido, e.cedula, e.id_cargo, p.fecha, p.cantidad, p.estado FROM produccion p, empleado e WHERE p.id_empleado=e.id_empleado and p.id_produccion=?;";
+        
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        EmpleadoDao cd = new EmpleadoDao();
+        CargoDao cd = new CargoDao();
 
         ps.setInt(1, id_produccion);
         ResultSet rst = ps.executeQuery();
         if (rst.next()) {
             p.setId_produccion(rst.getInt(1));
-
+            
             p.getIdEmpleado().setId_empleado(rst.getInt(2));
-            p.getIdEmpleado().setNombre(cd.buscarEmpleado(rst.getInt(2)).getNombre());
-            p.getIdEmpleado().setApellido(cd.buscarEmpleado(rst.getInt(2)).getApellido());
-            p.getIdEmpleado().setCedula(cd.buscarEmpleado(rst.getInt(2)).getCedula());
-            p.getIdEmpleado().setIdCargo(cd.buscarEmpleado(rst.getInt(2)).getIdCargo());
+            p.getIdEmpleado().setNombre(rst.getString(3));
+            p.getIdEmpleado().setApellido(rst.getString(4));
+            p.getIdEmpleado().setCedula(rst.getString(5));
+            p.getIdEmpleado().setIdCargo(cd.buscarCargo(rst.getInt(6)));
 
-            p.setFecha(rst.getString(3));
-            p.setProduccion(rst.getInt(4));
-            p.setEstado(rst.getInt(5));
+            p.setFecha(rst.getDate(7));
+            p.setCantidad(rst.getInt(8));
+            p.setEstado(rst.getInt(9));
         } else {
             p = null;
         }
@@ -103,24 +114,28 @@ public class ProduccionDao {
 
         Conexion con = new Conexion();
         Connection conexion = con.conectar("ProduccionDao.buscarProducciones()");
-        String sql = "SELECT * FROM produccion ";
+        //String sql = "SELECT * FROM produccion ";
+        
+        String sql = "SELECT p.id_produccion, p.id_empleado, e.nombre, e.apellido, e.cedula, e.id_cargo, p.fecha, p.cantidad, p.estado FROM produccion p, empleado e WHERE p.id_empleado=e.id_empleado;";
+        
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        EmpleadoDao cd = new EmpleadoDao();
+        CargoDao cd = new CargoDao();
 
         ResultSet rst = ps.executeQuery();
         while (rst.next()) {
             Produccion p = new Produccion();
             p.setId_produccion(rst.getInt(1));
-
+            
             p.getIdEmpleado().setId_empleado(rst.getInt(2));
-            p.getIdEmpleado().setNombre(cd.buscarEmpleado(rst.getInt(2)).getNombre());
-            p.getIdEmpleado().setApellido(cd.buscarEmpleado(rst.getInt(2)).getApellido());
-            p.getIdEmpleado().setCedula(cd.buscarEmpleado(rst.getInt(2)).getCedula());
-            p.getIdEmpleado().setIdCargo(cd.buscarEmpleado(rst.getInt(2)).getIdCargo());
-            p.setFecha(rst.getString(3));
-            p.setProduccion(rst.getInt(4));
-            p.setEstado(rst.getInt(5));
+            p.getIdEmpleado().setNombre(rst.getString(3));
+            p.getIdEmpleado().setApellido(rst.getString(4));
+            p.getIdEmpleado().setCedula(rst.getString(5));
+            p.getIdEmpleado().setIdCargo(cd.buscarCargo(rst.getInt(6)));
+
+            p.setFecha(rst.getDate(7));
+            p.setCantidad(rst.getInt(8));
+            p.setEstado(rst.getInt(9));
 
             producciones.add(p);
         }
@@ -138,43 +153,44 @@ public class ProduccionDao {
     public List<Produccion> buscarProduccionesFechas(String fechai, String fechaf) throws Exception {
         List<Produccion> producciones = new ArrayList<>();
 
+        
         Conexion con = new Conexion();
         Connection conexion = con.conectar("ProduccionDao.buscarProduccionesFechas()");
-        String sql = "SELECT * FROM produccion ";
+        
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        //java.util.Date fechai2 = sdf.parse(fechai);
+        //java.sql.Date fechai1 = new java.sql.Date(fechai2.getTime());
+
+        //java.util.Date fechaf2 = sdf.parse(fechaf);
+        //java.sql.Date fechaf1 = new java.sql.Date(fechaf2.getTime());
+        
+        //String sql = "SELECT * FROM produccion ";
+        String sql = "SELECT p.id_produccion, p.id_empleado, e.nombre, e.apellido, e.cedula, e.id_cargo, p.fecha, p.cantidad, p.estado FROM produccion p, empleado e WHERE p.id_empleado=e.id_empleado and p.fecha between '" + fechai + "' and '" + fechaf + "';";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        EmpleadoDao cd = new EmpleadoDao();
+        CargoDao cd = new CargoDao();
 
         ResultSet rst = ps.executeQuery();
 
         //System.out.println("fechai: " + fechai + " fechaf: " + fechaf);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechai2 = sdf.parse(fechai);
-        Date fechai1 = new Date(fechai2.getTime() + TimeUnit.DAYS.toMillis(-1));
-        
-        Date fechaf2 = sdf.parse(fechaf);
-        Date fechaf1 = new Date(fechaf2.getTime() + TimeUnit.DAYS.toMillis(1));
-
         while (rst.next()) {
             Produccion p = new Produccion();
 
-            Date fechab = sdf.parse(rst.getString(3));
+            p.setId_produccion(rst.getInt(1));
+            
+            p.getIdEmpleado().setId_empleado(rst.getInt(2));
+            p.getIdEmpleado().setNombre(rst.getString(3));
+            p.getIdEmpleado().setApellido(rst.getString(4));
+            p.getIdEmpleado().setCedula(rst.getString(5));
+            p.getIdEmpleado().setIdCargo(cd.buscarCargo(rst.getInt(6)));
 
-            if (fechab.after(fechai1) && fechab.before(fechaf1)) {
+            p.setFecha(rst.getDate(7));
+            p.setCantidad(rst.getInt(8));
+            p.setEstado(rst.getInt(9));
 
-                p.setId_produccion(rst.getInt(1));
-                p.getIdEmpleado().setId_empleado(rst.getInt(2));
-                p.getIdEmpleado().setNombre(cd.buscarEmpleado(rst.getInt(2)).getNombre());
-                p.getIdEmpleado().setApellido(cd.buscarEmpleado(rst.getInt(2)).getApellido());
-                p.getIdEmpleado().setCedula(cd.buscarEmpleado(rst.getInt(2)).getCedula());
-                p.getIdEmpleado().setIdCargo(cd.buscarEmpleado(rst.getInt(2)).getIdCargo());
-                p.setFecha(rst.getString(3));
-                p.setProduccion(rst.getInt(4));
-                p.setEstado(rst.getInt(5));
-
-                producciones.add(p);
-            }
+            producciones.add(p);
         }
 
         rst.close();
@@ -194,32 +210,36 @@ public class ProduccionDao {
         
         Conexion con = new Conexion();
         Connection conexion = con.conectar("ProduccionDao.buscarProduccionesFechas()");
-        String sql = "SELECT * FROM produccion ";
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        java.util.Date fechai2 = sdf.parse(fechai);
+        java.sql.Date fechai1 = new java.sql.Date(fechai2.getTime());
+
+        java.util.Date fechaf2 = sdf.parse(fechaf);
+        java.sql.Date fechaf1 = new java.sql.Date(fechaf2.getTime());
+        
+        
+        //String sql = "SELECT * FROM produccion ";
+        String sql = "SELECT p.id_produccion, p.id_empleado, e.nombre, e.apellido, e.cedula, e.id_cargo, p.fecha, p.cantidad, p.estado FROM produccion p, empleado e WHERE p.id_empleado=e.id_empleado and p.fecha between '" + fechai1 + "' and '" + fechaf1 + "';";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
         ResultSet rst = ps.executeQuery();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechai2 = sdf.parse(fechai);
-        Date fechai1 = new Date(fechai2.getTime() + TimeUnit.DAYS.toMillis(-1));
-        
-        Date fechaf2 = sdf.parse(fechaf);
-        Date fechaf1 = new Date(fechaf2.getTime() + TimeUnit.DAYS.toMillis(1));
-
         int total=0;
         
         while (rst.next()) {
-            Date fechab = sdf.parse(rst.getString(3));
-            int idempleado = rst.getInt(2);
+            //Date fechab = sdf.parse(rst.getString(3));
+            //int idempleado = rst.getInt(2);
 
 //            System.out.println("fechai: " + fechab.after(fechai1));
 //            System.out.println(" fechaf: " + fechab.before(fechaf1));
 //            System.out.println(" id_empleado: " + id_empleado);
 //            System.out.println(" idEmpleadorst: " + idempleado );
             
-            if (fechab.after(fechai1) && fechab.before(fechaf1) && id_empleado==idempleado ) {
+            //if (fechab.after(fechai1) && fechab.before(fechaf1) && id_empleado==idempleado ) {
                 total = total + rst.getInt(4);
-            }
+            //}
         }
 
         rst.close();

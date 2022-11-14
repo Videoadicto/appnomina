@@ -160,7 +160,7 @@ function verificarPaginaP(texto)
 
         if (fechai1 !== "" && fechaf1 !== "") {
 
-            datos = texto + "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1;
+            datos = texto + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
         } else
         {
             window.alert("FECHA INVALIDA");
@@ -351,7 +351,7 @@ function validarDatosEmpleado(nuevo) {
 
 function validarDatosProduccion(nuevo) {
 
-    //window.alert("A LA MERC");
+    //window.alert("mercy");
 
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
@@ -371,6 +371,7 @@ function validarDatosProduccion(nuevo) {
     var produccion1 = ((frmRegistrar.produccion.value).trim()).replace(/ /g, "");
 
     //window.alert("idEmpleado1=" + idEmpleado1 + "&nombre1=" + nombre1 + "&apellido1=" + apellido1 + "&cedula1=" + cedula1 + "&fechanac1=" + fechanac1 + "&telefono1=" + telefono1 + "&eps1=" + eps1 + "&idCargo1=" + idCargo1 + "& nuevo2=" + nuevo + "&validar2=1");
+    //window.alert("fecha: " + fecha1);
 
     if (idProduccion1 === "" || idEmpleado1 === "" || fecha1 === "" || produccion1 === "")
     {
@@ -503,6 +504,8 @@ function validarDatosCargo(nuevo) {
 
 function validarDatosFijos(nuevo) {
 
+//window.alert("x1");
+
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
     document.getElementById("divInsertar").style = 'display:"";';
@@ -515,8 +518,9 @@ function validarDatosFijos(nuevo) {
         console.error(error);
     }
 
-    var eps1 = (((frmRegistrar.eps1.value).trim()).replace(/ /g, ""));
-    var transporte1 = ((frmRegistrar.transporte1.value).trim()).replace(/ /g, "");
+    var id1 = frmRegistrar.id.value;
+    var eps1 = frmRegistrar.eps.value;
+    var transporte1 = frmRegistrar.transporte.value;
 
     //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
 
@@ -525,7 +529,7 @@ function validarDatosFijos(nuevo) {
         document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
         datos = "validar2=0";
     } else {
-        datos = "eps2=" + eps1 + "&transporte2=" + transporte1 + "&nuevo2=" + nuevo + "&validar2=1";
+        datos = "id2=" + id1 + "&eps2=" + eps1 + "&transporte2=" + transporte1 + "&nuevo2=" + nuevo + "&validar2=1";
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;

@@ -6,6 +6,8 @@
 package appnomina.capadatos.entidades;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 import java.util.Objects;
 
 /**
@@ -15,24 +17,24 @@ import java.util.Objects;
 public class Produccion implements Serializable{
     private int id_produccion;
     private Empleado idEmpleado;
-    private String fecha;
-    private int produccion;
+    private Date fecha;
+    private int cantidad;
     private int estado;
      
     public Produccion(){
         //super();
         this.id_produccion = 0;
         this.idEmpleado = new Empleado();
-        this.fecha = "";
-        this.produccion = 0;
+        this.fecha = null;
+        this.cantidad = 0;
         this.estado = 0;
     }
     
-    public Produccion(int id_produccion, Empleado idEmpleado, String fecha, int produccion) {
+    public Produccion(int id_produccion, Empleado idEmpleado, Date fecha, int cantidad) {
         this.id_produccion = id_produccion;
         this.idEmpleado = idEmpleado;
         this.fecha = fecha;
-        this.produccion = produccion;
+        this.cantidad = cantidad;
         this.estado = 1;
     }
 
@@ -52,20 +54,20 @@ public class Produccion implements Serializable{
         this.idEmpleado = idEmpleado;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public int getProduccion() {
-        return produccion;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setProduccion(int produccion) {
-        this.produccion = produccion;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getEstado() {
@@ -78,7 +80,7 @@ public class Produccion implements Serializable{
 
     @Override
     public String toString() {
-        return "Produccion{" + "id_produccion=" + id_produccion + ", idEmpleado=" + idEmpleado + ", fecha=" + fecha + ", produccion=" + produccion + ", estado=" + estado + '}';
+        return "Produccion{" + "id_produccion=" + id_produccion + ", idEmpleado=" + idEmpleado + ", fecha=" + fecha + ", cantidad=" + cantidad + ", estado=" + estado + '}';
     }
     
 }

@@ -49,8 +49,6 @@
 
         %>
 
-
-
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
             <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">PAGO SEMANAL</h1>
         </div>
@@ -63,18 +61,12 @@
                 <i class="fa fa-toolbox" >
                 </i>Generar Pagos
             </button>
-
-
-
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-
                 <table class="table table-borderless">
                     <thead>
-
-
                         <tr>
                             <th>
                                 <div>
@@ -111,19 +103,15 @@
 
                             <th>
                                 <div>
-                                    <button class="btn" id="btnBuscar" title="Bonos/Descuentos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                                    <button class="btn" id="btnBuscar" title="Editar Bonos/Descuentos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
                                         <i class="fa fa-comment-dollar" >
                                         </i>
                                     </button>
                                 </div>
                             </th>
-
-
                         </tr>
-
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
 
@@ -131,11 +119,16 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Id Emp.</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Cedula</th>
-                            <th>Fecha</th>
+                            <th>T.Pago</th>
+                            <th>Base</th>
+                            <th>Transporte</th>
+                            <th>Salud</th>
+                            <th>Prima</th>
+                            <th>Cesantias</th>
+                            <th>I.Cesantias</th>
                             <th>Total</th>
                             <th>Opción</th>
                         </tr>                            
@@ -167,9 +160,6 @@
                                 <button  class="item" style="border:none" value="pg-semanal/eliminarSemanal.jsp?idSemanal=<%= semanal.getId_semanal()%>">
                                     <img src="img/borrar.png" alt="alt"/>
                                 </button>
-
-
-
                             </td>
                         </tr>
                         <%

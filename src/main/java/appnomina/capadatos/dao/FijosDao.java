@@ -29,15 +29,16 @@ public class FijosDao {
         String sql="";
         
         if (nuevo.equals("0")){
-        sql = "REPLACE INTO fijos VALUES (?,?)";}
+        sql = "REPLACE INTO fijos VALUES (?,?,?)";}
         else{
-        sql = "INSERT INTO fijos VALUES (?,?)";}
+        sql = "INSERT INTO fijos VALUES (?,?,?)";}
         
         //String sql = "INSERT INTO fijos VALUES (?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(sql);
         
-        ps.setInt(1, fijos.getEps());
-        ps.setInt(2, fijos.getTransporte());
+        ps.setInt(1, fijos.getId());
+        ps.setInt(2, fijos.getEps());
+        ps.setInt(3, fijos.getTransporte());
         
         ps.execute();
         rta=true;
@@ -63,8 +64,9 @@ public class FijosDao {
         ResultSet rst = ps.executeQuery(sql);
         
         if (rst.next()){
-            p.setEps(rst.getInt(1));
-            p.setTransporte(rst.getInt(2));
+            p.setId(rst.getInt(1));
+            p.setEps(rst.getInt(2));
+            p.setTransporte(rst.getInt(3));
         } else p=null;
 
         rst.close();        

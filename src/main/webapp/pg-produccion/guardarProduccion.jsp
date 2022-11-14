@@ -4,6 +4,7 @@
     Author     : Videoadicto
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="appnomina.capadatos.entidades.Produccion"%>
 <%@page import="appnomina.capadatos.entidades.Cargo"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
@@ -22,9 +23,14 @@
             if (validar3.equals("1")) {
 
                 int idProduccion3 = Integer.parseInt(request.getParameter("idProduccion2"));
-
                 int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
-                String fecha3 = request.getParameter("fecha2");
+                
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date fechax = sdf.parse(request.getParameter("fecha2"));
+                java.sql.Date fecha3 = new java.sql.Date(fechax.getTime());
+                
+                //String fecha3 = request.getParameter("fecha2");
+                
                 int produccion3 = Integer.parseInt(request.getParameter("produccion2"));
                 String nuevo3 = request.getParameter("nuevo2");
 

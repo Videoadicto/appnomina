@@ -95,7 +95,7 @@
                                     <input type="text" name="produccion" id="produccion" 
                                            placeholder="Ingrese la produccion" required
                                            class="form-control" 
-                                           value = "<%= produccion.getProduccion()%>">
+                                           value = "<%= produccion.getCantidad()%>">
                                 </div>
                             </th>
                         </tr>
