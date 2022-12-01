@@ -92,7 +92,7 @@
                             <th>
                                 <div class="form-group">
                                     <label for="produccion" class="form-label">Produccion:</label>
-                                    <input type="text" name="produccion" id="produccion" 
+                                    <input type="number" name="produccion" id="produccion" 
                                            placeholder="Ingrese la produccion" required
                                            class="form-control" required>
                                 </div>

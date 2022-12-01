@@ -9,6 +9,7 @@ import appnomina.capadatos.dao.NominaSemanalDao;
 import appnomina.capadatos.entidades.NominaSemanal;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.Empleado;
+import appnomina.capadatos.entidades.NominaEmpleado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class NominaSemanalNegocio {
     public String insertarNominaSemanal(NominaSemanal p, String nuevo){
         String rta="";
         try {
-            NominaSemanal pe = nominaSemanalDao.buscarNominaSemanal(p.getId_semanal());
+            NominaSemanal pe = nominaSemanalDao.buscarNominaSemanal(p.getId_nomina_semanal());
             if (pe==null || nuevo.equals("0")){
                 boolean res = nominaSemanalDao.insertarNominaSemanal(p, nuevo);
                 if (res) rta = "Nomina Semanal guardada con exito";
@@ -41,7 +42,7 @@ public class NominaSemanalNegocio {
         return rta;
     }
     
-    public NominaSemanal buscarNominaSemanal(int id_semanal){
+    public NominaSemanal buscarNominaSemanal(String id_semanal){
         NominaSemanal p = new NominaSemanal();
         try {
             p = nominaSemanalDao.buscarNominaSemanal(id_semanal);
@@ -74,6 +75,40 @@ public class NominaSemanalNegocio {
         return nominasSemanales;
     }
     
+    
+    
+    
+    
+    
+    public List<Integer>  buscarNominaSemanalEmpleado(int id_empleado, int pago, String fechai, String fechaf) {
+        List<Integer>  totales;
+        try {
+            totales = nominaSemanalDao.buscarNominaSemanalEmpleado( id_empleado, pago, fechai,  fechaf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            totales= null;
+        }
+        return totales;
+    }
+    
+    
+    
+        public List<Integer>  calcularNominaSemanalEmpleado(int id_empleado, int tipo, String fechai, String fechaf) {
+        List<Integer>  totales;
+        try {
+            totales = nominaSemanalDao.calcularNominaSemanalEmpleado( id_empleado, tipo, fechai,  fechaf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            totales= null;
+        }
+        return totales;
+    }
+    
+    
+    
+    
+    
+    
     public String eliminarNominaSemanal(int id_semanal){
         String rta="";
         try {
@@ -87,16 +122,7 @@ public class NominaSemanalNegocio {
         return rta;
     }
     
-    public List<Produccion> getProduccion(){
-        List<Produccion> empleados = new ArrayList<Produccion>();
-        try {
-            empleados = nominaSemanalDao.getProduccion();
-        } catch (Exception e) {
-            empleados=null;
-            e.printStackTrace();
-        }
-        return empleados;
-    }
+    
     
     
     

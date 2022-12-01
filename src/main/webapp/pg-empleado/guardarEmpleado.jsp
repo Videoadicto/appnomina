@@ -32,7 +32,7 @@
             int estado3 = Integer.parseInt(request.getParameter("estado2"));
             String nuevo3 = request.getParameter("nuevo2");            
             
-                Cargo c = new Cargo(idCargo3, "", 0);
+                Cargo c = new Cargo(idCargo3, "", 0,1);
                 Empleado p = new Empleado(idEmpleado3, nombre3, apellido3, cedula3, fechanac3, telefono3, eps3, c, estado3);
                 msg3 = fachada.insertarEmpleado(p, nuevo3);
 

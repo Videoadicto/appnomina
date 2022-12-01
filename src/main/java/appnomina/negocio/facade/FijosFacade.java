@@ -25,7 +25,12 @@ public class FijosFacade {
         return fijosNegocio.insertarFijos(p, nuevo);
     }  
     
-    public Fijos buscarFijos(){
+    
+    public Fijos buscarFijo(int id_fijo){
+        return fijosNegocio.buscarFijo(id_fijo);
+    }
+    
+    public List<Fijos> buscarFijos(){
         return fijosNegocio.buscarFijos();
     }
     

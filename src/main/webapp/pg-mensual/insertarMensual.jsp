@@ -1,11 +1,11 @@
 <%-- 
-    Document   : listarSemanales
+    Document   : listarMensuales
     Created on : 31 mar. 2022, 08:43:44
     Author     : Videoadicto
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
+<%@page import="appnomina.capadatos.entidades.NominaMensual"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
 <%@page import="appnomina.capadatos.entidades.Concepto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,15 +19,15 @@
     }
 %>
 --%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaSemanalFacade"></jsp:useBean>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaMensualFacade"></jsp:useBean>
 <jsp:useBean id="fachada1" class="appnomina.negocio.facade.ProduccionFacade"></jsp:useBean>
 <jsp:useBean id="fachada2" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean>
 <jsp:useBean id="fachada3" class="appnomina.negocio.facade.ConceptoFacade"></jsp:useBean>
-<jsp:useBean id="fachada4" class="appnomina.negocio.facade.NominaSemanalFacade"></jsp:useBean>
+<jsp:useBean id="fachada4" class="appnomina.negocio.facade.NominaMensualFacade"></jsp:useBean>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Registro de Pagos Semanales</title>
+            <title>Registro de Pagos Mensuales</title>
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
             <link href="css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 
                 $(document).ready(function () {
                     $("#btnGuardar").click(function () {
-                        var table = $('#tablaSemanales').DataTable();
+                        var table = $('#tablaMensuales').DataTable();
                         //console.log(table.row(this).data());
 
                         //window.alert("" + table.data().length);
@@ -122,7 +122,7 @@
                         var cesantias1 = cesantias.toLocaleString();
                         var icesantias1 = icesantias.toLocaleString();
                         var totales1 = totales.toString();
-                        $("#boxInsertar").load("pg-semanal/guardarSemanal.jsp?" + (validarDatosSemanal(nuevo = 1, idsx = ids1, primasx = primas1, cesantiasx = cesantias1, icesantiasx = icesantias1, totalesx = totales1)), function () {
+                        $("#boxInsertar").load("pg-mensual/guardarMensual.jsp?" + (validarDatosMensual(nuevo = 1, idsx = ids1, primasx = primas1, cesantiasx = cesantias1, icesantiasx = icesantias1, totalesx = totales1)), function () {
                         });
 
 
@@ -139,7 +139,7 @@
 
                         //document.getElementById("lista").value = lista1;
 
-                        //$("#boxInsertar").load("pg-semanal/guardarSemanal.jsp?" + (validarDatosSemanal(nuevo = 1, filas = inicial)), function () {
+                        //$("#boxInsertar").load("pg-mensual/guardarMensual.jsp?" + (validarDatosMensual(nuevo = 1, filas = inicial)), function () {
                         //});
                     }
                     );
@@ -171,7 +171,7 @@
                         <tr>
                             <th>
                                 <div>
-                                    <button class="btn" id="btnBuscar" value="pg-semanal/insertarSemanal.jsp?mens=0" style="width:11em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                                    <button class="btn" id="btnBuscar" value="pg-mensual/insertarMensual.jsp?mens=0" style="width:11em; background:rgb(0, 195, 255);left : 0%; position:relative;">
                                         <i class="fa fa-toolbox" >
                                         </i> Recalcular
                                     </button>
@@ -242,7 +242,7 @@
                     </tbody>
                 </table>
 
-                <table id="tablaSemanales" class="table table-bordered">
+                <table id="tablaMensuales" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Sel.</th>
@@ -263,7 +263,7 @@
                         <%  for (Empleado empleado : fachada2.buscarEmpleados()) {
                                 if (empleado.getEstado() == 1) {
                                 
-                                List<Integer> totales = fachada4.calcularNominaSemanalEmpleado(empleado.getId_empleado(), tipo3, fechai3, fechaf3);
+                                List<Integer> totales = fachada4.calcularNominaMensualEmpleado(empleado.getId_empleado(), tipo3, fechai3, fechaf3);
                         %>
                         <tr>
                             <td>
@@ -329,7 +329,7 @@
         <div class="form-group">
 
             <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)">
-            <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+            <button type="button" value="pg-mensual/listarMensual.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
         </div>
 
         <div class="card-footer">
@@ -346,7 +346,7 @@
         <script src="js/dataTable/buttons.print.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#tablaSemanales').DataTable({
+                $('#tablaMensuales').DataTable({
                     //pageLength: 5,
                     dom: 'Bfrtip',
                     buttons: [

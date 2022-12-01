@@ -83,10 +83,36 @@
                         <th>
                             <div class="form-group">
                                 <label for="pago" class="form-label">Pago:</label>
-                                <input type="text" name="pago" id="pago" 
+                                <input type="number" name="pago" id="pago" 
                                        placeholder="Ingrese el valor del pago" required
                                        class="form-control"
                                        value = "<%= cargo.getPago()%>">
+                            </div>
+                        </th>
+                        
+                        <th>
+                            <div class="form-group">
+                                <label for="estado" class="form-label">Estado:</label>
+                                <select id="estado" name="estado" class="form-control" >
+                                    
+                                    <%{
+                                    String etd = "";
+                                    if  ( cargo.getEstado() == 1 )
+                                    etd = "ACTIVO";
+                                    else
+                                    etd = "INACTIVO";
+                                    
+                                        
+                                %>
+                                    
+                                    <option value="1" <%if (etd.equals("ACTIVO")) {%> selected <%}%>  > ACTIVO </option>
+                                    <option value="0" <%if (etd.equals("INACTIVO")) {%> selected <%}%>  > INACTIVO </option>
+                                    
+                                    <%
+                                        }
+                                %>
+                                    
+                                </select>
                             </div>
                         </th>
                     </tr>

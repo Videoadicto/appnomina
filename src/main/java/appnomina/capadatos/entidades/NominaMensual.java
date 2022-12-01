@@ -13,22 +13,22 @@ import java.util.Objects;
  *
  * @author Usuario
  */
-public class NominaSemanal implements Serializable{
+public class NominaMensual implements Serializable{
     private int id_nomina;
-    private String id_nomina_semanal;
+    private String id_nomina_mensual;
     private Date fecha;
      
-    public NominaSemanal(){
+    public NominaMensual(){
         super();
     }
     
-    public NominaSemanal(int id_nomina, String id_nomina_semanal, Date fecha) {
-        this.id_nomina_semanal = id_nomina_semanal;
+    public NominaMensual(int id_nomina, String id_nomina_mensual, Date fecha) {
+        this.id_nomina_mensual = id_nomina_mensual;
         this.fecha = fecha;
     }
 
-    public String getId_nomina_semanal() {
-        return id_nomina_semanal;
+    public String getId_nomina_mensual() {
+        return id_nomina_mensual;
     }
 
     public int getId_nomina() {
@@ -41,8 +41,8 @@ public class NominaSemanal implements Serializable{
 
     
 
-    public void setId_nomina_semanal(String id_nomina_semanal) {
-        this.id_nomina_semanal = id_nomina_semanal;
+    public void setId_nomina_mensual(String id_nomina_mensual) {
+        this.id_nomina_mensual = id_nomina_mensual;
     }
 
     public Date getFecha() {
@@ -55,7 +55,7 @@ public class NominaSemanal implements Serializable{
 
     @Override
     public String toString() {
-        return "NominaSemanal{" + "id_nomina=" + id_nomina + ", id_nomina_semanal=" + id_nomina_semanal + ", fecha=" + fecha + '}';
+        return "NominaMensual{" + "id_nomina=" + id_nomina + ", id_nomina_mensual=" + id_nomina_mensual + ", fecha=" + fecha + '}';
     }
 
     

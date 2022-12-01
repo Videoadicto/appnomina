@@ -5,14 +5,14 @@
 --%>
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
+<%@page import="appnomina.capadatos.entidades.NominaMensual"%>
 <%@page import="appnomina.capadatos.entidades.NominaEmpleado"%>
 <%@page import="appnomina.capadatos.entidades.Cargo"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaSemanalFacade" scope="page"></jsp:useBean>
+    <jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaMensualFacade" scope="page"></jsp:useBean>
     <jsp:useBean id="fachada1" class="appnomina.negocio.facade.NominaEmpleadoFacade" scope="page"></jsp:useBean>
     <%
         if (true) {
@@ -53,8 +53,8 @@
                 //System.out.println(""+ids3[i]);
                     
                     //Empleado e = new Empleado(Integer.parseInt(ids3[i]), "", "", "", "", "", "", c, 1);
-                    NominaSemanal p = new NominaSemanal(idNomina3, "1-" + ids3[i] , fecha3);
-                    msg3 = fachada.insertarNominaSemanal(p, nuevo3);
+                    NominaMensual p = new NominaMensual(idNomina3, "1-" + ids3[i] , fecha3);
+                    msg3 = fachada.insertarNominaMensual(p, nuevo3);
                     
                     NominaEmpleado q = new NominaEmpleado(idNomina3, "1-" + ids3[i], Integer.parseInt(ids3[i]), 1, Integer.parseInt(totales3[i]) );
                     msg3 = fachada1.insertarNominaEmpleado(q, nuevo3);
@@ -76,7 +76,7 @@
         <%= msg3%>
     </div>
     <% } else {
-        pagina = "listarSemanal.jsp";
+        pagina = "listarMensual.jsp";
     %> 
     <div id="divGuardar" style="display: none;" class="alert alert-success">
         <%= msg3%>
@@ -90,7 +90,7 @@
     <input id="esto1" style="display: none;" value = <%= msg4%> >
 
     <script>
-        $("#box").load("pg-semanal/" + ($(esto).val()) + "?mens=" + ($(esto1).val()) + uneFechas(), function () {
+        $("#box").load("pg-mensual/" + ($(esto).val()) + "?mens=" + ($(esto1).val()) + uneFechas(), function () {
         });
     </script>
     <%

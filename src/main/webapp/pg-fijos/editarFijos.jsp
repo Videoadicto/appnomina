@@ -14,7 +14,7 @@
             <title>Fijoss</title>
             <script>
                 $("button").click(function () {
-                    $("#box").load($(this).val() + uneFechas(), function () {
+                    $("#box").load($(this).val(), function () {
                     });
                 });
 
@@ -28,15 +28,17 @@
         </head>
 
     <%
-        //int idFijos = Integer.parseInt(request.getParameter("idFijos"));
+        int idFijos = Integer.parseInt(request.getParameter("idFijos"));
 
         Fijos fijos = new Fijos();
-        fijos = fachada.buscarFijos();
+        fijos.setId_fijo(idFijos);
+
+        fijos = fachada.buscarFijo(idFijos);
     %>
 
     <body>
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EDITAR BONOS/DESCUENTOS</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EDITAR FIJOS</h1>
         </div>
 
         <div class="card-body">
@@ -64,30 +66,31 @@
                             </th>
                         </tr>
 %--%> 
-                        
-                    <input name="id" id="id" style="display: none;" value ="<%= fijos.getId()%>" >
-                    
+                    <input name="idFijo" id="idFijo" style="display: none;" value ="<%= fijos.getId_fijo()%>" >
+
                     <tr>
                         <th>  
                             <div class="form-group">
-                                <label for="eps" class="form-label">EPS:</label>
-                                <input type="text" name="eps" id="eps" 
-                                       placeholder="Ingrese el % de la EPS" required
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" name="nombre" id="nombre" 
+                                       placeholder="" readonly
                                        class="form-control" 
-                                       value = "<%= (fijos.getEps())%>">
+                                       value = "<%= (fijos.getNombre()).replace("_", " ")%>">
                             </div>
                     </tr>
 
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label for="transporte" class="form-label">Subsidio de transporte:</label>
-                                <input type="text" name="transporte" id="transporte" 
-                                       placeholder="Ingrese el subsidio de transporte" required
+                                <label for="valor" class="form-label">Valor:</label>
+                                <input type="number" name="valor" id="valor" 
+                                       placeholder="" required
                                        class="form-control"
-                                       value = "<%= fijos.getTransporte()%>">
+                                       value = "<%= fijos.getValor()%>">
                             </div>
                         </th>
+                        
+                        
                     </tr>
 
                     </tbody>
@@ -103,7 +106,7 @@
 
                 <div class="form-group">
                     <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)" >
-                    <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+                    <button type="button" value="pg-fijos/listarFijos.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
                 </div>
 
             </form>

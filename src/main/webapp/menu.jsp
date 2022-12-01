@@ -43,50 +43,50 @@
 
             <script>
                 $(document).ready(function () {
-                $("#btnAlertas").click(function () {
-                $("#box").load("pg-alerta/listarProducto.jsp?mens=0", function () {
-                });
-                });
+                    $("#btnAlertas").click(function () {
+                        $("#box").load("pg-alerta/listarProducto.jsp?mens=0", function () {
+                        });
+                    });
                 });
                 $(document).ready(function () {
 
-                $("#menu1").click(function () {
-                $("#box").load("dashboard.html", function () {
+                    $("#menu1").click(function () {
+                        $("#box").load("dashboard.html", function () {
 
-                });
-                });
-                $("#menu6").click(function () {
-                //$("#box").load("pg-empleado/listarEmpleado.jsp?msg='0'", function () {
-                $("#box").load("pg-empleado/listarEmpleado.jsp?mens=0", function () {
-                });
-                });
-                $("#menu7").click(function () {
-                $("#box").load("pg-nomina/listarNomina.jsp?mens=0", function () {
-                });
-                });
-                $("#menu8").click(function () {
-                $("#box").load("pg-produccion/listarProduccion.jsp?mens=0" + uneFechas(), function () {
-                });
-                });
-                $("#menu2").click(function () {
-                $("#box").load("pg-semanal/listarSemanal.jsp?mens=0" + uneFechas(), function () {
-                });
-                });
-                $("#menu12").click(function () {
-                $("#box").load("pg-semanal/listarSemanal.jsp?mens=0" + uneFechas(), function () {
-                });
-                });
-                $("#menu11").click(function () {
-                $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
-                });
-                });
-                $("#menu9").click(function () {
-                $("#box").load("listarInformes.jsp", function () {
-                });
-                });
-                $("#menu10").click(function () {
-                window.location.href = "index.jsp";
-                });
+                        });
+                    });
+                    $("#menu6").click(function () {
+                        //$("#box").load("pg-empleado/listarEmpleado.jsp?msg='0'", function () {
+                        $("#box").load("pg-empleado/listarEmpleado.jsp?mens=0" + uneFechas(), function () {
+                        });
+                    });
+                    $("#menu7").click(function () {
+                        $("#box").load("pg-nomina/listarNomina.jsp?mens=0", function () {
+                        });
+                    });
+                    $("#menu8").click(function () {
+                        $("#box").load("pg-produccion/listarProduccion.jsp?mens=0" + uneFechas(), function () {
+                        });
+                    });
+                    $("#menu2").click(function () {
+                        $("#box").load("pg-semanal/listarSemanal.jsp?mens=0" + uneFechas(), function () {
+                        });
+                    });
+                    $("#menu12").click(function () {
+                        $("#box").load("pg-mensual/listarMensual.jsp?mens=0" + uneFechas(), function () {
+                        });
+                    });
+                    $("#menu11").click(function () {
+                        $("#box").load("pg-cargo/listarCargo.jsp?mens=0", function () {
+                        });
+                    });
+                    $("#menu9").click(function () {
+                        $("#box").load("listarInformes.jsp", function () {
+                        });
+                    });
+                    $("#menu10").click(function () {
+                        window.location.href = "index.jsp";
+                    });
                 });
             </script>
             <title></title>
@@ -109,12 +109,11 @@
             YearMonth yearMonth = YearMonth.of(year, month);
             LocalDate firstOfMonth = yearMonth.atDay(1);
             LocalDate lastOfMonth = yearMonth.atEndOfMonth();
-            
+
             LocalDate lunes = date.with(DayOfWeek.MONDAY);
-            
+
             //System.out.println("lunes: " + lunes.toString());
             //System.out.println("hoy " + localDate);
-
             //System.out.println("primero: " + firstOfMonth);
             //System.out.println("ultimo: " + lastOfMonth);
             {
@@ -124,7 +123,7 @@
         <input id="fechai" style="display: none;" value = <%= firstOfMonth%> >
         <input id="fechaf" style="display: none;" value = <%= lastOfMonth%> >
         <input id="fechal" style="display: none;" value = <%= lunes%> >
-        <input id="fechah" style="display: none;" value = <%= localDate.toString() %> >
+        <input id="fechah" style="display: none;" value = <%= localDate.toString()%> >
 
         <%
             }
@@ -138,6 +137,9 @@
                 //System.out.println("" + cedula1);
                 if (session.getAttribute("uid") != null) {
                     session.setAttribute("uid", null);
+
+                } else {
+                    int x = 0 / 0;
                 }
             } catch (Exception e) {
                 response.sendRedirect("index.jsp");
@@ -209,7 +211,7 @@
                             <span id="menu2" class="item">Pago Semanal</span>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-dollar-sign"></i></span>
@@ -217,12 +219,18 @@
                         </a>
                     </li>
 
+                   
+                    <!--
+                    
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-clipboard"></i></span>
                             <span id="menu9" class="item">Informes</span>
                         </a>
                     </li>
+                    
+                    -->
+                    
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-running"></i></span>
@@ -247,7 +255,6 @@
             usuario = fachada.buscarUsuario(idUsuario);
 
             //session.setAttribute("rol", usuario.getTipo());
-
             {
         %>
 
@@ -268,9 +275,9 @@
 
             var tipo = "";
             if (document.getElementById("valor").value !== "0")
-                    tipo = "Administrador: ";
+                tipo = "Administrador: ";
             else
-                    tipo = "Usuario: ";
+                tipo = "Usuario: ";
             document.getElementById("usuario").value = tipo + document.getElementById("emple").value;
             document.getElementById("alerta").style = 'display:"";';
         </script>

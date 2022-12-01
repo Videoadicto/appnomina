@@ -8,9 +8,14 @@ package appnomina.capadatos.dao;
 import appnomina.capadatos.Conexion;
 import appnomina.capadatos.entidades.Empleado;
 import appnomina.capadatos.entidades.Cargo;
+import appnomina.capadatos.dao.HistoricoEmpleadoDao;
+import appnomina.capadatos.entidades.HistoricoEmpleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +25,12 @@ import java.util.List;
  */
 public class EmpleadoDao {
 
+    private HistoricoEmpleadoDao hed;
+
+    public EmpleadoDao() {
+        hed = new HistoricoEmpleadoDao();
+    }
+
     public boolean insertarEmpleado(Empleado empleado, String nuevo) throws Exception {
         boolean rta = false;
 
@@ -28,6 +39,15 @@ public class EmpleadoDao {
 
         String sql = "";
 
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        String fecha = date.format(formatter);
+        LocalDate localDate = LocalDate.parse(fecha, formatter);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date fechax = sdf.parse(localDate.toString());
+        java.sql.Date fechah = new java.sql.Date(fechax.getTime());
+        
         if (nuevo.equals("0")) {
             sql = "REPLACE INTO empleado VALUES (?,?,?,?,?,?,?,?,?)";
         } else {
@@ -55,6 +75,19 @@ public class EmpleadoDao {
 
         ps = null;
         conexion = null;
+        
+        int X=0;
+         if (nuevo.equals("0")) {
+             X = empleado.getId_empleado();
+        } else {
+             X = ultimoEmpleado();
+        }
+        
+        
+        HistoricoEmpleado he = new HistoricoEmpleado(0, X, empleado.getIdCargo().getId_cargo(), fechah);
+        Boolean mensaje = hed.insertarHistoricoEmpleado(he);
+        //System.out.println(mensaje);
+        
         return rta;
     }
 
@@ -110,10 +143,9 @@ public class EmpleadoDao {
 
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        
         CargoDao cd = new CargoDao();
         ResultSet rst = ps.executeQuery();
-        
+
         while (rst.next()) {
             Empleado p = new Empleado();
             p.setId_empleado(rst.getInt(1));
@@ -193,5 +225,40 @@ public class EmpleadoDao {
 
         return cargos;
     }
+    
+    
+    
 
+    public int ultimoEmpleado() throws Exception {
+        //Empleado p = new Empleado();
+        int X=0;
+        Conexion con = new Conexion();
+
+        Connection conexion = con.conectar("EmpleadoDao.ultimoEmpleado()");
+
+        //String sql = "SELECT * FROM empleado WHERE id_empleado = ?";
+        //SELECT TOP 1 * FROM Table ORDER BY ID DESC//
+        //String sql = "SELECT TOP 1 FROM empleado ORDER BY id_empleado DESC";
+        String sql = "SELECT * FROM empleado ORDER BY id_empleado DESC LIMIT 1";
+
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        CargoDao cd = new CargoDao();
+
+        //ps.setInt(1, id_empleado);
+        ResultSet rst = ps.executeQuery();
+        if (rst.next()) {
+           X = rst.getInt(1);
+        }
+
+        rst.close();
+        ps.close();
+        conexion.close();
+
+        rst = null;
+        ps = null;
+        conexion = null;
+        return X;
+    }
+            
 }

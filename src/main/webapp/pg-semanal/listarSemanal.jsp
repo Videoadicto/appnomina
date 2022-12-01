@@ -4,6 +4,7 @@
     Author     : Videoadicto
 --%>
 
+<%@page import="appnomina.capadatos.entidades.NominaEmpleado"%>
 <%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,6 +20,7 @@
 --%>
 <jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaSemanalFacade"></jsp:useBean>
 <jsp:useBean id="fachada1" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean>
+<jsp:useBean id="fachada2" class="appnomina.capadatos.dao.NominaEmpleadoDao"></jsp:useBean>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -103,7 +105,7 @@
 
                             <th>
                                 <div>
-                                    <button class="btn" id="btnBuscar" title="Editar Bonos/Descuentos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                                    <button class="btn" id="btnBuscar" title="Editar Bonos/Descuentos" value="pg-fijos/listarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
                                         <i class="fa fa-comment-dollar" >
                                         </i>
                                     </button>
@@ -122,48 +124,33 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Cedula</th>
-                            <th>T.Pago</th>
-                            <th>Base</th>
-                            <th>Transporte</th>
-                            <th>Salud</th>
+                            <th>Total</th>
                             <th>Prima</th>
                             <th>Cesantias</th>
-                            <th>I.Cesantias</th>
-                            <th>Total</th>
-                            <th>Opción</th>
+
+                           
+                            
                         </tr>                            
                     </thead>
                     <tbody>
-                        <% for (NominaSemanal semanal : fachada.buscarNominasSemanalesFechas(fechai3, fechaf3)) {
-                        Empleado empleado = new Empleado();
-                        empleado = fachada1.buscarEmpleado(semanal.getIdEmpleado().getId_empleado()); 
-                        
-                        %>
-                        <tr>                               
-                            <td><%= semanal.getId_semanal()%></td>
-                            <td><%= semanal.getIdEmpleado().getId_empleado()%></td>
-                            <td><%= empleado.getNombre().replace("_", " ") %></td>
-                            <td><%= empleado.getApellido().replace("_", " ") %></td>
-                            <td><%= empleado.getCedula() %></td>
-                            <td><%= semanal.getFecha() %></td>
-                            <td><%= semanal.getTotal() %></td>
-
-                            <td>
-                                <button  class="item" style="border:none" value="pg-semanal/editarSemanal.jsp?idSemanal=<%= semanal.getId_semanal()%>">
-                                    <img src="img/editar.png" width="16" height="16" >
-                                </button>
-
-                                <button  class="item" style="border:none" value="pg-semanal/mostrarSemanal.jsp?idSemanal=<%= semanal.getId_semanal()%>">
-                                    <img src="img/info.png" alt="alt"/>
-                                </button>
-
-                                <button  class="item" style="border:none" value="pg-semanal/eliminarSemanal.jsp?idSemanal=<%= semanal.getId_semanal()%>">
-                                    <img src="img/borrar.png" alt="alt"/>
-                                </button>
-                            </td>
-                        </tr>
                         <%
-                            }
+                        for (NominaSemanal semanal : fachada.buscarNominasSemanalesFechas(fechai3, fechaf3)) {
+                        //NominaEmpleado nomina = new NominaEmpleado();
+                        
+                        //for (NominaEmpleado empleado : fachada2.buscarNominasEmpleados(semanal.getId_nomina_semanal())) {
+                        
+                        //nomina = fachada2.buscarNominaEmpleado(semanal.getId_nomina()); 
+                       
+                        %>
+                        
+
+                       
+                        
+                        
+                        <%
+                            
+                        
+                    }
                             //System.out.println(session.getAttribute("rol").toString());
                         %>
                     </tbody>
@@ -191,12 +178,14 @@
                 }
             }
         %>
-
+        
         <div id="boxListar">
         </div>    
 
         <div class="card-footer">
         </div>
+        
+        <input name="tipo" id="tipo" style="display: none;" value = "1" >
 
         <script src="js/dataTable/dataTables.buttons.min.js"></script>
         <script src="js/dataTable/buttons.flash.min.js"></script>

@@ -181,6 +181,7 @@ function verificarPaginaS(texto)
     {
         var fechai1 = "" + document.getElementById("fechaix").value;
         var fechaf1 = "" + document.getElementById("fechafx").value;
+        var tipo1 = "" + document.getElementById("tipo").value;
 
         //window.alert("" + fechai1 + " " + fechaf1);
         //window.alert(texto);
@@ -188,15 +189,40 @@ function verificarPaginaS(texto)
 
         if (fechai1 !== "" && fechaf1 !== "") {
 
-            datos = texto + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
+            datos = texto + "&tipo2=" + tipo1 + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
         } else
         {
             window.alert("FECHA INVALIDA");
             throw new Exception("Exception message");
         }
     }
+    //window.alert("" + datos);
     return datos;
 }
+
+
+function verificarPaginaF(texto)
+{
+    //window.alert("validarpagina");
+    var datos = "";
+
+        var fechai1 = "" + document.getElementById("fechaix").value;
+        var fechaf1 = "" + document.getElementById("fechafx").value;
+        var tipo1 = "" + document.getElementById("tipo").value;
+
+        //window.alert("" + fechai1 + " " + fechaf1);
+        //window.alert(texto);
+
+
+        if (fechai1 !== "" && fechaf1 !== "") {
+
+            datos = texto + "&tipo2=" + tipo1 + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
+        } 
+    //window.alert("" + datos);
+    return datos;
+}
+
+
 
 
 function verificarPagina(texto)
@@ -429,9 +455,9 @@ function validarDatosVenta(nuevo, filas) {
 }
 
 
-function validarDatosSemanal(nuevo, idsx, totalesx) {
+function validarDatosSemanal(nuevo, idsx, primasx, cesantiasx, icesantiasx, totalesx) {
 
-    //window.alert("si0");
+    //window.alert("totales= " +  idsx.toLocaleString());
 
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
@@ -462,7 +488,7 @@ function validarDatosSemanal(nuevo, idsx, totalesx) {
         var fechaf1 = "" + document.getElementById("fechafx").value;
         var idNomina1 = "" + document.getElementById("idNomina").value;
 
-        datos = "idNomina2=" + idNomina1 + "&ids2=" + idsx + "&totales2=" + totalesx + "&fechaf2=" + fechaf1 + "&nuevo2=" + nuevo + "&validar2=1";
+        datos = "idNomina2=" + idNomina1 + "&ids2=" + idsx + "&primas2=" + primasx + "&cesantias2=" + cesantiasx + "&icesantias2=" + icesantiasx + "&totales2=" + totalesx  + "&fechaf2=" + fechaf1 + "&nuevo2=" + nuevo + "&validar2=1";
         //document.getElementById("divInsertar").style = "display: none;";
 
         //window.alert("" + lista1);
@@ -472,6 +498,8 @@ function validarDatosSemanal(nuevo, idsx, totalesx) {
 }
 
 function validarDatosCargo(nuevo) {
+    
+    
 
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
@@ -488,23 +516,26 @@ function validarDatosCargo(nuevo) {
     var idCargo1 = (((frmRegistrar.idCargo.value).trim()).replace(/ /g, ""));
     var nombre1 = ((frmRegistrar.nombre.value).trim()).replace(/ /g, "_");
     var pago1 = ((frmRegistrar.pago.value).trim()).replace(/ /g, "");
+    var estado1 = ((frmRegistrar.estado.value).trim());
 
     //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
 
-    if (idCargo1 === "" || nombre1 === "" || pago1 === "")
+    
+
+    if (idCargo1 === "" || nombre1 === "" || pago1 === "", estado1 === "")
     {
         document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
         datos = "validar2=0";
     } else {
-        datos = "idCargo2=" + idCargo1 + "&nombre2=" + nombre1 + "&pago2=" + pago1 + "&nuevo2=" + nuevo + "&validar2=1";
+        datos = "idCargo2=" + idCargo1 + "&nombre2=" + nombre1 + "&pago2=" + pago1 + "&estado2=" + estado1 + "&nuevo2=" + nuevo +  "&validar2=1";
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;
 }
 
 function validarDatosFijos(nuevo) {
-
-//window.alert("x1");
+    
+    
 
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
@@ -518,18 +549,20 @@ function validarDatosFijos(nuevo) {
         console.error(error);
     }
 
-    var id1 = frmRegistrar.id.value;
-    var eps1 = frmRegistrar.eps.value;
-    var transporte1 = frmRegistrar.transporte.value;
+    var idFijo1 = (((frmRegistrar.idFijo.value).trim()).replace(/ /g, ""));
+    var nombre1 = ((frmRegistrar.nombre.value).trim()).replace(/ /g, "_");
+    var valor1 = ((frmRegistrar.valor.value).trim());
 
     //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
 
-    if (eps1 === "" || transporte1 === "")
+    
+
+    if (idFijo1 === "" || nombre1 === "" || valor1 === "")
     {
         document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
         datos = "validar2=0";
     } else {
-        datos = "id2=" + id1 + "&eps2=" + eps1 + "&transporte2=" + transporte1 + "&nuevo2=" + nuevo + "&validar2=1";
+        datos = "idFijo2=" + idFijo1 + "&nombre2=" + nombre1 + "&valor2=" + valor1 + "&nuevo2=" + nuevo +  "&validar2=1";
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;

@@ -72,11 +72,18 @@
                         <th>
                             <div class="form-group">
                                 <label for="pago" class="form-label">Pago:</label>
-                                <input type="text" name="pago" id="pago" 
+                                <input type="number" name="pago" id="pago" 
                                        placeholder="Ingrese el valor del pago" required
                                        class="form-control" required>
                             </div>
                         <th>
+
+                        <th>
+                            <div class="form-group">
+                                <input type="text" name="estado" id="estado" 
+                                       value="1" style="display: none;">
+                            </div>
+                        </th>
 
                     </tr>
 

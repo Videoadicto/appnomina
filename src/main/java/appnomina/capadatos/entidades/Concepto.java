@@ -10,27 +10,26 @@ import java.io.Serializable;
  *
  * @author videoadicto
  */
-public class Fijos implements Serializable{
-    private int id_fijo;
+public class Concepto implements Serializable{
+    private int id_concepto;
     private String nombre;
-    private int valor;
+
     
-    public Fijos(){
+    public Concepto(){
         super();
     }
     
-    public Fijos(int id_fijo, String nombre, int valor) {
-        this.id_fijo = id_fijo;
+    public Concepto(int id_concepto, String nombre, int pago) {
+        this.id_concepto = id_concepto;
         this.nombre = nombre;
-        this.valor = valor;
     } 
 
-    public int getId_fijo() {
-        return id_fijo;
+    public int getId_concepto() {
+        return id_concepto;
     }
 
-    public void setId_fijo(int id_fijo) {
-        this.id_fijo = id_fijo;
+    public void setId_concepto(int id_concepto) {
+        this.id_concepto = id_concepto;
     }
 
     public String getNombre() {
@@ -41,21 +40,12 @@ public class Fijos implements Serializable{
         this.nombre = nombre;
     }
 
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
+    
     @Override
     public String toString() {
-        return "Fijos{" + "id_fijo=" + id_fijo + ", nombre=" + nombre + ", valor=" + valor + '}';
+        return "Cargo{" + "id_concepto=" + id_concepto + ", nombre=" + nombre + '}';
     }
-
-   
-
     
-
+    
+    
 }

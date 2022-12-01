@@ -24,6 +24,7 @@ public class Conexion
 	//private String password="pvg5sdc27bkqu1hw";  
         
         private final static String url ="jdbc:mysql://localhost:3307/nominabd";//local
+        //private final static String url ="jdbc:mysql://keen-clarity-370303:us-central1:nominabd?allowPublicKeyRetrieval=true&useSSL=false";//local
 	private String usuario="root";	
 	private String password="";
         

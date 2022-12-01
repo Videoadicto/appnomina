@@ -10,6 +10,7 @@ import appnomina.capadatos.entidades.NominaSemanal;
 import appnomina.negocio.nomina.ProduccionNegocio;
 import appnomina.negocio.nomina.NominaSemanalNegocio;
 import appnomina.capadatos.entidades.Empleado;
+import appnomina.capadatos.entidades.NominaEmpleado;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class NominaSemanalFacade {
         return nominaSemanalNegocio.insertarNominaSemanal(p, nuevo);
     }
 
-    public NominaSemanal buscarNominaSemanal(int id_semanal) {
+    public NominaSemanal buscarNominaSemanal(String id_semanal) {
         return nominaSemanalNegocio.buscarNominaSemanal(id_semanal);
     }
 
@@ -40,6 +41,18 @@ public class NominaSemanalFacade {
     public List<NominaSemanal> buscarNominasSemanalesFechas(String fechai, String fechaf) {
         return nominaSemanalNegocio.buscarNominasSemanalesFechas(fechai, fechaf);
     }
+    
+    
+    public List<Integer> buscarNominaSemanalEmpleado(int id_empleado, int pago, String fechai, String fechaf) {
+        return nominaSemanalNegocio.buscarNominaSemanalEmpleado( id_empleado,  pago,  fechai,  fechaf);
+    }
+    
+    
+    
+    public List<Integer> calcularNominaSemanalEmpleado(int id_empleado, int tipo, String fechai, String fechaf) {
+        return nominaSemanalNegocio.calcularNominaSemanalEmpleado( id_empleado, tipo, fechai,  fechaf);
+    }
+    
 
     public String eliminarNominaSemanal(int id_semanal) {
         return nominaSemanalNegocio.eliminarNominaSemanal(id_semanal);

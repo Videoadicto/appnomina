@@ -1,10 +1,10 @@
 <%-- 
-    Document   : listarCargos
+    Document   : listarFijoss
     Created on : 31 mar. 2022, 08:43:44
     Author     : Videoadicto
 --%>
 
-<%@page import="appnomina.capadatos.entidades.Cargo"%>
+<%@page import="appnomina.capadatos.entidades.Fijos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -16,11 +16,11 @@
     }
 %>
 --%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.CargoFacade"></jsp:useBean>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.FijosFacade"></jsp:useBean>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Registro de Cargos</title>
+            <title>Registro de Fijos</title>
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
             <link href="css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
@@ -32,69 +32,43 @@
             <script>
                 $("button").click(function () {
 
-                    $("#box").load(verificarPagina($(this).val()), function () {
+                    $("#box").load(verificarPagina($(this).val()) + uneFechas(), function () {
                     });
                 });
             </script>
         </head>
 
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">CARGOS</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">FIJOS</h1>
         </div>
 
         <br>
 
-        <div>
-        <%--            <button class="btn" onclick="location.href = 'cargoForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
-        <button class="btn" id="nuevo" value="pg-cargo/insertarCargo.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
-            <i class="fa fa-toolbox" >
-            </i> Agregar Cargo
-        </button>
-    </div>
-
+        
     <div class="card-body">
         <div class="table-responsive">
-            <table id="tablaCargos" class="table table-bordered">
+            <table id="tablaFijoss" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
-                        <th>Pago</th>
-                        <th>Estado</th>
+                        <th>Valor</th>
                         <th>Opción</th>
                     </tr>                            
                 </thead>
                 <tbody>
 
 
-                    <% for (Cargo cargo : fachada.buscarCargos()) {
-                            int estado = cargo.getEstado();
-                            String testado = "";
-
-                            if (estado == 1) {
-                                testado = "ACTIVO";
-                            } else {
-                                testado = "INACTIVO";
-                            }
+                    <% for (Fijos fijos : fachada.buscarFijos()) {
                     %>
                     <tr>                               
-                        <td><%= cargo.getId_cargo()%></td>
-                        <td><%= (cargo.getNombre()).replace("_", " ")%></td>
-                        <td><%= cargo.getPago()%></td>
-                        <td><%= testado%></td>
+                        <td><%= fijos.getId_fijo()%></td>
+                        <td><%= (fijos.getNombre()).replace("_", " ")%></td>
+                        <td><%= fijos.getValor()%></td>
                         <td>
-                            <button  class="item" style="border:none" value="pg-cargo/editarCargo.jsp?idCargo=<%= cargo.getId_cargo()%>">
+                            <button  class="item" style="border:none" value="pg-fijos/editarFijos.jsp?idFijos=<%= fijos.getId_fijo()%>">
                                 <img src="img/editar.png" width="16" height="16" >
                             </button>
-
-                            <button  class="item" style="border:none" value="pg-cargo/mostrarCargo.jsp?idCargo=<%= cargo.getId_cargo()%>">
-                                <img src="img/info.png" alt="alt"/>
-                            </button>
-<%-- 
-                            <button  class="item" style="border:none" value="pg-cargo/eliminarCargo.jsp?idCargo=<%= cargo.getId_cargo()%>">
-                                <img src="img/borrar.png" alt="alt"/>
-                            </button>
---%>
                         </td>
                     </tr>
                     <%
@@ -127,7 +101,11 @@
     %>
 
     <div id="boxListar">
-    </div>    
+    </div>
+    
+    <div class="form-group">
+                    <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+                </div>
 
     <div class="card-footer">
     </div>
@@ -141,7 +119,7 @@
     <script src="js/dataTable/buttons.print.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#tablaCargos').DataTable({
+            $('#tablaFijoss').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'

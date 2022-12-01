@@ -34,7 +34,7 @@
                 int produccion3 = Integer.parseInt(request.getParameter("produccion2"));
                 String nuevo3 = request.getParameter("nuevo2");
 
-                Cargo c = new Cargo(0, "", 0);
+                Cargo c = new Cargo(0, "", 0, 0);
                 Empleado e = new Empleado(idEmpleado3, "", "", "", "", "", "", c, 1);
                 Produccion p = new Produccion(idProduccion3, e, fecha3, produccion3);
                 msg3 = fachada.insertarProduccion(p, nuevo3);

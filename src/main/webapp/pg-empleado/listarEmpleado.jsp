@@ -53,7 +53,7 @@
                             </i> Agregar Empleado
                         </button>
                     </th>
-
+<%-- 
                     <th>
                         <div>
                             <button class="btn" id="btnBuscar" title="Inactivos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
@@ -62,6 +62,7 @@
                             </button>
                         </div>
                     </th>
+--%>
                 </tr>
             </thead>
         </table>
@@ -110,10 +111,11 @@
                                 <button  class="item" style="border:none" value="pg-empleado/mostrarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
                                     <img src="img/info.png" alt="alt"/>
                                 </button>
-
+<%-- 
                                 <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
                                     <img src="img/borrar.png" alt="alt"/>
                                 </button>
+                                    --%>
                             </td>
                         </tr>
                         <%

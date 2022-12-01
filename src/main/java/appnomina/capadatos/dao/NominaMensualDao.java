@@ -8,7 +8,7 @@ package appnomina.capadatos.dao;
 import appnomina.capadatos.Conexion;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.Empleado;
-import appnomina.capadatos.entidades.NominaSemanal;
+import appnomina.capadatos.entidades.NominaMensual;
 import appnomina.capadatos.entidades.HistoricoEmpleado;
 import appnomina.capadatos.entidades.HistoricoCargo;
 import appnomina.capadatos.entidades.HistoricoFijos;
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Usuario
  */
-public class NominaSemanalDao {
+public class NominaMensualDao {
 
     private HistoricoEmpleadoDao hed;
     private HistoricoCargoDao hcd;
@@ -38,7 +38,7 @@ public class NominaSemanalDao {
     private ProduccionDao pd;
     private NominaEmpleadoDao ne;
 
-    public NominaSemanalDao() {
+    public NominaMensualDao() {
         hed = new HistoricoEmpleadoDao();
         hcd = new HistoricoCargoDao();
         hfd = new HistoricoFijosDao();
@@ -47,25 +47,25 @@ public class NominaSemanalDao {
         ne = new NominaEmpleadoDao();
     }
 
-    public boolean insertarNominaSemanal(NominaSemanal nominasemanal, String nuevo) throws Exception {
+    public boolean insertarNominaMensual(NominaMensual nominamensual, String nuevo) throws Exception {
         boolean rta = false;
 
         Conexion con = new Conexion();
-        Connection conexion = con.conectar("NominaSemanalDao.insertarNominaSemanal()");
+        Connection conexion = con.conectar("NominaMensualDao.insertarNominaMensual()");
 
         String sql = "";
 
         if (nuevo.equals("0")) {
-            sql = "REPLACE INTO nomina_semanal VALUES (?,?,?)";
+            sql = "REPLACE INTO nomina_mensual VALUES (?,?,?)";
         } else {
-            sql = "INSERT INTO nomina_semanal VALUES (?,?,?)";
+            sql = "INSERT INTO nomina_mensual VALUES (?,?,?)";
         }
 
         //String sql = "INSERT INTO produccion VALUES (?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(sql);
-        ps.setInt(1, nominasemanal.getId_nomina());
-        ps.setString(2, nominasemanal.getId_nomina_semanal());
-        ps.setDate(3, nominasemanal.getFecha());
+        ps.setInt(1, nominamensual.getId_nomina());
+        ps.setString(2, nominamensual.getId_nomina_mensual());
+        ps.setDate(3, nominamensual.getFecha());
 
         ps.execute();
         rta = true;
@@ -78,22 +78,22 @@ public class NominaSemanalDao {
         return rta;
     }
 
-    public NominaSemanal buscarNominaSemanal(String id_nomina_semanal)throws Exception{
-        NominaSemanal p = new NominaSemanal();
+    public NominaMensual buscarNominaMensual(String id_nomina_mensual)throws Exception{
+        NominaMensual p = new NominaMensual();
         
         Conexion con= new Conexion();
         
-        Connection conexion = con.conectar("NominaSemanalDao.buscarNominaSemanal()");
+        Connection conexion = con.conectar("NominaMensualDao.buscarNominaMensual()");
                 
        
-        String sql = "SELECT * FROM nomina_semanal WHERE id_nomina = ?";
+        String sql = "SELECT * FROM nomina_mensual WHERE id_nomina = ?";
         PreparedStatement ps = conexion.prepareStatement(sql);
         
-        ps.setString(1, id_nomina_semanal);                
+        ps.setString(1, id_nomina_mensual);                
         ResultSet rst = ps.executeQuery();
         if (rst.next()){
             p.setId_nomina(rst.getInt(1));
-            p.setId_nomina_semanal(rst.getString(1));
+            p.setId_nomina_mensual(rst.getString(1));
             p.setFecha(rst.getDate(2));
         } else p=null;
         
@@ -107,8 +107,8 @@ public class NominaSemanalDao {
         return p;
     }
 
-    public List<NominaSemanal> buscarNominasSemanales() throws Exception {
-        List<NominaSemanal> producciones = new ArrayList<>();
+    public List<NominaMensual> buscarNominasMensuales() throws Exception {
+        List<NominaMensual> producciones = new ArrayList<>();
 
         Conexion con = new Conexion();
         Connection conexion = con.conectar("ProduccionDao.buscarProducciones()");
@@ -148,11 +148,11 @@ public class NominaSemanalDao {
         return producciones;
     }
 
-    public List<NominaSemanal> buscarNominasSemanalesFechas(String fechai, String fechaf) throws Exception {
-        List<NominaSemanal> producciones = new ArrayList<>();
+    public List<NominaMensual> buscarNominasMensualesFechas(String fechai, String fechaf) throws Exception {
+        List<NominaMensual> producciones = new ArrayList<>();
 
         Conexion con = new Conexion();
-        Connection conexion = con.conectar("NominaSemanalDao.buscarNominasSemanalesFechas()");
+        Connection conexion = con.conectar("NominaMensualDao.buscarNominasMensualesFechas()");
 
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         //java.util.Date fechai2 = sdf.parse(fechai);
@@ -160,7 +160,7 @@ public class NominaSemanalDao {
         //java.util.Date fechaf2 = sdf.parse(fechaf);
         //java.sql.Date fechaf1 = new java.sql.Date(fechaf2.getTime());
         //String sql = "SELECT * FROM produccion ";
-        String sql = "SELECT * FROM nomina_semanal WHERE fecha between '" + fechai + "' and '" + fechaf + "';";
+        String sql = "SELECT * FROM nomina_mensual WHERE fecha between '" + fechai + "' and '" + fechaf + "';";
         PreparedStatement ps = conexion.prepareStatement(sql);
 
         CargoDao cd = new CargoDao();
@@ -169,9 +169,9 @@ public class NominaSemanalDao {
 
         //System.out.println("fechai: " + fechai + " fechaf: " + fechaf);
         while (rst.next()) {
-            NominaSemanal p = new NominaSemanal();
+            NominaMensual p = new NominaMensual();
             p.setId_nomina(rst.getInt(1));
-            p.setId_nomina_semanal(rst.getString(2));
+            p.setId_nomina_mensual(rst.getString(2));
             p.setFecha(rst.getDate(3));
             producciones.add(p);
             
@@ -189,7 +189,7 @@ public class NominaSemanalDao {
         return producciones;
     }
 
-    public int buscarNominasSemanalesUsuarioFechasX(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
+    public int buscarNominasMensualesUsuarioFechasX(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
 
         //System.out.println("fechai : " + fechai + " fechaf: " + fechaf );
         Conexion con = new Conexion();
@@ -239,7 +239,7 @@ public class NominaSemanalDao {
         return total;
     }
 
-    public int buscarNominasSemanalesUsuarioFechas(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
+    public int buscarNominasMensualesUsuarioFechas(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
 
         //System.out.println("fechai : " + fechai + " fechaf: " + fechaf );
         Conexion con = new Conexion();
@@ -289,7 +289,7 @@ public class NominaSemanalDao {
         return total;
     }
 
-    public boolean eliminarNominaSemanal(int id_produccion) throws Exception {
+    public boolean eliminarNominaMensual(int id_produccion) throws Exception {
         boolean rta = false;
 
         Conexion con = new Conexion();
@@ -345,7 +345,7 @@ public class NominaSemanalDao {
         return empleados;
     }
 
-    public List<Integer> buscarNominaSemanalEmpleado(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
+    public List<Integer> buscarNominaMensualEmpleado(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
 
         List<Integer> totales = new ArrayList<>();
 
@@ -353,7 +353,7 @@ public class NominaSemanalDao {
 
         //System.out.println("fechai : " + fechai + " fechaf: " + fechaf );
         Conexion con = new Conexion();
-        Connection conexion = con.conectar("NominaSemanalDao.buscarNominaSemanalEmpleado()");
+        Connection conexion = con.conectar("NominaMensualDao.buscarNominaMensualEmpleado()");
 
         //String sql = "SELECT p.id_produccion, p.id_empleado, e.nombre, e.apellido, e.cedula, e.id_cargo, p.fecha, p.cantidad, p.estado FROM produccion p, empleado e WHERE p.id_empleado=e.id_empleado and p.fecha between '" + fechai + "' and '" + fechaf + "';";
         String sql = "SELECT id_empleado, id_cargo, cantidad, fecha FROM produccion WHERE id_empleado=" + id_empleado + "and fecha between '" + fechai + "' and '" + fechaf + "';";
@@ -405,7 +405,7 @@ public class NominaSemanalDao {
         return totales;
     }
 
-    public List<Integer> calcularNominaSemanalEmpleado(int id_empleado, int tipo, String fechai, String fechaf) throws Exception {
+    public List<Integer> calcularNominaMensualEmpleado(int id_empleado, int tipo, String fechai, String fechaf) throws Exception {
 
         //System.out.println("id_empleado: " + id_empleado + " tipo: " + tipo + " fechai: " + fechai + " fechaf: " + fechaf);
         List<Integer> totales = new ArrayList<>();
@@ -413,7 +413,7 @@ public class NominaSemanalDao {
         //HistoricoEmpleado he = hed.buscarHistoricoEmpleadoFechas(id_empleado, fechai, fechaf );
         //HistoricoCargo hc = hcd.buscarHistoricoCargoFechas(he.getId_cargo(), fechai, fechaf );
         Conexion con = new Conexion();
-        Connection conexion = con.conectar("NominaSemanalDao.calcularNominaSemanalEmpleado()");
+        Connection conexion = con.conectar("NominaMensualDao.calcularNominaMensualEmpleado()");
 
         //String sql = "SELECT fecha, cantidad FROM produccion WHERE id_empleado=" + id_empleado  + " and fecha between '" + fechai + "' and '" + fechaf + "';";
         String sql = "SELECT p.fecha, p.cantidad FROM produccion p WHERE p.id_empleado=" + id_empleado + " and fecha between '" + fechai + "' and '" + fechaf + "';";
@@ -481,8 +481,8 @@ public class NominaSemanalDao {
             HistoricoFijos hf2 = hfd.buscarHistoricoFijosFechas(2, fechai, rst.getDate(1).toString());
             HistoricoFijos hf3 = hfd.buscarHistoricoFijosFechas(3, fechai, rst.getDate(1).toString());
 
-            fijo1 = fijo1 + (hf1.getValor() / 20);
-            fijo2 = fijo2 + ((hf2.getValor() * (hc.getPago() * rst.getInt(2))) / 2000);
+            fijo1 = fijo1 + (hf1.getValor() / 5);
+            fijo2 = fijo2 + ((hf2.getValor() * (hc.getPago() * rst.getInt(2))) / 500);
             //fijo3 = fijo3 + ((hf3.getValor() * (hc.getPago() * rst.getInt(2))) / 2000);
             
             //fijo3 = fijo3 + ((hf3.getValor() * (hc.getPago() * rst.getInt(2))) / 400);
@@ -499,20 +499,20 @@ public class NominaSemanalDao {
         if (tipo ==1){
         
         
-        totales.add ((base*4 * multip)/2);
-        totales.add (base*4 * multic);
+        totales.add ((base* multip)/2);
+        totales.add (base* multic);
         
         //cesantias
         //totales.add(fijo3);
         //totales.add(((base*4 * multic * fijo3)/200));
-        totales.add(((base*4 * multic * fijo3)/100));
+        totales.add(((base* multic * fijo3)/100));
         }
         else
         {
            int laborados =  pd.contarProducciones(id_empleado);
-            totales.add ((base*4 * laborados)/730);
-            totales.add ((base*4 * laborados)/360);
-            totales.add ((base*4 * fijo3)/100);
+            totales.add ((base * laborados)/730);
+            totales.add ((base * laborados)/360);
+            totales.add ((base * fijo3)/100);
         }
 
         rst.close();

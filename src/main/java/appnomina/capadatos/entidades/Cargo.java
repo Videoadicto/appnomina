@@ -14,16 +14,18 @@ public class Cargo implements Serializable{
     private int id_cargo;
     private String nombre;
     private int pago;
+    private int estado;
 
     
     public Cargo(){
         super();
     }
     
-    public Cargo(int id_cargo, String nombre, int pago) {
+    public Cargo(int id_cargo, String nombre, int pago, int estado) {
         this.id_cargo = id_cargo;
         this.nombre = nombre;
         this.pago = pago;
+        this.estado = estado;
     } 
 
     public int getId_cargo() {
@@ -50,10 +52,20 @@ public class Cargo implements Serializable{
         this.pago = pago;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Cargo{" + "id_cargo=" + id_cargo + ", nombre=" + nombre + ", pago=" + pago + '}';
+        return "Cargo{" + "id_cargo=" + id_cargo + ", nombre=" + nombre + ", pago=" + pago + ", estado=" + estado + '}';
     }
+
+  
     
     
     

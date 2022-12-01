@@ -20,14 +20,14 @@
             String msg3 = "";
             if (validar3.equals("1")) {
             
-            int id3 = Integer.parseInt(request.getParameter("id2"));
-            int eps3 = Integer.parseInt(request.getParameter("eps2"));
-            int transporte3 = Integer.parseInt(request.getParameter("transporte2"));
+            int idFijo3 = Integer.parseInt(request.getParameter("idFijo2"));
+            String nombre3 = request.getParameter("nombre2");
+            int valor3 = Integer.parseInt(request.getParameter("valor2"));
             String nuevo3 = request.getParameter("nuevo2");
             
             //System.out.print("eps3=" + eps3 + "&transporte3=" + transporte3 + "&nuevo3=" + nuevo3 + "&validar3=" + validar3);
             
-                Fijos p = new Fijos(id3, eps3, transporte3);
+                Fijos p = new Fijos(idFijo3, nombre3, valor3);
                 msg3 = fachada.insertarFijos(p, nuevo3);
 
                 if (msg3.contains("Error")) {
@@ -36,7 +36,7 @@
         <%= msg3%>
     </div>
     <% } else {
-        pagina = "listarSemanal.jsp";
+        pagina = "listarFijos.jsp";
     %> 
     <div id="divGuardar" style="display: none;" class="alert alert-success">
         <%= msg3%>
@@ -50,7 +50,7 @@
     <input id="esto1" style="display: none;" value = <%= msg4%> >
 
     <script>
-        $("#box").load("pg-semanal/" + ($(esto).val()) + "?mens=" + ($(esto1).val()) + uneFechas(), function () {
+        $("#box").load("pg-fijos/" + ($(esto).val()) + "?mens=" + ($(esto1).val()) + uneFechas(), function () {
         });
     </script>
     <%
