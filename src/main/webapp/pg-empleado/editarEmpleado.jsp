@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label for="cedula" class="form-label">Cedula:</label>
                             <input type="text" name="cedula" id="cedula" 
-                                   placeholder="Ingrese la cedula" required
+                                   placeholder="Ingrese la cedula" readonly
                                    class="form-control" 
                                    value = "<%= empleado.getCedula()%>">
                         </div>
@@ -147,7 +147,7 @@
                             <div class="form-group">
                                 <label for="fechanac" class="form-label">Fecha de Vinculacion:</label>
                                 <div class="form-group">
-                                    <input type="date" name="fechanac" id="fechanac" value="<%= empleado.getFecha_vinculacion()%>" style="width: 200px; vertical-align:10px">
+                                    <input readonly type="date" name="fechanac" id="fechanac" value="<%= empleado.getFecha_vinculacion()%>" style="width: 200px; vertical-align:10px">
                                 </div>
                             </div>
                         </th>

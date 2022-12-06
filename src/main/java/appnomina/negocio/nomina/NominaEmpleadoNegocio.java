@@ -27,11 +27,11 @@ public class NominaEmpleadoNegocio {
             NominaEmpleado pe = nominaempleadoDao.buscarNominaEmpleado(p.getId_nomina_empleado());
             if (pe==null || nuevo.equals("0")){
                 boolean res = nominaempleadoDao.insertarNominaEmpleado(p, nuevo);
-                if (res) rta = "NominaEmpleado guardado con exito";
-                else rta = "Error: No se pudo guardar el nominaempleado";
-            } else rta = "Error: El nominaempleado ya existe";
+                if (res) rta = "La nomina se ha guardado con exito";
+                else rta = "Error: No se pudo guardar la nomina";
+            } else rta = "Error: La nomina ya existe";
         } catch (Exception e) {
-            rta="Error: No se pudo guardar el nominaempleado";
+            rta="Error: No se pudo guardar la nomina";
             e.printStackTrace();
         }
         return rta;

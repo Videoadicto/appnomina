@@ -43,16 +43,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>                        
-                                <div class="form-group">
-                                    <label for="idEmpleado" class="form-label">Id:</label>
-                                    <input type="text" name="idEmpleado" id="idEmpleado" 
-                                           placeholder="Ingrese el Id del empleado" required
-                                           class="form-control" readonly
-                                           value = "<%= empleado.getId_empleado()%>">
-                                </div>
-                            </th>
-
                             <th>
                                 <div class="form-group">
                                     <label for="idCategoria" class="form-label">Categoria:</label>
@@ -62,6 +52,29 @@
                                            value="<%= (empleado.getIdCargo().getNombre()).replace("_", " ")%>">
                                 </div>
                             </th>
+
+                            <th>
+                                <div class="form-group">
+                                    <label for="estado" class="form-label">Estado:</label>
+                                    <%{
+                                            String etd = "";
+                                            if (empleado.getEstado() == 1) {
+                                                etd = "ACTIVO";
+                                            } else {
+                                                etd = "INACTIVO";
+                                            }
+                                    %>
+                                    <input type="text" name="estado" id="estado" 
+                                           placeholder="" required
+                                           class="form-control" readonly
+                                           value = "<%= etd%>">
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                            </th>
+
+
                         </tr>                            
 
                         <tr>
@@ -131,29 +144,6 @@
                                 </div>
                             </th>
 
-                        </tr>
-
-                        <tr>
-                            <th>
-                                <div class="form-group">
-                                    <label for="estado" class="form-label">Estado:</label>
-                                    <%{
-                                            String etd = "";
-                                            if (empleado.getEstado() == 1) {
-                                                etd = "ACTIVO";
-                                            } else {
-                                                etd = "INACTIVO";
-                                            }
-                                    %>
-                                    <input type="text" name="estado" id="estado" 
-                                           placeholder="" required
-                                           class="form-control" readonly
-                                           value = "<%= etd%>">
-                                    <%
-                                        }
-                                    %>
-                                </div>
-                            </th>
                         </tr>
 
                         <tr>                               

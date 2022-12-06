@@ -22,6 +22,7 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="js/jquery-3.2.1.min.js"></script>
+            <script href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.js"></script>
             <link rel="stylesheet" href="css/estilos3.css" type="text/css"/>
             <link rel="stylesheet" href="css/estilos.css" type="text/css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -81,7 +82,7 @@
                         });
                     });
                     $("#menu9").click(function () {
-                        $("#box").load("listarInformes.jsp", function () {
+                        $("#box").load("pg-informes/informes.jsp?mens=0" + uneFechas(), function () {
                         });
                     });
                     $("#menu10").click(function () {
@@ -167,7 +168,7 @@
 
 
                 <div class="profile">
-                    <img src="img/casa1.png" alt="profile_picture" style="width:120px">
+                    <img src="img/jkb.png" alt="profile_picture" style="width:120px">
                     <h3></h3>
                     <p> </p>
                 </div>
@@ -220,7 +221,7 @@
                     </li>
 
                    
-                    <!--
+
                     
                     <li>
                         <a>
@@ -229,7 +230,6 @@
                         </a>
                     </li>
                     
-                    -->
                     
                     <li>
                         <a>
@@ -265,7 +265,7 @@
             modificarMenu();
         </script>
 
-        <input id="emple" style="display: none;" value = <%= usuario.getNombre()%> >
+        <input id="emple" style="display: none;" value = <%= (usuario.getNombre())%> >
 
         <%  }
 

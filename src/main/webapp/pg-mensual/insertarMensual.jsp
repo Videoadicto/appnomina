@@ -122,7 +122,7 @@
                         var cesantias1 = cesantias.toLocaleString();
                         var icesantias1 = icesantias.toLocaleString();
                         var totales1 = totales.toString();
-                        $("#boxInsertar").load("pg-mensual/guardarMensual.jsp?" + (validarDatosMensual(nuevo = 1, idsx = ids1, primasx = primas1, cesantiasx = cesantias1, icesantiasx = icesantias1, totalesx = totales1)), function () {
+                        $("#boxInsertar").load("pg-mensual/guardarMensual.jsp?" + (validarDatosSemanal(nuevo = 1, idsx = ids1, primasx = primas1, cesantiasx = cesantias1, icesantiasx = icesantias1, totalesx = totales1)), function () {
                         });
 
 

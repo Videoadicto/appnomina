@@ -25,7 +25,7 @@
 
             $(document).ready(function () {
                 $("#btnGuardar").click(function () {
-                    $("#boxInsertar").load("pg-produccion/guardarProduccion.jsp?" + (validarDatosProduccion(nuevo = 1)), function () {
+                    $("#boxInsertar").load("pg-informes/insertarGrafica.jsp", function () {
                     });
                 });
             });
@@ -33,10 +33,10 @@
     </head>
 
     <body>
-        <%
-            String fechax3 = request.getParameter("fechah2");
-            int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado"));
 
+        <%
+            String fechai3 = request.getParameter("fechal2");
+            String fechaf3 = request.getParameter("fechah2");
 
         %>
 
@@ -74,39 +74,45 @@
                     <input name="idProduccion" id="idProduccion" style="display: none;" value = 0 >
 
                     <th>
-                           <% Empleado empleado = fachada1.buscarEmpleado(idEmpleado3);
+                        <div class="form-group">
+                            <label for="idEmpleado">Empleado:</label>
+                            <select id="idEmpleado" name="idEmpleado" required class="form-control">
+                                <option value="" selected >  </option>
+                                <%                                            for (Empleado empleado : fachada1.buscarEmpleados()) {
+                                %>
+                                <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </div>
+                    </th>
 
-                            %>
 
-                            <tr>
-                                <th>
-                                    <div class="form-group">
-                                        <label for="idEmpleado1" class="form-label">Empleado:</label>
-                                        <input type="text" name="idEmpleado1" id="idEmpleado1" 
-                                               placeholder="Ingrese la produccion" readonly
-                                               class="form-control" value = '<%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%>'>
-                                    
-                                    <input  type="text" name="idEmpleado" id="idEmpleado" value = '<%= idEmpleado3%>' style="display: none">
-                                    </div>
-                                </th>
-                            </tr>
 
-                    <tr>
-                        <th>
-                            <div class="form-group">
-                                <label for="produccion" class="form-label">Produccion:</label>
-                                <input type="number" name="produccion" id="produccion" 
-                                       placeholder="Ingrese la produccion"
-                                       class="form-control" required autofocus>
-                            </div>
-                        </th>
+
+
                     </tr>
 
                     <tr>
 
                         <th>
-                                <input  type="date" name="fecha" id="fecha" value = '<%= fechax3%>' style="display: none">
+                            <div class="form-group">
+                                <label for="fechaix" class="form-label">Fecha inicial:</label>
+                                <br>
+                                <input type="date" name="fechaix" id="fechaix" value = '<%= fechai3%>' style="width: 200px; vertical-align:10px">
+                            </div>
                         </th>
+
+
+                        <th>
+                            <div class="form-group">
+                                <label for="fechafx" class="form-label">Fecha Final:</label>
+                                <br>
+                                <input value = '<%= fechaf3%>' type="date" name="fechafx" id="fechafx" style="width: 200px; vertical-align:10px">
+                            </div>
+                        </th>
+
                     </tr>
 
 
@@ -114,8 +120,7 @@
                 </table>
 
 
-                <div id="divInsertar" style="display: none;" class="alert alert-danger">
-                </div>
+                
 
                 <div id="boxInsertar">
                 </div>
@@ -123,8 +128,7 @@
                 <br>
 
                 <div class="form-group">
-                    <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)" >
-                    <button type="button" value="pg-produccion/listarProduccion.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+                    <input type="button" id="btnGuardar" value="Graficar" class="btn" style="background:rgb(0, 195, 255)" >
                 </div>
 
 

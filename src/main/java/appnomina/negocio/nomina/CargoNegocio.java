@@ -24,7 +24,7 @@ public class CargoNegocio {
     public String insertarCargo(Cargo p, String nuevo){
         String rta="";
         try {
-            Cargo pe = cargoDao.buscarCargo(p.getId_cargo());
+            Cargo pe = cargoDao.buscarCargoNombre(p.getNombre());
             if (pe==null || nuevo.equals("0")){
                 boolean res = cargoDao.insertarCargo(p, nuevo);
                 if (res) rta = "Cargo guardado con exito";

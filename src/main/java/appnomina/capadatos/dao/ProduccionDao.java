@@ -374,5 +374,55 @@ public class ProduccionDao {
 
         return empleados;
     }
+    
+    
+    public List<Produccion> buscarProduccionesFechasEmpleado(int id_empleado, String fechai, String fechaf) throws Exception {
+        List<Produccion> producciones = new ArrayList<>();
+
+        Conexion con = new Conexion();
+        Connection conexion = con.conectar("ProduccionDao.buscarProduccionesFechas()");
+
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //java.util.Date fechai2 = sdf.parse(fechai);
+        //java.sql.Date fechai1 = new java.sql.Date(fechai2.getTime());
+        //java.util.Date fechaf2 = sdf.parse(fechaf);
+        //java.sql.Date fechaf1 = new java.sql.Date(fechaf2.getTime());
+        //String sql = "SELECT * FROM produccion ";
+        String sql = "SELECT p.id_produccion, p.id_empleado, e.nombre, e.apellido, e.cedula, e.id_cargo, p.fecha, p.cantidad, p.estado FROM produccion p, empleado e WHERE p.id_empleado=" + id_empleado + " and p.fecha between '" + fechai + "' and '" + fechaf + "';";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        CargoDao cd = new CargoDao();
+
+        ResultSet rst = ps.executeQuery();
+
+        //System.out.println("fechai: " + fechai + " fechaf: " + fechaf);
+        while (rst.next()) {
+            Produccion p = new Produccion();
+
+            p.setId_produccion(rst.getInt(1));
+
+            p.getIdEmpleado().setId_empleado(rst.getInt(2));
+            p.getIdEmpleado().setNombre(rst.getString(3));
+            p.getIdEmpleado().setApellido(rst.getString(4));
+            p.getIdEmpleado().setCedula(rst.getString(5));
+            p.getIdEmpleado().setIdCargo(cd.buscarCargo(rst.getInt(6)));
+
+            p.setFecha(rst.getDate(7));
+            p.setCantidad(rst.getInt(8));
+            p.setEstado(rst.getInt(9));
+
+            producciones.add(p);
+        }
+
+        rst.close();
+        ps.close();
+        conexion.close();
+
+        rst = null;
+        ps = null;
+        conexion = null;
+        return producciones;
+    }
+    
 
 }

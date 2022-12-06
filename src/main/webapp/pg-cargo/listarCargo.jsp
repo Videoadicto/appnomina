@@ -57,7 +57,6 @@
             <table id="tablaCargos" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nombre</th>
                         <th>Pago</th>
                         <th>Estado</th>
@@ -78,7 +77,6 @@
                             }
                     %>
                     <tr>                               
-                        <td><%= cargo.getId_cargo()%></td>
                         <td><%= (cargo.getNombre()).replace("_", " ")%></td>
                         <td><%= cargo.getPago()%></td>
                         <td><%= testado%></td>

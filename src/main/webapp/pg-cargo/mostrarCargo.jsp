@@ -45,20 +45,6 @@
                     <tbody>
 
                         <tr>
-                            <th>  
-
-                                <div class="form-group">
-                                    <label for="idCargo" class="form-label">Id:</label>
-                                    <input type="text" name="idCargo" id="idCargo" 
-                                           placeholder="" required
-                                           class="form-control" readonly
-                                           value = "<%= cargo.getId_cargo()%>">
-                                </div>
-
-                            </th> 
-                        </tr>
-
-                        <tr>
                             <th> 
 
 

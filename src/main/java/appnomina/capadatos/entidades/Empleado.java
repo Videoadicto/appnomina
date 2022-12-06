@@ -48,6 +48,7 @@ public class Empleado implements Serializable{
         this.estado = estado;
     }
 
+    
     public int getId_empleado() {
         return id_empleado;
     }
@@ -122,9 +123,10 @@ public class Empleado implements Serializable{
 
     @Override
     public String toString() {
-        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha_vinculacion=" + fecha_vinculacion + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", estado=" + estado + '}';
+        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido  + ", cedula=" + cedula + ", fecha_vinculacion=" + fecha_vinculacion + ", telefono=" + telefono + ", eps=" + eps + ", idCargo=" + idCargo + ", estado=" + estado + '}';
     }
 
+  
 
      
 }

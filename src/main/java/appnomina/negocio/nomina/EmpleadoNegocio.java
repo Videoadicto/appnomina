@@ -27,7 +27,7 @@ public class EmpleadoNegocio {
     public String insertarEmpleado(Empleado p, String nuevo){
         String rta="";
         try {
-            Empleado pe = empleadoDao.buscarEmpleado(p.getId_empleado());
+            Empleado pe = empleadoDao.buscarEmpleadoCedula(p.getCedula());
             if (pe==null || nuevo.equals("0")){
                 boolean res = empleadoDao.insertarEmpleado(p, nuevo);
                 if (res) rta = "Empleado guardado con exito";

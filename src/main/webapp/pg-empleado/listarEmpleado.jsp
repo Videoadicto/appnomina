@@ -72,10 +72,9 @@
                 <table id="tablaEmpleados" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>Cedula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
-                            <th>Cedula</th>
                             <th>Telefono</th>
                             <th>Cargo</th>
                             <th>Estado</th>
@@ -95,10 +94,9 @@
 
                         %>
                         <tr>                               
-                            <td><%= empleado.getId_empleado()%></td>
+                            <td><%= empleado.getCedula()%></td>
                             <td><%= (empleado.getNombre()).replace("_", " ")%></td>
                             <td><%= (empleado.getApellido()).replace("_", " ")%></td>
-                            <td><%= empleado.getCedula()%></td>
                             <td><%= empleado.getTelefono()%></td>
                             <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
                             <td><%= testado%></td>

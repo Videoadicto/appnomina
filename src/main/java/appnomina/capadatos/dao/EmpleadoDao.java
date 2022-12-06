@@ -132,6 +132,51 @@ public class EmpleadoDao {
         conexion = null;
         return p;
     }
+    
+    
+    public Empleado buscarEmpleadoCedula(String cedula) throws Exception {
+        Empleado p = new Empleado();
+
+        Conexion con = new Conexion();
+
+        Connection conexion = con.conectar("EmpleadoDao.buscarEmpleadoCedula()");
+
+        //String sql = "SELECT * FROM empleado WHERE id_empleado = ?";
+        String sql = "SELECT e.id_empleado, e.nombre, e.apellido, e.cedula, e.fecha_vinculacion, e.telefono, e.eps, e.id_cargo, c.nombre, c.pago, e.estado FROM empleado e, cargo c WHERE e.id_cargo=c.id_cargo and e.cedula = ?;";
+
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        CargoDao cd = new CargoDao();
+
+        ps.setString(1, cedula);
+        ResultSet rst = ps.executeQuery();
+        if (rst.next()) {
+            p.setId_empleado(rst.getInt(1));
+            p.setNombre(rst.getString(2));
+            p.setApellido(rst.getString(3));
+            p.setCedula(rst.getString(4));
+            p.setFecha_vinculacion(rst.getString(5));
+            p.setTelefono(rst.getString(6));
+            p.setEps(rst.getString(7));
+            p.getIdCargo().setId_cargo(rst.getInt(8));
+            p.getIdCargo().setNombre(rst.getString(9));
+            p.getIdCargo().setPago(rst.getInt(10));
+            p.setEstado(rst.getInt(11));
+        } else {
+            p = null;
+        }
+
+        rst.close();
+        ps.close();
+        conexion.close();
+
+        rst = null;
+        ps = null;
+        conexion = null;
+        return p;
+    }
+    
+    
 
     public List<Empleado> buscarEmpleados() throws Exception {
         List<Empleado> empleados = new ArrayList<>();
@@ -211,7 +256,7 @@ public class EmpleadoDao {
             cargo.setId_cargo(rst.getInt(1));
             cargo.setNombre((rst.getString(2)));
             cargo.setPago((rst.getInt(3)));
-
+            cargo.setEstado((rst.getInt(4)));
             cargos.add(cargo);
         }
         rst.close();

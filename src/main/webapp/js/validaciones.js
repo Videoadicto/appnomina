@@ -411,6 +411,32 @@ function validarDatosProduccion(nuevo) {
 }
 
 
+function validarDatosGraficarSemanal(nuevo) {
+
+    //window.alert("mercy");
+
+    
+
+    var idEmpleado1 = ((frmRegistrar.idEmpleado.value).trim()).replace(/ /g, "_");
+    var fechai = ((frmRegistrar.fechaix.value).trim()).replace(/ /g, "");
+    var fechaf = ((frmRegistrar.fechafx.value).trim()).replace(/ /g, "");
+    var produccion1 = ((frmRegistrar.produccion.value).trim()).replace(/ /g, "");
+
+    //window.alert("idEmpleado1=" + idEmpleado1 + "&nombre1=" + nombre1 + "&apellido1=" + apellido1 + "&cedula1=" + cedula1 + "&fechanac1=" + fechanac1 + "&telefono1=" + telefono1 + "&eps1=" + eps1 + "&idCargo1=" + idCargo1 + "& nuevo2=" + nuevo + "&validar2=1");
+    //window.alert("fecha: " + fecha1);
+
+    if (idEmpleado1 === "" || fecha1 === "" || fecha2 === "" || produccion1 === "")
+    {
+        document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
+        datos = "validar2=0";
+    } else {
+        datos = "idEmpleado2=" + idEmpleado1 + "&fechai1=" + fechai + "&fechaf1=" + fechaf + "&nuevo2=" + nuevo + "&validar2=1";
+        document.getElementById("divInsertar").style = "display: none;";
+    }
+    return datos;
+}
+
+
 function validarDatosVenta(nuevo, filas) {
 
     //window.alert("si0");

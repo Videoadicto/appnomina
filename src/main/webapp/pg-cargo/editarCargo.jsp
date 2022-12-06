@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <label for="nombre" class="form-label">Nombre:</label>
                                 <input type="text" name="nombre" id="nombre" 
-                                       placeholder="Ingrese el nombre" required
+                                       placeholder="Ingrese el nombre" readonly
                                        class="form-control" 
                                        value = "<%= (cargo.getNombre()).replace("_", " ")%>">
                             </div>

@@ -74,9 +74,12 @@
                                 <option value="" selected >  </option>
                                 <%
                                     for (Cargo cargo : fachada.getCargo()) {
+                                    if (cargo.getEstado() == 1) {
+
                                 %>
                                 <option value="<%= cargo.getId_cargo()%>"> <%= (cargo.getNombre()).replace("_", " ")%></option>
                                 <%
+                                    }
                                     }
                                 %>
                             </select>

@@ -153,6 +153,37 @@ public class CargoDao {
         return p;
     }
     
+    
+    public Cargo buscarCargoNombre(String nombre)throws Exception{
+        Cargo p = new Cargo();
+        
+        Conexion con= new Conexion();
+        
+        Connection conexion = con.conectar("CargoDao.buscarCargoNombre()");
+                
+       
+        String sql = "SELECT * FROM cargo WHERE nombre = ?";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        
+        ps.setString(1, nombre);                
+        ResultSet rst = ps.executeQuery();
+        if (rst.next()){
+            p.setId_cargo(rst.getInt(1));
+            p.setNombre(rst.getString(2));
+            p.setPago(rst.getInt(3));
+            p.setEstado(rst.getInt(4));
+        } else p=null;
+        
+        rst.close();        
+        ps.close();
+        conexion.close();
+        
+        rst=null;
+        ps=null;
+        conexion=null;
+        return p;
+    }
+    
     public List<Cargo> buscarCargos()throws Exception{
         List<Cargo> cargos = new ArrayList<>();
                 
