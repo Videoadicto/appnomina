@@ -61,7 +61,7 @@ public class NominaEmpleadoDao {
         //String sql = "INSERT INTO produccion VALUES (?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setInt(1, nominaempleado.getId_nomina_empleado());
-        ps.setString(2, nominaempleado.getId_nomina());
+        ps.setInt(2, nominaempleado.getId_nomina());
         ps.setInt(3, nominaempleado.getId_empleado());
         ps.setInt(4, nominaempleado.getId_concepto());
         ps.setInt(5, nominaempleado.getValor());
@@ -91,7 +91,7 @@ public class NominaEmpleadoDao {
         ResultSet rst = ps.executeQuery();
         if (rst.next()) {
             p.setId_nomina_empleado(rst.getInt(1));
-            p.setId_nomina(rst.getString(2));
+            p.setId_nomina(rst.getInt(2));
             p.setId_empleado(rst.getInt(3));
             p.setId_concepto(rst.getInt(4));
             p.setValor(rst.getInt(5));
@@ -126,7 +126,7 @@ public class NominaEmpleadoDao {
         while (rst.next()) {
             NominaEmpleado p = new NominaEmpleado();
             p.setId_nomina_empleado(rst.getInt(1));
-            p.setId_nomina(rst.getString(2));
+            p.setId_nomina(rst.getInt(2));
             p.setId_empleado(rst.getInt(3));
             p.setId_concepto(rst.getInt(4));
             p.setValor(rst.getInt(5));

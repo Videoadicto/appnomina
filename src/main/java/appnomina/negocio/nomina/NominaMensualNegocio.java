@@ -6,10 +6,13 @@
 package appnomina.negocio.nomina;
 
 import appnomina.capadatos.dao.NominaMensualDao;
+import appnomina.capadatos.entidades.DatosMensual;
 import appnomina.capadatos.entidades.NominaMensual;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.Empleado;
 import appnomina.capadatos.entidades.NominaEmpleado;
+import appnomina.capadatos.entidades.Semanal;
+import java.sql.Date;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +56,17 @@ public class NominaMensualNegocio {
         return p;
     }
     
+    
+    public int buscarIdNominaMensual(String id_semanal, Date fecha){
+        int id_nomina =  0;
+        try {
+            id_nomina = nominaMensualDao.buscarIdNominaMensual(id_semanal, fecha);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id_nomina;
+    }
+    
     public List<NominaMensual> buscarNominasMensuales(){
         List<NominaMensual>  nominasMensuales;
         try {
@@ -64,10 +78,22 @@ public class NominaMensualNegocio {
         return nominasMensuales;
     }
     
-    public List<NominaMensual> buscarNominasMensualesFechas(String fechai, String fechaf){
-        List<NominaMensual> nominasMensuales;
+    public List<Semanal> buscarNominasMensualesFechas(String fechai, String fechaf){
+        List<Semanal> nominasMensuales;
         try {
             nominasMensuales = nominaMensualDao.buscarNominasMensualesFechas(fechai, fechaf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            nominasMensuales= null;
+        }
+        return nominasMensuales;
+    }
+    
+    
+    public List<DatosMensual> buscarNominasMensualesTotalesFechas(String fechai, String fechaf){
+        List<DatosMensual> nominasMensuales;
+        try {
+            nominasMensuales = nominaMensualDao.buscarNominasMensualesTotalesFechas(fechai, fechaf);
         } catch (Exception e) {
             e.printStackTrace();
             nominasMensuales= null;

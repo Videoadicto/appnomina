@@ -10,6 +10,8 @@ import appnomina.capadatos.entidades.NominaSemanal;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.Empleado;
 import appnomina.capadatos.entidades.NominaEmpleado;
+import appnomina.capadatos.entidades.Semanal;
+import java.sql.Date;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,18 @@ public class NominaSemanalNegocio {
         return p;
     }
     
+    
+    public int buscarIdNominaSemanal(String id_semanal, Date fecha){
+        int id_nomina =  0;
+        try {
+            id_nomina = nominaSemanalDao.buscarIdNominaSemanal(id_semanal, fecha);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id_nomina;
+    }
+    
+    
     public List<NominaSemanal> buscarNominasSemanales(){
         List<NominaSemanal>  nominasSemanales;
         try {
@@ -64,8 +78,8 @@ public class NominaSemanalNegocio {
         return nominasSemanales;
     }
     
-    public List<NominaSemanal> buscarNominasSemanalesFechas(String fechai, String fechaf){
-        List<NominaSemanal> nominasSemanales;
+    public List<Semanal> buscarNominasSemanalesFechas(String fechai, String fechaf){
+        List<Semanal> nominasSemanales;
         try {
             nominasSemanales = nominaSemanalDao.buscarNominasSemanalesFechas(fechai, fechaf);
         } catch (Exception e) {

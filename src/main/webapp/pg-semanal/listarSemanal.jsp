@@ -4,6 +4,7 @@
     Author     : Videoadicto
 --%>
 
+<%@page import="appnomina.capadatos.entidades.Semanal"%>
 <%@page import="appnomina.capadatos.entidades.NominaEmpleado"%>
 <%@page import="appnomina.capadatos.entidades.NominaSemanal"%>
 <%@page import="appnomina.capadatos.entidades.Empleado"%>
@@ -120,37 +121,33 @@
                 <table id="tablaSemanals" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>Cedula</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
-                            <th>Cedula</th>
+                            <th>Fecha</th>
                             <th>Total</th>
                             <th>Prima</th>
                             <th>Cesantias</th>
-
-                           
-                            
                         </tr>                            
                     </thead>
                     <tbody>
-                        <%
-                        for (NominaSemanal semanal : fachada.buscarNominasSemanalesFechas(fechai3, fechaf3)) {
-                        //NominaEmpleado nomina = new NominaEmpleado();
-                        
-                        //for (NominaEmpleado empleado : fachada2.buscarNominasEmpleados(semanal.getId_nomina_semanal())) {
-                        
-                        //nomina = fachada2.buscarNominaEmpleado(semanal.getId_nomina()); 
-                       
-                        %>
-                        
 
-                       
-                        
-                        
+                        <% for (Semanal nominaempleado : fachada.buscarNominasSemanalesFechas(fechai3, fechaf3)) {
+                                //int estado = empleado.getEstado();
+
+                        %>
+                        <tr>       
+                            <td><%= nominaempleado.getCedula()%></td>
+                            <td><%= (nominaempleado.getNombre()).replace("_", " ")%></td>
+                            <td><%= (nominaempleado.getApellido()).replace("_", " ")%></td>
+                            <td><%= nominaempleado.getFecha()%></td>
+                            <td><%= nominaempleado.getTotal()%></td>
+                            <td><%= nominaempleado.getPrima()%></td>
+                            <td><%= nominaempleado.getCesantias()%></td>
+                        </tr> 
                         <%
-                            
-                        
-                    }
+
+                            }
                             //System.out.println(session.getAttribute("rol").toString());
                         %>
                     </tbody>
@@ -178,13 +175,13 @@
                 }
             }
         %>
-        
+
         <div id="boxListar">
         </div>    
 
         <div class="card-footer">
         </div>
-        
+
         <input name="tipo" id="tipo" style="display: none;" value = "1" >
 
         <script src="js/dataTable/dataTables.buttons.min.js"></script>

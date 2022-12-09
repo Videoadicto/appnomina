@@ -246,7 +246,7 @@
                     <thead>
                         <tr>
                             <th>Sel.</th>
-                            <th>Id Emp.</th>
+                            <th>Indice</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Cedula</th>

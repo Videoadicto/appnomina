@@ -6,6 +6,9 @@
 
 
 
+<%@page import="appnomina.capadatos.entidades.DatosMensual"%>
+<%@page import="appnomina.capadatos.entidades.NominaEmpleado"%>
+<%@page import="appnomina.capadatos.entidades.NominaMensual"%>
 <%@page import="org.jfree.ui.TextAnchor"%>
 <%@page import="org.jfree.chart.labels.ItemLabelPosition"%>
 <%@page import="org.jfree.chart.labels.ItemLabelAnchor"%>
@@ -27,7 +30,7 @@
 <%@page import="org.jfree.chart.ChartFactory"%>
 <%@page import="org.jfree.data.category.DefaultCategoryDataset"%>
 <%-- <%@page import="appnomina.capadatos.entidades.Produccion"%> --%>
-<%@page import="appnomina.capadatos.entidades.Empleado"%>
+<%@page import="appnomina.capadatos.entidades.NominaMensual"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -35,7 +38,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:useBean id="fachada" class="appnomina.negocio.facade.ProduccionFacade" scope="page"></jsp:useBean>
+        <jsp:useBean id="fachada" class="appnomina.negocio.facade.NominaMensualFacade" scope="page"></jsp:useBean>
         <jsp:useBean id="fachada1" class="appnomina.capadatos.dao.EmpleadoDao" scope="page"></jsp:useBean>
         <%--     <jsp:useBean id="fachada2" class="appnomina.negocio.facade.EmpleadoFacade"></jsp:useBean> --%>
     </head>
@@ -44,24 +47,25 @@
 
         <%
 
+            
             String validar3 = request.getParameter("validar");
 
             if (validar3.equals("1")) {
 
                 String fechai3 = request.getParameter("fechai2");
                 String fechaf3 = request.getParameter("fechaf2");
-                int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+                //int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
 
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-                for (Produccion produccion : fachada.buscarProduccionesFechasEmpleado(idEmpleado3, fechai3, fechaf3)) {
+                for (DatosMensual nomina : fachada.buscarNominasMensualesTotalesFechas(fechai3, fechaf3)) {
 
                     //System.out.println(produccion.getFecha() + " " + produccion.getIdEmpleado().getCedula() + " " + produccion.getIdEmpleado().getNombre());
-                    dataset.setValue(produccion.getCantidad(), produccion.getIdEmpleado().getNombre().replace("_", " ") + " " + produccion.getIdEmpleado().getApellido().replace("_", " "), produccion.getFecha());
+                    dataset.setValue(nomina.getValor(), nomina.getCargo().replace("_", " "), nomina.getFecha());
                 }
 
-                JFreeChart chart = ChartFactory.createBarChart3D("Produccion", "fechas",
-                        "Producido", dataset, PlotOrientation.VERTICAL, true,
+                JFreeChart chart = ChartFactory.createBarChart3D("Nominas", "fechas",
+                        "Valor", dataset, PlotOrientation.VERTICAL, true,
                         true, true);
 
                 final CategoryPlot p = chart.getCategoryPlot();

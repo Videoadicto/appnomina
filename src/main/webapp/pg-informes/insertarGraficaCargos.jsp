@@ -6,6 +6,9 @@
 
 
 
+<%@page import="appnomina.capadatos.entidades.DatosMensual"%>
+<%@page import="appnomina.capadatos.entidades.NominaEmpleado"%>
+<%@page import="appnomina.capadatos.entidades.NominaMensual"%>
 <%@page import="org.jfree.ui.TextAnchor"%>
 <%@page import="org.jfree.chart.labels.ItemLabelPosition"%>
 <%@page import="org.jfree.chart.labels.ItemLabelAnchor"%>
@@ -27,7 +30,7 @@
 <%@page import="org.jfree.chart.ChartFactory"%>
 <%@page import="org.jfree.data.category.DefaultCategoryDataset"%>
 <%-- <%@page import="appnomina.capadatos.entidades.Produccion"%> --%>
-<%@page import="appnomina.capadatos.entidades.Empleado"%>
+<%@page import="appnomina.capadatos.entidades.NominaMensual"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -44,20 +47,21 @@
 
         <%
 
+            
             String validar3 = request.getParameter("validar");
 
             if (validar3.equals("1")) {
 
                 String fechai3 = request.getParameter("fechai2");
                 String fechaf3 = request.getParameter("fechaf2");
-                int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+                //int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
 
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-                for (Produccion produccion : fachada.buscarProduccionesFechasEmpleado(idEmpleado3, fechai3, fechaf3)) {
+                for (Produccion produccion : fachada.buscarProduccionesFechasCargos(fechai3, fechaf3)) {
 
                     //System.out.println(produccion.getFecha() + " " + produccion.getIdEmpleado().getCedula() + " " + produccion.getIdEmpleado().getNombre());
-                    dataset.setValue(produccion.getCantidad(), produccion.getIdEmpleado().getNombre().replace("_", " ") + " " + produccion.getIdEmpleado().getApellido().replace("_", " "), produccion.getFecha());
+                    dataset.setValue(produccion.getCantidad(), produccion.getIdEmpleado().getIdCargo().getNombre().replace("_", " "), produccion.getFecha());
                 }
 
                 JFreeChart chart = ChartFactory.createBarChart3D("Produccion", "fechas",

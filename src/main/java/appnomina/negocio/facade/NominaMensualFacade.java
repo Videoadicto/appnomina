@@ -5,13 +5,16 @@
  */
 package appnomina.negocio.facade;
 
+import appnomina.capadatos.entidades.DatosMensual;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.NominaMensual;
 import appnomina.negocio.nomina.ProduccionNegocio;
 import appnomina.negocio.nomina.NominaMensualNegocio;
 import appnomina.capadatos.entidades.Empleado;
 import appnomina.capadatos.entidades.NominaEmpleado;
+import appnomina.capadatos.entidades.Semanal;
 import static java.lang.Integer.parseInt;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -33,13 +36,21 @@ public class NominaMensualFacade {
     public NominaMensual buscarNominaMensual(String id_mensual) {
         return nominaMensualNegocio.buscarNominaMensual(id_mensual);
     }
+    
+    public int buscarIdNominaMensual(String id_semanal, Date fecha) {
+        return nominaMensualNegocio.buscarIdNominaMensual(id_semanal, fecha);
+    }
 
     public List<NominaMensual> buscarNominasMensuales() {
         return nominaMensualNegocio.buscarNominasMensuales();
     }
     
-    public List<NominaMensual> buscarNominasMensualesFechas(String fechai, String fechaf) {
+    public List<Semanal> buscarNominasMensualesFechas(String fechai, String fechaf) {
         return nominaMensualNegocio.buscarNominasMensualesFechas(fechai, fechaf);
+    }
+    
+    public List<DatosMensual> buscarNominasMensualesTotalesFechas(String fechai, String fechaf) {
+        return nominaMensualNegocio.buscarNominasMensualesTotalesFechas(fechai, fechaf);
     }
     
     

@@ -74,6 +74,18 @@ public class ProduccionNegocio {
     }
     
     
+    public List<Produccion> buscarProduccionesFechasCargos(String fechai, String fechaf){
+        List<Produccion> producciones;
+        try {
+            producciones = produccionDao.buscarProduccionesFechasCargos(fechai, fechaf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            producciones= null;
+        }
+        return producciones;
+    }
+    
+    
     public List<Produccion> buscarProduccionesFechasEmpleado(int id_empleado, String fechai, String fechaf){
         List<Produccion> producciones;
         try {

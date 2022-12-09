@@ -13,6 +13,7 @@ import appnomina.capadatos.entidades.HistoricoEmpleado;
 import appnomina.capadatos.entidades.HistoricoCargo;
 import appnomina.capadatos.entidades.HistoricoFijos;
 import appnomina.capadatos.entidades.NominaEmpleado;
+import appnomina.capadatos.entidades.Semanal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -78,33 +79,63 @@ public class NominaSemanalDao {
         return rta;
     }
 
-    public NominaSemanal buscarNominaSemanal(String id_nomina_semanal)throws Exception{
+    public NominaSemanal buscarNominaSemanal(String id_nomina_semanal) throws Exception {
         NominaSemanal p = new NominaSemanal();
-        
-        Conexion con= new Conexion();
-        
+
+        Conexion con = new Conexion();
+
         Connection conexion = con.conectar("NominaSemanalDao.buscarNominaSemanal()");
-                
-       
+
         String sql = "SELECT * FROM nomina_semanal WHERE id_nomina = ?";
         PreparedStatement ps = conexion.prepareStatement(sql);
-        
-        ps.setString(1, id_nomina_semanal);                
+
+        ps.setString(1, id_nomina_semanal);
         ResultSet rst = ps.executeQuery();
-        if (rst.next()){
+        if (rst.next()) {
             p.setId_nomina(rst.getInt(1));
             p.setId_nomina_semanal(rst.getString(1));
             p.setFecha(rst.getDate(2));
-        } else p=null;
-        
-        rst.close();        
+        } else {
+            p = null;
+        }
+
+        rst.close();
         ps.close();
         conexion.close();
-        
-        rst=null;
-        ps=null;
-        conexion=null;
+
+        rst = null;
+        ps = null;
+        conexion = null;
         return p;
+    }
+
+    public int buscarIdNominaSemanal(String id_semanal, Date fecha) throws Exception {
+
+        int id_nomina = 0;
+
+        Conexion con = new Conexion();
+
+        Connection conexion = con.conectar("NominaSemanalDao.buscarIdNominaSemanal()");
+
+        String sql = "SELECT * FROM nomina_semanal ORDER BY id_nomina DESC LIMIT 1";
+
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        //CargoDao cd = new CargoDao();
+        //ps.setInt(1, id_empleado);
+        ResultSet rst = ps.executeQuery();
+        if (rst.next()) {
+            id_nomina = rst.getInt(1);
+        }
+
+        rst.close();
+        ps.close();
+        conexion.close();
+
+        rst = null;
+        ps = null;
+        conexion = null;
+        return id_nomina;
     }
 
     public List<NominaSemanal> buscarNominasSemanales() throws Exception {
@@ -148,7 +179,61 @@ public class NominaSemanalDao {
         return producciones;
     }
 
-    public List<NominaSemanal> buscarNominasSemanalesFechas(String fechai, String fechaf) throws Exception {
+    public List<Semanal> buscarNominasSemanalesFechas(String fechai, String fechaf) throws Exception {
+        List<Semanal> nominaempleado = new ArrayList<>();
+
+        Conexion con = new Conexion();
+        Connection conexion = con.conectar("NominaSemanalDao.buscarNominasSemanalesFechas()");
+
+        //String sql = "SELECT ne. FROM nomina_semanal ns, nomina_empleado ne WHERE ns.id_nomina=ne.id_nomina and ns.fecha between '" + fechai + "' and '" + fechaf + "';";
+        String sql = "SELECT e.cedula, e.nombre, e.apellido, ns.fecha, ne.id_concepto, ne.valor FROM nomina_semanal ns, nomina_empleado ne, empleado e WHERE ns.id_nomina=ne.id_nomina and ns.fecha between '" + fechai + "' and '" + fechaf + "' and ne.id_empleado=e.id_empleado;";
+
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        ResultSet rst = ps.executeQuery();
+
+        Semanal p = new Semanal();
+        while (rst.next()) {
+            
+
+            if (rst.getInt(5) == 1) {
+                p.setCedula(rst.getString(1));
+                p.setNombre(rst.getString(2));
+                p.setApellido(rst.getString(3));
+                p.setFecha(""+ rst.getDate(4));
+                p.setTotal(rst.getInt(6));
+            } else {
+                if (rst.getInt(5) == 3) {
+                    p.setPrima(rst.getInt(6));
+
+                }
+                else
+                {
+                    p.setCesantias(rst.getInt(6));
+                    nominaempleado.add(p);
+                    p = new Semanal();
+                }
+            }
+            //System.out.println(rst.getString(4) + " cedula: " + rst.getString(1) + " " + rst.getString(2) + " " + rst.getString(3) + " concepto: " + rst.getInt(5) + " " + rst.getInt(6));
+        }
+
+        
+        
+        
+        
+    rst.close ();
+
+    ps.close ();
+
+    conexion.close ();
+
+    rst  = null;
+    ps  = null;
+    conexion  = null;
+    return nominaempleado ;
+}
+
+public List<NominaSemanal> buscarNominasSemanalesFechasX(String fechai, String fechaf) throws Exception {
         List<NominaSemanal> producciones = new ArrayList<>();
 
         Conexion con = new Conexion();
@@ -188,6 +273,8 @@ public class NominaSemanalDao {
         conexion = null;
         return producciones;
     }
+    
+    
 
     public int buscarNominasSemanalesUsuarioFechasX(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
 

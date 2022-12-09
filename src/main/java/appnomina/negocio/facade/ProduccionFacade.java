@@ -39,6 +39,10 @@ public class ProduccionFacade {
         return produccionNegocio.buscarProduccionesFechas(fechai, fechaf);
     }
     
+    public List<Produccion> buscarProduccionesFechasCargos(String fechai, String fechaf) {
+        return produccionNegocio.buscarProduccionesFechasCargos(fechai, fechaf);
+    }
+    
     public List<Produccion> buscarProduccionesFechasEmpleado(int id_empleado, String fechai, String fechaf) {
         return produccionNegocio.buscarProduccionesFechasEmpleado(id_empleado, fechai, fechaf);
     }

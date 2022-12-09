@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class NominaEmpleado implements Serializable{
     private int id_nomina_empleado;
-    private String id_nomina;
+    private int id_nomina;
     private int id_empleado;
     private int id_concepto;
     private int valor;
@@ -22,7 +22,7 @@ public class NominaEmpleado implements Serializable{
         super();
     }
     
-    public NominaEmpleado(int id_nomina_empleado, String id_nomina, int id_empleado, int id_concepto, int valor) {
+    public NominaEmpleado(int id_nomina_empleado, int id_nomina, int id_empleado, int id_concepto, int valor) {
         this.id_nomina = id_nomina;
         this.id_empleado = id_empleado;
         this.id_concepto = id_concepto;
@@ -37,11 +37,11 @@ public class NominaEmpleado implements Serializable{
         this.id_nomina_empleado = id_nomina_empleado;
     }
 
-    public String getId_nomina() {
+    public int getId_nomina() {
         return id_nomina;
     }
 
-    public void setId_nomina(String id_nomina) {
+    public void setId_nomina(int id_nomina) {
         this.id_nomina = id_nomina;
     }
 

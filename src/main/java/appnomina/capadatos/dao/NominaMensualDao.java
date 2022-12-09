@@ -6,6 +6,7 @@
 package appnomina.capadatos.dao;
 
 import appnomina.capadatos.Conexion;
+import appnomina.capadatos.entidades.DatosMensual;
 import appnomina.capadatos.entidades.Produccion;
 import appnomina.capadatos.entidades.Empleado;
 import appnomina.capadatos.entidades.NominaMensual;
@@ -13,6 +14,7 @@ import appnomina.capadatos.entidades.HistoricoEmpleado;
 import appnomina.capadatos.entidades.HistoricoCargo;
 import appnomina.capadatos.entidades.HistoricoFijos;
 import appnomina.capadatos.entidades.NominaEmpleado;
+import appnomina.capadatos.entidades.Semanal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -37,6 +39,7 @@ public class NominaMensualDao {
     private EmpleadoDao ed;
     private ProduccionDao pd;
     private NominaEmpleadoDao ne;
+    private CargoDao cd;
 
     public NominaMensualDao() {
         hed = new HistoricoEmpleadoDao();
@@ -45,6 +48,7 @@ public class NominaMensualDao {
         ed = new EmpleadoDao();
         pd = new ProduccionDao();
         ne = new NominaEmpleadoDao();
+        cd = new CargoDao();
     }
 
     public boolean insertarNominaMensual(NominaMensual nominamensual, String nuevo) throws Exception {
@@ -79,33 +83,66 @@ public class NominaMensualDao {
     }
 
     public NominaMensual buscarNominaMensual(String id_nomina_mensual)throws Exception{
+        
         NominaMensual p = new NominaMensual();
-        
-        Conexion con= new Conexion();
-        
+
+        Conexion con = new Conexion();
+
         Connection conexion = con.conectar("NominaMensualDao.buscarNominaMensual()");
-                
-       
+
         String sql = "SELECT * FROM nomina_mensual WHERE id_nomina = ?";
         PreparedStatement ps = conexion.prepareStatement(sql);
-        
-        ps.setString(1, id_nomina_mensual);                
+
+        ps.setString(1, id_nomina_mensual);
         ResultSet rst = ps.executeQuery();
-        if (rst.next()){
+        if (rst.next()) {
             p.setId_nomina(rst.getInt(1));
             p.setId_nomina_mensual(rst.getString(1));
             p.setFecha(rst.getDate(2));
-        } else p=null;
-        
-        rst.close();        
+        } else {
+            p = null;
+        }
+
+        rst.close();
         ps.close();
         conexion.close();
-        
-        rst=null;
-        ps=null;
-        conexion=null;
+
+        rst = null;
+        ps = null;
+        conexion = null;
         return p;
     }
+    
+    public int buscarIdNominaMensual(String id_semanal, Date fecha) throws Exception {
+
+        int id_nomina = 0;
+
+        Conexion con = new Conexion();
+
+        Connection conexion = con.conectar("NominaMensualDao.buscarIdNominaMensual()");
+
+        String sql = "SELECT * FROM nomina_mensual ORDER BY id_nomina DESC LIMIT 1";
+
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        //CargoDao cd = new CargoDao();
+        //ps.setInt(1, id_empleado);
+        ResultSet rst = ps.executeQuery();
+        if (rst.next()) {
+            id_nomina = rst.getInt(1);
+        }
+
+        rst.close();
+        ps.close();
+        conexion.close();
+
+        rst = null;
+        ps = null;
+        conexion = null;
+        return id_nomina;
+    }
+    
+    
 
     public List<NominaMensual> buscarNominasMensuales() throws Exception {
         List<NominaMensual> producciones = new ArrayList<>();
@@ -148,46 +185,104 @@ public class NominaMensualDao {
         return producciones;
     }
 
-    public List<NominaMensual> buscarNominasMensualesFechas(String fechai, String fechaf) throws Exception {
-        List<NominaMensual> producciones = new ArrayList<>();
+    public List<Semanal> buscarNominasMensualesFechas(String fechai, String fechaf) throws Exception {
+        List<Semanal> nominaempleado = new ArrayList<>();
 
         Conexion con = new Conexion();
         Connection conexion = con.conectar("NominaMensualDao.buscarNominasMensualesFechas()");
 
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //java.util.Date fechai2 = sdf.parse(fechai);
-        //java.sql.Date fechai1 = new java.sql.Date(fechai2.getTime());
-        //java.util.Date fechaf2 = sdf.parse(fechaf);
-        //java.sql.Date fechaf1 = new java.sql.Date(fechaf2.getTime());
-        //String sql = "SELECT * FROM produccion ";
-        String sql = "SELECT * FROM nomina_mensual WHERE fecha between '" + fechai + "' and '" + fechaf + "';";
-        PreparedStatement ps = conexion.prepareStatement(sql);
+        //String sql = "SELECT ne. FROM nomina_semanal ns, nomina_empleado ne WHERE ns.id_nomina=ne.id_nomina and ns.fecha between '" + fechai + "' and '" + fechaf + "';";
+        String sql = "SELECT e.cedula, e.nombre, e.apellido, ns.fecha, ne.id_concepto, ne.valor FROM nomina_mensual ns, nomina_empleado ne, empleado e WHERE ns.id_nomina=ne.id_nomina and ns.fecha between '" + fechai + "' and '" + fechaf + "' and ne.id_empleado=e.id_empleado;";
 
-        CargoDao cd = new CargoDao();
+        PreparedStatement ps = conexion.prepareStatement(sql);
 
         ResultSet rst = ps.executeQuery();
 
-        //System.out.println("fechai: " + fechai + " fechaf: " + fechaf);
+        Semanal p = new Semanal();
         while (rst.next()) {
-            NominaMensual p = new NominaMensual();
-            p.setId_nomina(rst.getInt(1));
-            p.setId_nomina_mensual(rst.getString(2));
-            p.setFecha(rst.getDate(3));
-            producciones.add(p);
             
-                       
+
+            if (rst.getInt(5) == 1) {
+                p.setCedula(rst.getString(1));
+                p.setNombre(rst.getString(2));
+                p.setApellido(rst.getString(3));
+                p.setFecha(""+ rst.getDate(4));
+                p.setTotal(rst.getInt(6));
+            } else {
+                if (rst.getInt(5) == 3) {
+                    p.setPrima(rst.getInt(6));
+
+                }
+                else
+                {
+                    p.setCesantias(rst.getInt(6));
+                    nominaempleado.add(p);
+                    p = new Semanal();
+                }
+            }
+            //System.out.println(rst.getString(4) + " cedula: " + rst.getString(1) + " " + rst.getString(2) + " " + rst.getString(3) + " concepto: " + rst.getInt(5) + " " + rst.getInt(6));
         }
+
         
+        
+        
+        
+    rst.close ();
 
-        rst.close();
-        ps.close();
-        conexion.close();
+    ps.close ();
 
-        rst = null;
-        ps = null;
-        conexion = null;
-        return producciones;
-    }
+    conexion.close ();
+
+    rst  = null;
+    ps  = null;
+    conexion  = null;
+    return nominaempleado ;
+}
+    
+    
+    public List<DatosMensual> buscarNominasMensualesTotalesFechas(String fechai, String fechaf) throws Exception {
+        
+                
+        List<DatosMensual> nominaempleado = new ArrayList<>();
+
+        Conexion con = new Conexion();
+        Connection conexion = con.conectar("NominaMensualDao.buscarNominasMensualesTotalesFechas()");
+
+        //String sql = "SELECT ne. FROM nomina_semanal ns, nomina_empleado ne WHERE ns.id_nomina=ne.id_nomina and ns.fecha between '" + fechai + "' and '" + fechaf + "';";
+        String sql = "SELECT e.id_cargo, ns.fecha, ne.valor, ne.id_concepto FROM nomina_mensual ns, nomina_empleado ne, empleado e WHERE ns.id_nomina=ne.id_nomina and ns.fecha between '" + fechai + "' and '" + fechaf + "' and ne.id_empleado=e.id_empleado;";
+
+        PreparedStatement ps = conexion.prepareStatement(sql);
+
+        ResultSet rst = ps.executeQuery();
+
+        DatosMensual p = new DatosMensual();
+        while (rst.next()) {
+            
+            //System.out.println(rst.getString(1) + " " + rst.getDate(2) + " " + rst.getInt(3)) ;
+            
+
+            if (rst.getInt(4) == 1) {
+                p.setCargo(cd.buscarCargo(rst.getInt(1)).getNombre());
+                p.setFecha(rst.getDate(2));
+                p.setValor(rst.getInt(3));
+            
+                    nominaempleado.add(p);
+                    p = new DatosMensual();
+                }
+            }
+            //System.out.println(rst.getString(4) + " cedula: " + rst.getString(1) + " " + rst.getString(2) + " " + rst.getString(3) + " concepto: " + rst.getInt(5) + " " + rst.getInt(6));
+       
+    rst.close ();
+    ps.close ();
+    conexion.close ();
+
+    rst  = null;
+    ps  = null;
+    conexion  = null;
+    return nominaempleado ;
+}
+    
+    
 
     public int buscarNominasMensualesUsuarioFechasX(int id_empleado, int pago, String fechai, String fechaf) throws Exception {
 

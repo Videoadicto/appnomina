@@ -44,25 +44,63 @@
 
         <%
 
-            String validar3 = request.getParameter("validar");
+            String SITIO_2 = "SOLETERO";
 
-            if (validar3.equals("1")) {
+                /**
+                 * Sitio web 2
+                 */
+                String SITIO_1 = "LIMPIADOR";
 
-                String fechai3 = request.getParameter("fechai2");
-                String fechaf3 = request.getParameter("fechaf2");
-                int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+                String SITIO_3 = "ASEADOR";
+                
+                String SITIO_4 = "CORTADOR";
+                
+                String SITIO_5 = "PELADOR";
+            
+                
 
+                // Creamos y rellenamos el modelo de datos
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-                for (Produccion produccion : fachada.buscarProduccionesFechasEmpleado(idEmpleado3, fechai3, fechaf3)) {
+                // Visitas del sitio web 1
+                dataset.setValue(100, SITIO_1, "Lunes");
+                dataset.setValue(120, SITIO_1, "Martes");
+                dataset.setValue(110, SITIO_1, "Miércoles");
+                dataset.setValue(103, SITIO_1, "Jueves");
+                dataset.setValue(106, SITIO_1, "Viernes");
 
-                    //System.out.println(produccion.getFecha() + " " + produccion.getIdEmpleado().getCedula() + " " + produccion.getIdEmpleado().getNombre());
-                    dataset.setValue(produccion.getCantidad(), produccion.getIdEmpleado().getNombre().replace("_", " ") + " " + produccion.getIdEmpleado().getApellido().replace("_", " "), produccion.getFecha());
-                }
+                // Visitas del sitio web 2
+                dataset.setValue(60, SITIO_2, "Lunes");
+                dataset.setValue(62, SITIO_2, "Martes");
+                dataset.setValue(61, SITIO_2, "Miércoles");
+                dataset.setValue(63, SITIO_2, "Jueves");
+                dataset.setValue(66, SITIO_2, "Viernes");
+                
+                
+                dataset.setValue(60, SITIO_3, "Lunes");
+                dataset.setValue(62, SITIO_3, "Martes");
+                dataset.setValue(61, SITIO_3, "Miércoles");
+                dataset.setValue(63, SITIO_3, "Jueves");
+                dataset.setValue(66, SITIO_3, "Viernes");
+                
+                dataset.setValue(60, SITIO_4, "Lunes");
+                dataset.setValue(62, SITIO_4, "Martes");
+                dataset.setValue(61, SITIO_4, "Miércoles");
+                dataset.setValue(63, SITIO_4, "Jueves");
+                dataset.setValue(66, SITIO_4, "Viernes");
+                
+                
+                dataset.setValue(60, SITIO_5, "Lunes");
+                dataset.setValue(62, SITIO_5, "Martes");
+                dataset.setValue(61, SITIO_5, "Miércoles");
+                dataset.setValue(63, SITIO_5, "Jueves");
+                dataset.setValue(66, SITIO_5, "Viernes");
 
-                JFreeChart chart = ChartFactory.createBarChart3D("Produccion", "fechas",
-                        "Producido", dataset, PlotOrientation.VERTICAL, true,
-                        true, true);
+                JFreeChart chart = ChartFactory.createBarChart("Visitas", "día",
+                        "Número visitas", dataset, PlotOrientation.VERTICAL, true,
+                        true, false);
+
+                
 
                 final CategoryPlot p = chart.getCategoryPlot();
 
@@ -118,7 +156,7 @@
         <img src="data:image/jpeg;base64,<%=base64Encoded%>"/>
 
         <%
-            }
+            
         %>
 
     </body>

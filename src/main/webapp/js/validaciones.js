@@ -79,7 +79,7 @@ function preValidar() {
     //frmRegistrar.getElementById("password").value = "";
 
     //window.alert("prevalidar");
-    
+
     //limpiar();
 
     datos = "usuario2=" + usuario1 + "&password2=" + password1;
@@ -206,21 +206,78 @@ function verificarPaginaF(texto)
     //window.alert("validarpagina");
     var datos = "";
 
-        var fechai1 = "" + document.getElementById("fechaix").value;
-        var fechaf1 = "" + document.getElementById("fechafx").value;
-        var tipo1 = "" + document.getElementById("tipo").value;
+    var fechai1 = "" + document.getElementById("fechaix").value;
+    var fechaf1 = "" + document.getElementById("fechafx").value;
+    var tipo1 = "" + document.getElementById("tipo").value;
 
-        //window.alert("" + fechai1 + " " + fechaf1);
-        //window.alert(texto);
+    //window.alert("" + fechai1 + " " + fechaf1);
+    //window.alert(texto);
 
 
-        if (fechai1 !== "" && fechaf1 !== "") {
+    if (fechai1 !== "" && fechaf1 !== "") {
 
-            datos = texto + "&tipo2=" + tipo1 + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
-        } 
+        datos = texto + "&tipo2=" + tipo1 + "&fechal2=" + fechai1 + "&fechah2=" + fechaf1;
+    }
     //window.alert("" + datos);
     return datos;
 }
+
+function verificarGrafica()
+{
+    document.getElementById("divInsertar").innerHTML = "";
+    document.getElementById("divInsertar").style = 'display:"";';
+    
+    document.getElementById("boxInsertar").innerHTML = "";
+
+    var datos = "";
+    var fechai1 = "" + document.getElementById("fechaix").value;
+    var fechaf1 = "" + document.getElementById("fechafx").value;
+    var idEmpleado1 = "" + document.getElementById("idEmpleado").value;
+
+    //window.alert("" + fechai1 + " " + fechaf1);
+    if (fechai1 !== "" && fechaf1 !== "" && idEmpleado1 !=="") {
+
+        document.getElementById("divInsertar").style = "display: none;";
+        datos = "idEmpleado2=" + idEmpleado1 + "&fechai2=" + fechai1 + "&fechaf2=" + fechaf1 + "&validar=1";
+    }
+    else
+    {
+        document.getElementById("divInsertar").style = 'display:"";';
+        document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
+        datos = "validar=0";
+    }
+//    window.alert("pep");
+    return datos;
+}
+
+
+function verificarGraficaCargo()
+{
+    document.getElementById("divInsertar").innerHTML = "";
+    document.getElementById("divInsertar").style = 'display:"";';
+    
+    document.getElementById("boxInsertar").innerHTML = "";
+
+    var datos = "";
+    var fechai1 = "" + document.getElementById("fechaix").value;
+    var fechaf1 = "" + document.getElementById("fechafx").value;
+
+    //window.alert("" + fechai1 + " " + fechaf1);
+    if (fechai1 !== "" && fechaf1 !== "" ) {
+
+        document.getElementById("divInsertar").style = "display: none;";
+        datos = "fechai2=" + fechai1 + "&fechaf2=" + fechaf1 + "&validar=1";
+    }
+    else
+    {
+        document.getElementById("divInsertar").style = 'display:"";';
+        document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
+        datos = "validar=0";
+    }
+//    window.alert("pep");
+    return datos;
+}
+
 
 
 
@@ -415,7 +472,7 @@ function validarDatosGraficarSemanal(nuevo) {
 
     //window.alert("mercy");
 
-    
+
 
     var idEmpleado1 = ((frmRegistrar.idEmpleado.value).trim()).replace(/ /g, "_");
     var fechai = ((frmRegistrar.fechaix.value).trim()).replace(/ /g, "");
@@ -514,7 +571,7 @@ function validarDatosSemanal(nuevo, idsx, primasx, cesantiasx, icesantiasx, tota
         var fechaf1 = "" + document.getElementById("fechafx").value;
         var idNomina1 = "" + document.getElementById("idNomina").value;
 
-        datos = "idNomina2=" + idNomina1 + "&ids2=" + idsx + "&primas2=" + primasx + "&cesantias2=" + cesantiasx + "&icesantias2=" + icesantiasx + "&totales2=" + totalesx  + "&fechaf2=" + fechaf1 + "&nuevo2=" + nuevo + "&validar2=1";
+        datos = "idNomina2=" + idNomina1 + "&ids2=" + idsx + "&primas2=" + primasx + "&cesantias2=" + cesantiasx + "&icesantias2=" + icesantiasx + "&totales2=" + totalesx + "&fechaf2=" + fechaf1 + "&nuevo2=" + nuevo + "&validar2=1";
         //document.getElementById("divInsertar").style = "display: none;";
 
         //window.alert("" + lista1);
@@ -524,8 +581,8 @@ function validarDatosSemanal(nuevo, idsx, primasx, cesantiasx, icesantiasx, tota
 }
 
 function validarDatosCargo(nuevo) {
-    
-    
+
+
 
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
@@ -546,22 +603,22 @@ function validarDatosCargo(nuevo) {
 
     //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
 
-    
+
 
     if (idCargo1 === "" || nombre1 === "" || pago1 === "", estado1 === "")
     {
         document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
         datos = "validar2=0";
     } else {
-        datos = "idCargo2=" + idCargo1 + "&nombre2=" + nombre1 + "&pago2=" + pago1 + "&estado2=" + estado1 + "&nuevo2=" + nuevo +  "&validar2=1";
+        datos = "idCargo2=" + idCargo1 + "&nombre2=" + nombre1 + "&pago2=" + pago1 + "&estado2=" + estado1 + "&nuevo2=" + nuevo + "&validar2=1";
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;
 }
 
 function validarDatosFijos(nuevo) {
-    
-    
+
+
 
     var datos = "";
     document.getElementById("divInsertar").innerHTML = "";
@@ -581,14 +638,14 @@ function validarDatosFijos(nuevo) {
 
     //window.alert("idProducto2=" + idProducto1 + "&nombre2=" + nombre1 + "&precio2=" + precio1 + "&cantidad2=" + cantidad1 + "&iva2=" + iva1 + "&retencion2=" + retencion1 + "&cantidadMinima2=" + cantidadMinima1 + "&idCategoria2=" + idCategoria1 + "& nuevo2=" + nuevo + "&validar2=1");
 
-    
+
 
     if (idFijo1 === "" || nombre1 === "" || valor1 === "")
     {
         document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
         datos = "validar2=0";
     } else {
-        datos = "idFijo2=" + idFijo1 + "&nombre2=" + nombre1 + "&valor2=" + valor1 + "&nuevo2=" + nuevo +  "&validar2=1";
+        datos = "idFijo2=" + idFijo1 + "&nombre2=" + nombre1 + "&valor2=" + valor1 + "&nuevo2=" + nuevo + "&validar2=1";
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;
@@ -654,86 +711,6 @@ function validarDatosProveedor(nuevo) {
         document.getElementById("divInsertar").style = "display: none;";
     }
     return datos;
-}
-
-function nuevoAjax()
-{
-    var xmlhttp = false;
-    try {
-        // Creacion del objeto AJAX para navegadores no IE Ejemplo:Mozilla, Safari 
-        xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-    } catch (e) {
-        try {
-            // Creacion del objet AJAX para IE
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        } catch (E) {
-            if (!xmlhttp && typeof XMLHttpRequest != 'undefined')
-                xmlhttp = new XMLHttpRequest();
-        }
-    }
-    return xmlhttp;
-}
-
-
-function prueba() {
-    aleatorio = Math.random();
-    ajax = nuevoAjax();
-
-    parametros = "cedula=" + cedula + "&nombre=" + nombre + "&email=" + email + "&password=" + password + "&nuevo=" + nuevo + "&aleatorio=" + aleatorio;
-    url = "pg-empleado/guardarEmpleado.jsp";
-    ajax.open("POST", url, true);
-    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    ajax.send(parametros);
-
-    ajax.onreadystatechange = function ()
-    {
-        if (ajax.readyState == 4)
-        {
-            if (ajax.status == 200)
-            {
-                document.getElementById("boxInsertar").innerHTML = ajax.responseText;
-            } else
-            {
-                document.getElementById("boxInsertar").innerHTML = ajax.responseText;
-            }
-        } else
-        {
-            document.getElementById("boxInsertar").innerHTML = "<img src='img/cargando.gif' width='100' height='100' />";
-        }
-    };
-}
-
-function preValidarX() {
-
-    var cedula = document.getElementById("cedula").value;
-    var password = document.getElementById("password").value;
-
-    //window.alert("cedula=" + cedula2);
-
-
-
-    ale = Math.random();
-    parametros = "cedula2=" + cedula + "&password2=" + password + "&ale=" + ale;
-
-    ajax = nuevoAjax();
-    url = "validarUsuario.jsp";
-    ajax.open("POST", url, true);
-    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    ajax.send(parametros);
-
-    ajax.onreadystatechange = function ()
-    {
-        if (ajax.readyState == 4)
-        {
-            if (ajax.status == 200)
-            {
-                document.getElementById("boxIndex").innerHTML = ajax.responseText;
-            } else
-            {
-                document.getElementById("boxIndex").innerHTML = ajax.responseText;
-            }
-        }
-    };
 }
 
 function listarTabla() {

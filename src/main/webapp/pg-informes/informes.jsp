@@ -22,13 +22,34 @@
                 });
             });
 
-
             $(document).ready(function () {
                 $("#btnGuardar").click(function () {
-                    $("#boxInsertar").load("pg-informes/insertarGrafica.jsp", function () {
+                    $("#boxInsertar").load("pg-informes/insertarGrafica.jsp?" + verificarGrafica(), function () {
                     });
                 });
             });
+
+            $(document).ready(function () {
+                $("#btnNomina").click(function () {
+                    $("#boxInsertar").load("pg-informes/insertarGraficaNomina.jsp?" + verificarGraficaCargo(), function () {
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $("#btnCargo").click(function () {
+                    $("#boxInsertar").load("pg-informes/insertarGraficaCargos.jsp?" + verificarGraficaCargo(), function () {
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $("#btnProduccion").click(function () {
+                    $("#boxInsertar").load("pg-informes/insertarGraficaMensualProduccion.jsp?" + verificarGraficaCargo(), function () {
+                    });
+                });
+            });
+
         </script>
     </head>
 
@@ -37,11 +58,10 @@
         <%
             String fechai3 = request.getParameter("fechal2");
             String fechaf3 = request.getParameter("fechah2");
-
         %>
 
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">AGREGAR PRODUCCION</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">INFORMES</h1>
         </div>
 
         <div class="card-body">
@@ -75,63 +95,75 @@
 
                     <th>
                         <div class="form-group">
-                            <label for="idEmpleado">Empleado:</label>
-                            <select id="idEmpleado" name="idEmpleado" required class="form-control">
-                                <option value="" selected >  </option>
-                                <%                                            for (Empleado empleado : fachada1.buscarEmpleados()) {
-                                %>
-                                <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
+                            <label for="fechaix" class="form-label">Fecha inicial:</label>
+                            <br>
+                            <input type="date" name="fechaix" id="fechaix" value = '<%= fechai3%>' style="width: 200px; vertical-align:10px">
                         </div>
                     </th>
 
 
+                    <th>
+                        <div class="form-group">
+                            <label for="fechafx" class="form-label">Fecha Final:</label>
+                            <br>
+                            <input value = '<%= fechaf3%>' type="date" name="fechafx" id="fechafx" style="width: 200px; vertical-align:10px">
+                        </div>
+                    </th>
 
+                    <th>
+                        <div class="form-group">
+                            <input type="button" id="btnNomina" value="Nominas Mensuales" class="btn" style="background:rgb(0, 195, 255);margin-top: 30px;"  >
+                        </div>
+                    </th>  
 
+                    <th>
+                        <div class="form-group">
+                            <input type="button" id="btnCargo" value="Produccion por Cargo" class="btn" style="background:rgb(0, 195, 255);margin-top: 30px;"  >
+                        </div>
+                    </th>  
 
+                    <th>
+                        <div class="form-group">
+                            <input type="button" id="btnProduccion" value="Produccion Mensual" class="btn" style="background:rgb(0, 195, 255);margin-top: 30px;"  >
+                        </div>
+                    </th> 
                     </tr>
 
                     <tr>
-
                         <th>
                             <div class="form-group">
-                                <label for="fechaix" class="form-label">Fecha inicial:</label>
-                                <br>
-                                <input type="date" name="fechaix" id="fechaix" value = '<%= fechai3%>' style="width: 200px; vertical-align:10px">
+                                <label for="idEmpleado">Empleado:</label>
+                                <select id="idEmpleado" name="idEmpleado" required class="form-control">
+                                    <option value="" selected >  </option>
+                                    <%                                            for (Empleado empleado : fachada1.buscarEmpleados()) {
+                                    %>
+                                    <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
                             </div>
                         </th>
 
-
                         <th>
                             <div class="form-group">
-                                <label for="fechafx" class="form-label">Fecha Final:</label>
-                                <br>
-                                <input value = '<%= fechaf3%>' type="date" name="fechafx" id="fechafx" style="width: 200px; vertical-align:10px">
+                                <input type="button" id="btnGuardar" value="Informe de Produccion" class="btn" style="background:rgb(0, 195, 255);margin-top: 30px;"  >
                             </div>
-                        </th>
+                        </th>    
+
 
                     </tr>
 
-
                     </tbody>
                 </table>
-
-
-                
 
                 <div id="boxInsertar">
                 </div>
 
                 <br>
 
-                <div class="form-group">
-                    <input type="button" id="btnGuardar" value="Graficar" class="btn" style="background:rgb(0, 195, 255)" >
-                </div>
-
-
+                <div id="divInsertar" style="display: none;" class="alert alert-danger">
+                </div>  
             </form>
         </div>                    
     </body>

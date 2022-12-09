@@ -6,6 +6,7 @@
 
 
 
+<%@page import="org.jfree.data.general.DefaultPieDataset"%>
 <%@page import="org.jfree.ui.TextAnchor"%>
 <%@page import="org.jfree.chart.labels.ItemLabelPosition"%>
 <%@page import="org.jfree.chart.labels.ItemLabelAnchor"%>
@@ -50,20 +51,36 @@
 
                 String fechai3 = request.getParameter("fechai2");
                 String fechaf3 = request.getParameter("fechaf2");
-                int idEmpleado3 = Integer.parseInt(request.getParameter("idEmpleado2"));
+
+                /*
 
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
+               
+                
                 for (Produccion produccion : fachada.buscarProduccionesFechasEmpleado(idEmpleado3, fechai3, fechaf3)) {
 
                     //System.out.println(produccion.getFecha() + " " + produccion.getIdEmpleado().getCedula() + " " + produccion.getIdEmpleado().getNombre());
                     dataset.setValue(produccion.getCantidad(), produccion.getIdEmpleado().getNombre().replace("_", " ") + " " + produccion.getIdEmpleado().getApellido().replace("_", " "), produccion.getFecha());
                 }
 
-                JFreeChart chart = ChartFactory.createBarChart3D("Produccion", "fechas",
-                        "Producido", dataset, PlotOrientation.VERTICAL, true,
-                        true, true);
+                 */
+                DefaultPieDataset dataset = new DefaultPieDataset();
+                dataset.setValue("IPhone 5s", new Double(20));
+                dataset.setValue("SamSung Grand", new Double(20));
+                dataset.setValue("MotoG", new Double(40));
+                
+                dataset.setValue("Nokia Lumia", new Double(25));
+                
 
+                
+                //dataset.setValue("Nokia Lumia", new Double(25));
+                
+
+                JFreeChart chart = ChartFactory.createPieChart("Cargos", dataset, true, true, false);
+
+                
+               /*
+                
                 final CategoryPlot p = chart.getCategoryPlot();
 
                 BarRenderer renderer = (BarRenderer) p.getRenderer();
@@ -75,6 +92,8 @@
                 renderer.setItemLabelsVisible(true);
                 chart.getCategoryPlot().setRenderer(renderer);
 
+*/
+
                 //CategoryPlot plot = (CategoryPlot) 
                 //chart.getPlot();
                 //NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
@@ -83,7 +102,7 @@
                 //OutputStream sa = response.getOutputStream();
                 File f = new File("filename.png");
                 //f.createNewFile();
-                ChartUtilities.saveChartAsJPEG(f, chart, 1100, 500);
+                ChartUtilities.saveChartAsJPEG(f, chart, 500, 500);
 
                 //System.out.print(f.getAbsolutePath());
                 //ChartUtilities.writeChartAsPNG(sa, chart, 500, 500);
@@ -110,7 +129,6 @@
 
                 byte[] encodeBase64 = Base64.encodeBase64(bytes);
                 String base64Encoded = new String(encodeBase64, "UTF-8");
-
 
 
         %>

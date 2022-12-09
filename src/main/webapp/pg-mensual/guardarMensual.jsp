@@ -56,16 +56,18 @@
                     NominaMensual p = new NominaMensual(idNomina3, "2-" + ids3[i] , fecha3);
                     msg3 = fachada.insertarNominaMensual(p, nuevo3);
                     
-                    NominaEmpleado q = new NominaEmpleado(idNomina3, "2-" + ids3[i], Integer.parseInt(ids3[i]), 1, Integer.parseInt(totales3[i]) );
+                    int idNomina = fachada.buscarIdNominaMensual("2-" + ids3[i], fecha3);
+                    
+                    NominaEmpleado q = new NominaEmpleado(idNomina3, idNomina, Integer.parseInt(ids3[i]), 1, Integer.parseInt(totales3[i]) );
                     msg3 = fachada1.insertarNominaEmpleado(q, nuevo3);
                      //System.out.println(""+1);
                     
-                     NominaEmpleado r = new NominaEmpleado(idNomina3, "2-" + ids3[i], Integer.parseInt(ids3[i]), 3, Integer.parseInt(primas3[i]) );
-                     msg3 = fachada1.insertarNominaEmpleado(r, nuevo3);
+                     q = new NominaEmpleado(idNomina3, idNomina, Integer.parseInt(ids3[i]), 3, Integer.parseInt(primas3[i]) );
+                     msg3 = fachada1.insertarNominaEmpleado(q, nuevo3);
                      //System.out.println(""+2);
                      
-                     NominaEmpleado s = new NominaEmpleado(idNomina3, "2-" + ids3[i], Integer.parseInt(ids3[i]), 4, (Integer.parseInt(cesantias3[i]) + Integer.parseInt(icesantias3[i])) );
-                     msg3 = fachada1.insertarNominaEmpleado(s, nuevo3);
+                     q = new NominaEmpleado(idNomina3, idNomina, Integer.parseInt(ids3[i]), 4, (Integer.parseInt(cesantias3[i]) + Integer.parseInt(icesantias3[i])) );
+                     msg3 = fachada1.insertarNominaEmpleado(q, nuevo3);
                      //System.out.println(""+3);
                     
                     
