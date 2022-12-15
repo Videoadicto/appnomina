@@ -221,17 +221,15 @@
                             </th>
                             <th>
                                 <div class="form-group">
-                                    
+
                                     <select id="tipo" name="tipo" required class="form-control">
                                         <option value="" selected >  </option>
                                         <%
-                                            
-                                            
-                                            
+
                                             for (Concepto concepto : fachada3.buscarConceptos().subList(0, 2)) {
                                         %>
-                                        
-                                        <option value="<%= concepto.getId_concepto()%>" <%if (tipo3 == ( concepto.getId_concepto())) {%> selected <%}%>  > <%= (concepto.getNombre()).replace("_", " ")%> </option>
+
+                                        <option value="<%= concepto.getId_concepto()%>" <%if (tipo3 == (concepto.getId_concepto())) {%> selected <%}%>  > <%= (concepto.getNombre()).replace("_", " ")%> </option>
                                         <%
                                             }
                                         %>
@@ -262,8 +260,8 @@
                     <tbody>
                         <%  for (Empleado empleado : fachada2.buscarEmpleados()) {
                                 if (empleado.getEstado() == 1) {
-                                
-                                List<Integer> totales = fachada4.calcularNominaSemanalEmpleado(empleado.getId_empleado(), tipo3, fechai3, fechaf3);
+
+                                    List<Integer> totales = fachada4.calcularNominaSemanalEmpleado(empleado.getId_empleado(), tipo3, fechai3, fechaf3);
                         %>
                         <tr>
                             <td>
@@ -273,92 +271,92 @@
                             <td> <%= empleado.getNombre().replace("_", " ")%> </td>
                             <td> <%= empleado.getApellido().replace("_", " ")%> </td>
                             <td> <%= empleado.getCedula()%> </td>
-                            
-                            <td> <%= totales.get(0) %> </td>
-                            <td> <%= totales.get(1) %> </td>
-                            <td> <%= totales.get(2) %> </td>
-                            <td> <%= totales.get(3) %> </td>
-                            <td> <%= totales.get(4) %> </td>
-                            <td> <%= totales.get(5) %> </td>
-                            <td> <%= totales.get(0) + totales.get(1) - totales.get(2) + totales.get(3) + totales.get(4) + totales.get(5) %> </td>
-                            
+
+                            <td> <%= totales.get(0)%> </td>
+                            <td> <%= totales.get(1)%> </td>
+                            <td> <%= totales.get(2)%> </td>
+                            <td> <%= totales.get(3)%> </td>
+                            <td> <%= totales.get(4)%> </td>
+                            <td> <%= totales.get(5)%> </td>
+                            <td> <%= totales.get(0) + totales.get(1) - totales.get(2) + totales.get(3) + totales.get(4) + totales.get(5)%> </td>
+
                         </tr>
                         <%
                                 }
                             }
-                             //
+                            //
                             //S                                n(session.getAttribute("ro                                                         %>
                     </tbody>
 
                 </table>
             </div>
-        </div>
 
-        <%
-            {
-                String mensa = (request.getParameter("mens")).replace(".", " ");
-                if (mensa.equals("0")) {
 
-                    mensa = "";
-                } else {
-        %>
-        <script>
-            aparecerDiv("divListar");
-        </script>
+            <%
+                {
+                    String mensa = (request.getParameter("mens")).replace(".", " ");
+                    if (mensa.equals("0")) {
 
-        <div id="divListar" style="display: none;" class="alert alert-success">
-            <%= mensa%>
-        </div>
-        <%
+                        mensa = "";
+                    } else {
+            %>
+            <script>
+                aparecerDiv("divListar");
+            </script>
+
+            <div id="divListar" style="display: none;" class="alert alert-success">
+                <%= mensa%>
+            </div>
+            <%
+                    }
                 }
-            }
-        %>
+            %>
 
-        <div id="divInsertar" style="display: none;" class="alert alert-danger">
-        </div>  
+            <div id="divInsertar" style="display: none;" class="alert alert-danger">
+            </div>  
 
-        <div id="boxInsertar">
-        </div>
+            <div id="boxInsertar">
+            </div>
 
-        <input name="idNomina" id="idNomina" style="display: none;" value = 0 >
+            <input name="idNomina" id="idNomina" style="display: none;" value = 0 >
 
-        <input name="validax" id="validax" style="display: none;" value = "1" >
-        
-        
+            <input name="validax" id="validax" style="display: none;" value = "1" >
 
-        <div class="form-group">
+            <br>
 
-            <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)">
-            <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
-        </div>
+            <div class="form-group">
 
-        <div class="card-footer">
-        </div>
+                <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)">
+                <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+            </div>
 
-        <input id="lista" style="display: none;" value = "" >
+            <div class="card-footer">
+            </div>
 
-        <script src="js/dataTable/dataTables.buttons.min.js"></script>
-        <script src="js/dataTable/buttons.flash.min.js"></script>
-        <script src="js/dataTable/jszip.min.js"></script>
-        <script src="js/dataTable/pdfmake.min.js"></script>
-        <script src="js/dataTable/vfs_fonts.js"></script>
-        <script src="js/dataTable/buttons.html5.min.js"></script>
-        <script src="js/dataTable/buttons.print.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#tablaSemanales').DataTable({
-                    //pageLength: 5,
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
+            <input id="lista" style="display: none;" value = "" >
+
+            <script src="js/dataTable/dataTables.buttons.min.js"></script>
+            <script src="js/dataTable/buttons.flash.min.js"></script>
+            <script src="js/dataTable/jszip.min.js"></script>
+            <script src="js/dataTable/pdfmake.min.js"></script>
+            <script src="js/dataTable/vfs_fonts.js"></script>
+            <script src="js/dataTable/buttons.html5.min.js"></script>
+            <script src="js/dataTable/buttons.print.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#tablaSemanales').DataTable({
+                        //pageLength: 5,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    });
                 });
-            });
-        </script>
-
-        <br>
+            </script>
 
 
 
+
+        </div>
     </body>
 </html>

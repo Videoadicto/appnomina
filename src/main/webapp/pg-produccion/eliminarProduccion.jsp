@@ -26,7 +26,7 @@
         %>
         <input id="esto1" style="display: none;" value = <%= msg4%> >
         <script>
-            $("#box").load("pg-produccion/listarProduccion.jsp?mens=" + ($(esto1).val()) + uneFechas(), function () {
+            $("#box").load("pg-produccion/listarProducciones.jsp?mens=" + ($(esto1).val()) + uneFechas(), function () {
             });
         </script>
         <%
@@ -34,7 +34,7 @@
         } else {
         %>
         <script>
-            $("#box").load("pg-produccion/listarProduccion.jsp?mens=Se.ha.cancelado.la.operacion" + uneFechas(), function () {
+            $("#box").load("pg-produccion/listarProducciones.jsp?mens=Se.ha.cancelado.la.operacion" + uneFechas(), function () {
             });
         </script>
         <%    }

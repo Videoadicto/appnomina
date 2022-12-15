@@ -432,6 +432,42 @@ function validarDatosEmpleado(nuevo) {
 }
 
 
+function validarDatosUsuario(nuevo) {
+
+    //window.alert("A LA MERC");
+
+    var datos = "";
+    document.getElementById("divInsertar").innerHTML = "";
+    document.getElementById("divInsertar").style = 'display:"";';
+
+    try {
+        document.getElementById("divGuardar").innerHTML = "";
+        document.getElementById("divGuardar").style = "display:none;";
+
+    } catch (error) {
+        console.error(error);
+    }
+
+    var nick1 = (((frmRegistrar.nick.value).trim()).replace(/ /g, ""));
+    var nombre1 = ((frmRegistrar.nombre.value).trim()).replace(/ /g, "_");
+    var password1 = ((frmRegistrar.password.value).trim()).replace(/ /g, "");
+    var tipo1 = frmRegistrar.tipo.value;
+
+    //window.alert("idEmpleado1=" + idEmpleado1 + "&nombre1=" + nombre1 + "&apellido1=" + apellido1 + "&cedula1=" + cedula1 + "&fechanac1=" + fechanac1 + "&telefono1=" + telefono1 + "&eps1=" + eps1 + "&idCargo1=" + idCargo1 + "& nuevo2=" + nuevo + "&validar2=1");
+
+    if (nick1 === "" || nombre1 === "" || nombre1 === "" || password1 === "")
+    {
+        document.getElementById("divInsertar").innerHTML = "Error: Hay campos vacios";
+        datos = "validar2=0";
+    } else {
+        datos = "nick2=" + nick1 + "&nombre2=" + nombre1 + "&password2=" + password1 + "&tipo2=" + tipo1 + "&nuevo2=" + nuevo + "&validar2=1";
+        document.getElementById("divInsertar").style = "display: none;";
+    }
+    return datos;
+}
+
+
+
 function validarDatosProduccion(nuevo) {
 
     //window.alert("mercy");

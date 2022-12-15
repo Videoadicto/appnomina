@@ -39,30 +39,36 @@
         </head>
 
         <body>
-            <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-                <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EMPLEADOS</h1>
-            </div>
 
-            <table class="table table-borderless">
-                <thead>
-                    <tr>
-                        <th>
+        <%
+            String fechaf3 = request.getParameter("fechah2");
+        %>
+
+        <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">EMPLEADOS</h1>
+        </div>
+
+                <br>
+        
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>
                         <%--            <button class="btn" onclick="location.href = 'empleadoForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
-                        <button class="btn" id="nuevo" value="pg-empleado/insertarEmpleado.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
+                        <button class="btn" id="nuevo" value="pg-empleado/insertarEmpleado.jsp?fechaf3=<%=fechaf3%>" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
                             <i class="fa fa-toolbox" >
                             </i> Agregar Empleado
                         </button>
                     </th>
-<%-- 
+
                     <th>
                         <div>
-                            <button class="btn" id="btnBuscar" title="Inactivos" value="pg-fijos/editarFijos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
+                            <button class="btn" id="inactivos" title="Inactivos" value="pg-empleado/listarInactivos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
                                 <i class="fa fa-trash-alt" >
                                 </i>
                             </button>
                         </div>
                     </th>
---%>
                 </tr>
             </thead>
         </table>
@@ -77,7 +83,6 @@
                             <th>Apellido</th>
                             <th>Telefono</th>
                             <th>Cargo</th>
-                            <th>Estado</th>
                             <th>Opción</th>
                         </tr>                            
                     </thead>
@@ -88,10 +93,6 @@
 
                                 if (estado == 1) {
                                     testado = "ACTIVO";
-                                } else {
-                                    testado = "INACTIVO";
-                                }
-
                         %>
                         <tr>                               
                             <td><%= empleado.getCedula()%></td>
@@ -99,8 +100,6 @@
                             <td><%= (empleado.getApellido()).replace("_", " ")%></td>
                             <td><%= empleado.getTelefono()%></td>
                             <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
-                            <td><%= testado%></td>
-
                             <td>
                                 <button  class="item" style="border:none" value="pg-empleado/editarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
                                     <img src="img/editar.png" width="16" height="16" >
@@ -109,14 +108,15 @@
                                 <button  class="item" style="border:none" value="pg-empleado/mostrarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
                                     <img src="img/info.png" alt="alt"/>
                                 </button>
-<%-- 
-                                <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
-                                    <img src="img/borrar.png" alt="alt"/>
-                                </button>
-                                    --%>
+                                <%-- 
+                                                                <button  class="item" style="border:none" value="pg-empleado/eliminarEmpleado.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
+                                                                    <img src="img/borrar.png" alt="alt"/>
+                                                                </button>
+                                --%>
                             </td>
                         </tr>
                         <%
+                                }
                             }
                             //System.out.println(session.getAttribute("rol").toString());
                         %>

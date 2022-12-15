@@ -23,10 +23,14 @@ public class Conexion
 	//private String usuario="o44zk2uydl5wfiz7";	
 	//private String password="pvg5sdc27bkqu1hw";  
         
-        private final static String url ="jdbc:mysql://localhost:3307/nominabd";//local
-        //private final static String url ="jdbc:mysql://keen-clarity-370303:us-central1:nominabd?allowPublicKeyRetrieval=true&useSSL=false";//local
+        //private final static String url ="jdbc:mysql://localhost:3307/nominabd";//local
+        private final static String url ="jdbc:mysql://localhost:3306/nominabd";//local
 	private String usuario="root";	
-	private String password="";
+
+        //private String password="";
+        private String password="Proyectosufps";
+        //private String password="ReliantquillBD+.2080";
+        
         
 	private final static String driver = "com.mysql.jdbc.Driver";			
 	private String error;

@@ -32,6 +32,10 @@
     </head>
 
     <body>
+        <%
+            String fechaf3 = request.getParameter("fechaf3");
+        %>
+        
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
             <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">AGREGAR EMPLEADO</h1>
         </div>
@@ -140,7 +144,7 @@
                             <div class="form-group">
                                 <label for="fechanac" class="form-label">Fecha de Vinculacion:</label>
                                 <br>
-                                <input type="date" name="fechanac" id="fechanac" style="width: 200px; vertical-align:10px">
+                                <input type="date" name="fechanac" id="fechanac" value="<%= fechaf3%>" style="width: 200px; vertical-align:10px">
                             </div>
                         </th>
                         
@@ -162,7 +166,7 @@
 
                             <div class="form-group">
                                 <input type="button" id="btnGuardar" value="Guardar" class="btn" style="background:rgb(0, 195, 255)">
-                                <button type="button" value="pg-empleado/listarEmpleado.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
+                                <button type="button" value="pg-empleado/listarEmpleado.jsp?mens=0&fechah2=<%=fechaf3%>" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
                             </div>
                         </th>
                         <th>

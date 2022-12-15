@@ -65,7 +65,7 @@
 
 
                                 <br>
-                                <input style="left : 130%; position:relative; font-size:20px; width:270px;background:rgb(71, 82, 94);" type="button" id="btnAceptar" value="Aceptar" class="btn btn-success" >
+                                <input style="left : 130%; position:relative; font-size:20px; width:265px;background:rgb(71, 82, 94);" type="button" id="btnAceptar" value="Aceptar" class="btn btn-success" >
                             </td>
                         </tr>
 

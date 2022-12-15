@@ -135,10 +135,13 @@
                                 <label for="idEmpleado">Empleado:</label>
                                 <select id="idEmpleado" name="idEmpleado" required class="form-control">
                                     <option value="" selected >  </option>
-                                    <%                                            for (Empleado empleado : fachada1.buscarEmpleados()) {
+                                    <%
+                                        for (Empleado empleado : fachada1.buscarEmpleados()) {
+                                            if (empleado.getEstado() == 1) {
                                     %>
                                     <option value="<%= empleado.getId_empleado()%>"> <%= empleado.getCedula() + " - " + (empleado.getNombre()).replace("_", " ") + " " + (empleado.getApellido()).replace("_", " ")%></option>
                                     <%
+                                            }
                                         }
                                     %>
                                 </select>

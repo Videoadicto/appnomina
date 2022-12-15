@@ -48,7 +48,7 @@
 
 
         <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">PRODUCCION</h1>
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">REGISTRO DE PRODUCCIONES</h1>
         </div>
 
         <br>
@@ -141,11 +141,11 @@
                                 <button  class="item" style="border:none" value="pg-produccion/mostrarProduccion.jsp?idProduccion=<%= produccion.getId_produccion()%>">
                                     <img src="img/info.png" alt="alt"/>
                                 </button>
-<%-- 
+
                                 <button  class="item" style="border:none" value="pg-produccion/eliminarProduccion.jsp?idProduccion=<%= produccion.getId_produccion()%>">
                                     <img src="img/borrar.png" alt="alt"/>
                                 </button>
---%>
+
 
 
                             </td>
@@ -158,7 +158,7 @@
 
                 </table>
             </div>
-        </div>
+
 
         <%
             {
@@ -208,6 +208,6 @@
                 });
             });
         </script>
-
+        </div>
     </body>
 </html>

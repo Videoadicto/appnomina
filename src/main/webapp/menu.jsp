@@ -85,6 +85,10 @@
                         $("#box").load("pg-informes/informes.jsp?mens=0" + uneFechas(), function () {
                         });
                     });
+                    $("#menu13").click(function () {
+                        $("#box").load("pg-usuario/listarUsuario.jsp?mens=0" + uneFechas(), function () {
+                        });
+                    });                    
                     $("#menu10").click(function () {
                         window.location.href = "index.jsp";
                     });
@@ -173,8 +177,6 @@
                     <p> </p>
                 </div>
 
-
-
                 <ul>
                     <!--
                     <li>
@@ -185,6 +187,7 @@
                     </li>
                     
                     -->
+                    
                     <li>
                         <a>
                             <span class="icon"><i class="fas fa-user-cog"></i></span>
@@ -192,7 +195,7 @@
                         </a>
                     </li>
 
-                    <li  id="emp" >
+                    <li>
                         <a>
                             <span class="icon"><i class="fas fa-users"></i></span>
                             <span id="menu6" class="item">Empleados</span>
@@ -219,9 +222,6 @@
                             <span id="menu12" class="item">Pago Mensual</span>
                         </a>
                     </li>
-
-                   
-
                     
                     <li>
                         <a>
@@ -230,6 +230,12 @@
                         </a>
                     </li>
                     
+                    <li  id="emp" >
+                        <a>
+                            <span class="icon"><i class="fas fa-users"></i></span>
+                            <span id="menu13" class="item">Usuarios</span>
+                        </a>
+                    </li>                    
                     
                     <li>
                         <a>
@@ -254,7 +260,8 @@
 
             usuario = fachada.buscarUsuario(idUsuario);
 
-            //session.setAttribute("rol", usuario.getTipo());
+            session.setAttribute("rol", usuario.getTipo());
+            session.setAttribute("nick", usuario.getNick());
             {
         %>
 
@@ -265,7 +272,7 @@
             modificarMenu();
         </script>
 
-        <input id="emple" style="display: none;" value = <%= (usuario.getNombre())%> >
+        <input id="emple" style="display: none;" value = <%= (usuario.getNick())%> >
 
         <%  }
 

@@ -25,7 +25,7 @@ public class Usuario implements Serializable{
         this.nick = nick;
         this.nombre = nombre;
         this.password = password;
-        this.tipo = 1;
+        this.tipo = tipo;
     }
 
     public String getNick() {

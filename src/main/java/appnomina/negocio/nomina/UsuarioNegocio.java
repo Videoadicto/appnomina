@@ -59,10 +59,10 @@ public class UsuarioNegocio {
         return usuarios;
     }
     
-    public String eliminarUsuario(int id_usuario){
+    public String eliminarUsuario(String nick){
         String rta="";
         try {
-                boolean res = usuarioDao.eliminarUsuario(id_usuario);
+                boolean res = usuarioDao.eliminarUsuario(nick);
                 if (res) rta = "Usuario eliminado con exito." ;
                 else rta = "Error al eliminar el usuario";
         } catch (Exception e) {

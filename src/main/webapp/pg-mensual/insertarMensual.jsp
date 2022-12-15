@@ -292,7 +292,7 @@
 
                 </table>
             </div>
-        </div>
+
 
         <%
             {
@@ -324,7 +324,7 @@
 
         <input name="validax" id="validax" style="display: none;" value = "1" >
         
-        
+                <br>
 
         <div class="form-group">
 
@@ -356,9 +356,9 @@
             });
         </script>
 
-        <br>
 
 
 
+        </div>
     </body>
 </html>

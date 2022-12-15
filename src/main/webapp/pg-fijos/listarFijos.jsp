@@ -78,7 +78,7 @@
 
             </table>
         </div>
-    </div>
+
 
     <%
         {
@@ -102,6 +102,8 @@
 
     <div id="boxListar">
     </div>
+    
+    <br>
     
     <div class="form-group">
                     <button type="button" value="pg-semanal/listarSemanal.jsp?mens=0" class="btn" style="background:rgb(0, 195, 255)">Regresar</button>
@@ -127,4 +129,5 @@
             });
         });
     </script>
+        </div>
 </html>

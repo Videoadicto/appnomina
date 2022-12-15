@@ -50,6 +50,8 @@
             <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">PRODUCCION</h1>
         </div>
 
+        <br>
+
         <table class="table table-borderless">
             <thead>
                 <tr>
@@ -71,7 +73,7 @@
                                         </th>
                     --%>
 
-                
+
                     <th>
                         <div>
                             <label style="width:10em; text-align:right;">Fecha Produccion:</label>
@@ -85,8 +87,8 @@
                             <input type="date" name="fechafx" id="fechafx" value = '<%= fechaf3%>' style="width: 150px">
                         </div>
                     </th>
-                    
-                   
+
+
 
                 </tr>
             </thead>
@@ -113,8 +115,14 @@
                             <td><%= empleado.getCedula()%></td>
                             <td><%= (empleado.getNombre()).replace("_", " ")%></td>
                             <td><%= (empleado.getApellido()).replace("_", " ")%></td>
-                            <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
 
+                            <%
+                                //System.out.println(empleado.getNombre() + " " +  empleado.getIdCargo().getEstado());
+                                if (empleado.getIdCargo().getEstado() == 1) {
+                            %>
+                            
+                            <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ")%></td>
+                            
                             <td>
                                 <button  class="item" style="border:none" value="pg-produccion/insertarProduccion.jsp?idEmpleado=<%= empleado.getId_empleado()%>">
                                     <img src="img/sumar.png" width="16" height="16" >
@@ -126,9 +134,21 @@
                                                                 </button>
                                 --%>
                             </td>
+
+                            <%
+                            } else {
+                            %>
+
+                            <td><%= (empleado.getIdCargo().getNombre()).replace("_", " ") + " (INACTIVO)"%></td>
+                            <td></td>
+
+                            <%
+                                }
+                            %>
+
                         </tr>
                         <%
-                            }
+                                }
                             }
                             //System.out.println(session.getAttribute("rol").toString());
                         %>

@@ -184,7 +184,7 @@ public class EmpleadoDao {
         Conexion con = new Conexion();
         Connection conexion = con.conectar("EmpleadoDao.buscarEmpleados()");
         //String sql = "SELECT * FROM empleado ";
-        String sql = "SELECT e.id_empleado, e.nombre, e.apellido, e.cedula, e.fecha_vinculacion, e.telefono, e.eps, e.id_cargo, c.nombre, c.pago, e.estado FROM empleado e, cargo c WHERE e.id_cargo=c.id_cargo;";
+        String sql = "SELECT e.id_empleado, e.nombre, e.apellido, e.cedula, e.fecha_vinculacion, e.telefono, e.eps, e.id_cargo, c.nombre, c.pago, c.estado, e.estado FROM empleado e, cargo c WHERE e.id_cargo=c.id_cargo;";
 
         PreparedStatement ps = conexion.prepareStatement(sql);
 
@@ -203,7 +203,8 @@ public class EmpleadoDao {
             p.getIdCargo().setId_cargo(rst.getInt(8));
             p.getIdCargo().setNombre(rst.getString(9));
             p.getIdCargo().setPago(rst.getInt(10));
-            p.setEstado(rst.getInt(11));
+            p.getIdCargo().setEstado(rst.getInt(11));
+            p.setEstado(rst.getInt(12));
 
             empleados.add(p);
         }

@@ -39,7 +39,7 @@ public class UsuarioDao {
         ps.setString(1, usuario.getNick());
         ps.setString(2, usuario.getNombre());
         ps.setString(3, usuario.getPassword());
-        ps.setInt(4, 0);
+        ps.setInt(4, usuario.getTipo());
 
         ps.execute();
         rta = true;
@@ -114,17 +114,17 @@ public class UsuarioDao {
         return usuarios;
     }
 
-    public boolean eliminarUsuario(int id_usuario) throws Exception {
+    public boolean eliminarUsuario(String nick) throws Exception {
         boolean rta = false;
 
         Conexion con = new Conexion();
         Connection conexion = con.conectar("UsuarioDao.eliminarUsuario()");
 
-        String sql = "DELETE FROM usuario WHERE id_usuario = ?";
+        String sql = "DELETE FROM usuario WHERE nick = ?";
 
         PreparedStatement ps = conexion.prepareStatement(sql);
 
-        ps.setInt(1, id_usuario);
+        ps.setString(1, nick);
 
         ps.executeUpdate();
         rta = true;

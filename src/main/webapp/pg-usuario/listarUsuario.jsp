@@ -1,10 +1,10 @@
 <%-- 
-    Document   : listarCargos
+    Document   : listarUsuarios
     Created on : 31 mar. 2022, 08:43:44
     Author     : Videoadicto
 --%>
 
-<%@page import="appnomina.capadatos.entidades.Cargo"%>
+<%@page import="appnomina.capadatos.entidades.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -16,11 +16,11 @@
     }
 %>
 --%>
-<jsp:useBean id="fachada" class="appnomina.negocio.facade.CargoFacade"></jsp:useBean>
+<jsp:useBean id="fachada" class="appnomina.negocio.facade.UsuarioFacade"></jsp:useBean>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Registro de Cargos</title>
+            <title>Registro de Usuarios</title>
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
             <link href="css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
@@ -40,80 +40,96 @@
 
         <body>
 
-            <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
-                <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">CARGOS</h1>
-            </div>
+        <%
+            String tipo = session.getAttribute("rol").toString();
+            String nick = session.getAttribute("nick").toString();
+        %>
 
-            <br>
+        <div class="card-header" style="background-color: rgb(75, 131, 145);height:50px;">,
+            <h1 style="font-family: 'Dyuthi';font-size: 40px; color: rgb(255, 255, 255);top: -30px; position:relative;">USUARIOS</h1>
+        </div>
 
-            <table class="table table-borderless">
-                <thead>
-                    <tr>
-                        <th>
+        <br>
+        
+        <table class="table table-borderless">
+            <thead>
+                <tr>
 
+                    <%
+                        if (tipo.equals("1")) {
 
-                            <div>
-                            <%--            <button class="btn" onclick="location.href = 'cargoForm.html'" style="top : 15%; left : 87%; position:relative"> --%>
-                            <button class="btn" id="nuevo" value="pg-cargo/insertarCargo.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
-                                <i class="fa fa-toolbox" >
-                                </i> Agregar Cargo
-                            </button>
-                        </div>
-                    </th>
+                    %>
                     <th>
-                        <div>
-                            <button class="btn" id="inactivos" title="Inactivos" value="pg-cargo/listarInactivos.jsp?mens=0" style="width:3em; background:rgb(0, 195, 255);left : 0%; position:relative;">
-                                <i class="fa fa-trash-alt" >
-                                </i>
-                            </button>
-                        </div>
+                        <button class="btn" id="nuevo" value="pg-usuario/insertarUsuario.jsp" style="background:rgb(0, 195, 255);left : 1.2%; position:relative;">
+                            <i class="fa fa-toolbox" >
+                            </i> Agregar Usuario
+                        </button>
                     </th>
+
+                    <% }
+
+                    %>
+
                 </tr>
             </thead>
         </table>
 
-
         <div class="card-body">
             <div class="table-responsive">
-                <table id="tablaCargos" class="table table-bordered">
+                <table id="tablaUsuarios" class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>Usuario</th>
                             <th>Nombre</th>
-                            <th>Pago</th>
+                            <th>Tipo</th>
                             <th>Opción</th>
                         </tr>                            
                     </thead>
                     <tbody>
-
-
-                        <% for (Cargo cargo : fachada.buscarCargos()) {
-                                int estado = cargo.getEstado();
+                        <% for (Usuario usuario : fachada.buscarUsuarios()) {
+                                int estado = usuario.getTipo();
                                 String testado = "";
 
                                 if (estado == 1) {
-                                    testado = "ACTIVO";
+                                    testado = "Administrador";
+                                } else {
+                                    testado = "Usuario";
+                                }
 
                         %>
                         <tr>                               
-                            <td><%= (cargo.getNombre()).replace("_", " ")%></td>
-                            <td><%= cargo.getPago()%></td>
+                            <td><%= usuario.getNick()%></td>
+                            <td><%= (usuario.getNombre()).replace("_", " ")%></td>
+                            <td><%= testado%></td>
                             <td>
-                                <button  class="item" style="border:none" value="pg-cargo/editarCargo.jsp?idCargo=<%= cargo.getId_cargo()%>">
+
+                                <%
+                                    if (tipo.equals("1") || nick.equals(usuario.getNick())) {
+                                %> 
+
+                                <button  class="item" style="border:none" value="pg-usuario/editarUsuario.jsp?nick=<%= usuario.getNick()%>">
                                     <img src="img/editar.png" width="16" height="16" >
                                 </button>
 
-                                <button  class="item" style="border:none" value="pg-cargo/mostrarCargo.jsp?idCargo=<%= cargo.getId_cargo()%>">
-                                    <img src="img/info.png" alt="alt"/>
+                                <%
+                                    }
+                                %>   
+
+                                <%
+                                    if (tipo.equals("1") && !(nick.equals(usuario.getNick()))) {
+                                %>   
+
+                                <button  class="item" style="border:none" value="pg-usuario/eliminarUsuario.jsp?nick=<%= usuario.getNick()%>">
+                                    <img src="img/borrar.png" alt="alt"/>
                                 </button>
-                                <%-- 
-                                                            <button  class="item" style="border:none" value="pg-cargo/eliminarCargo.jsp?idCargo=<%= cargo.getId_cargo()%>">
-                                                                <img src="img/borrar.png" alt="alt"/>
-                                                            </button>
-                                --%>
+
+                                <%
+                                    }
+                                %>   
+
                             </td>
                         </tr>
                         <%
-                                }
                             }
                         %>
                     </tbody>
@@ -130,6 +146,7 @@
                     mensa = "";
                 } else {
         %>
+
         <script>
             aparecerDiv("divListar");
         </script>
@@ -157,7 +174,8 @@
         <script src="js/dataTable/buttons.print.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#tablaCargos').DataTable({
+                $('#tablaUsuarios').DataTable({
+                    pageLength: 5,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'

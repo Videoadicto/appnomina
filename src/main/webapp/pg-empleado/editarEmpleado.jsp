@@ -84,9 +84,11 @@
                             <select id="idCargo" name="idCargo" class="form-control" >
                                 <%
                                     for (Cargo cargo : fachada2.buscarCargos()) {
+                                        if (cargo.getEstado() == 1) {
                                 %>
                                 <option value="<%= cargo.getId_cargo()%>" <%if ((empleado.getIdCargo().getId_cargo()) == (cargo.getId_cargo())) {%> selected <%}%>  > <%= (cargo.getNombre()).replace("_", " ")%> </option>
                                 <%
+                                        }
                                     }
                                 %>
                             </select>
@@ -156,24 +158,24 @@
                             <div class="form-group">
                                 <label for="estado" class="form-label">Estado:</label>
                                 <select id="estado" name="estado" class="form-control" >
-                                    
+
                                     <%{
-                                    String etd = "";
-                                    if  ( empleado.getEstado() == 1 )
-                                    etd = "ACTIVO";
-                                    else
-                                    etd = "INACTIVO";
-                                    
-                                        
-                                %>
-                                    
+                                            String etd = "";
+                                            if (empleado.getEstado() == 1) {
+                                                etd = "ACTIVO";
+                                            } else {
+                                                etd = "INACTIVO";
+                                            }
+
+                                    %>
+
                                     <option value="1" <%if (etd.equals("ACTIVO")) {%> selected <%}%>  > ACTIVO </option>
                                     <option value="0" <%if (etd.equals("INACTIVO")) {%> selected <%}%>  > INACTIVO </option>
-                                    
+
                                     <%
                                         }
-                                %>
-                                    
+                                    %>
+
                                 </select>
                             </div>
                         </th>
