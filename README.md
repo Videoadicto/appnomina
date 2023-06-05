@@ -1,6 +1,6 @@
 # Nomina JKB
 
-Nomina JKB es una aplicación web que permite el manejo de la información referente a empleados, cargos, producción, nominas e informes de la empresa de calzado JKB
+Nomina JKB es una aplicación web que permite el manejo de la información referente a usuarios, empleados, cargos, producción, nominas e informes de la empresa de calzado JKB
 
 ## Construido con 🛠️
 
@@ -13,10 +13,9 @@ JSP - Java Server Page
 
 ## Autores ✒️
 
-* **Marcos Leonardo Chacon Rodriguez** - *Desarrollador Backend-Frontend*
-* **Ivan Mauricio Rodriguez Garro** - *Desarrollador Backend*
-* **Monica Marcela Reyes Galvis** - *Analista y Documentador*
-* **Jhony Alberto Fernandez** - *Analista y Documentador*
+* **Marcos Leonardo Chacon Rodriguez** - *Analista y Documentador/Desarrollador Backend-Frontend*
+* **Juan Sebastián Martínez Medina** - *Analista y Documentador/Desarrollador Backend-Frontend*
+* **Jairo Guillermo Gil Ureña** - *Analista y Documentador/Desarrollador Backend-Frontend*
 
 ## Opciones disponibles de la aplicacion
 
