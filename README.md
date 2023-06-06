@@ -13,7 +13,7 @@ JSP - Java Server Page
 
 ## Autores ✒️
 
-* **Marcos Leonardo Chacon Rodriguez** - *Analista y Documentador/Desarrollador Backend-Frontend*
+* **Marcos Leonardo Chacón Rodríguez** - *Analista y Documentador/Desarrollador Backend-Frontend*
 * **Juan Sebastián Martínez Medina** - *Analista y Documentador/Desarrollador Backend-Frontend*
 * **Jairo Guillermo Gil Ureña** - *Analista y Documentador/Desarrollador Backend-Frontend*
 
